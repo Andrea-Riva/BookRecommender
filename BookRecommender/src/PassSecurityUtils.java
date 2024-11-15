@@ -5,7 +5,8 @@ import java.util.Random;
 
 // Insieme di metodi utili per rendere la gestione della password più sicura
 public class PassSecurityUtils {
-    private static final String AES_key = "askd021_dja";    // Chiave per crittaggio e decrittaggio di AES
+    // Nota: la chiave è di 16 byte, quindi userà AES-128 (può anche essere lunga 24 o 32 byte per altre versioni)
+    private static final String AES_key = "askd021_dja_351:";    // Chiave per crittaggio e decrittaggio di AES
     public String genera()  // Genera una password sicura randomica di 10 caratteri
     {
         // Set usato per generare la password

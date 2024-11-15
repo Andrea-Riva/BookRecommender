@@ -1,6 +1,4 @@
 import java.io.*;
-import java.sql.Array;
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -74,7 +72,7 @@ public class User {
     }
 
     // Funzione di registrazione
-    public void register() throws IOException {
+    public void register() throws Exception {
         // Genera id univoco
         Integer uniqueId = 0;
         String filePath = "src/data/utenti.dati.csv";
@@ -103,12 +101,17 @@ public class User {
         System.out.println("Mail: ");
         String mail = in.nextLine();
         // Password generata randomicamente:
-        String randomPass = new RandomPass().genera();
-        System.out.println("Crea una nuova Password\n[Password consigliata: ] " + randomPass + ": ");
+        String randomPass = new PassSecurityUtils().genera();
+        System.out.println("Crea una nuova Password\n[Password consigliata: ] " + randomPass +
+                "\nPremi invio senza scrivere nulla per usare la password consigliata.");
         String pass = in.nextLine();
+        if(pass.equals("")) {
+            pass = randomPass;
+        }
+        String encryptedPass = new PassSecurityUtils().encrypt(pass);
         BufferedWriter bw = new BufferedWriter(new FileWriter(filePath, true));
         String toWrite = uniqueId.toString() + "; " + nome + "; " + cognome + "; " +
-                codFiscale + "; " + mail + "; " + pass + "\n";
+                codFiscale + "; " + mail + "; " + encryptedPass + "\n";
 
         // Passa la stringa a user.dati
         bw.write(toWrite);
