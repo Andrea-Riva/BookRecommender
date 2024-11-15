@@ -1,10 +1,8 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.sql.Array;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class User {
     // Metodi
@@ -73,5 +71,47 @@ public class User {
             throw new RuntimeException(e);
         }
         return libri;
+    }
+
+    // Funzione di registrazione
+    public void register() throws IOException {
+        // Genera id univoco
+        Integer uniqueId = 0;
+        String filePath = "src/data/utenti.dati.csv";
+        String line;
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            while((line = br.readLine()) != null) {
+                String[] lineClear = line.split("; ");
+                if(Integer.valueOf(lineClear[0]) > uniqueId) {
+                    uniqueId = Integer.valueOf(lineClear[0]);
+                }
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        uniqueId++; // Id univoco
+        // Costruzione campi registrazione
+        Scanner in = new Scanner(System.in);
+        System.out.println("Nome: ");
+        String nome = in.nextLine();
+        System.out.println("Cognome: ");
+        String cognome = in.nextLine();
+        System.out.println("Codice fiscale: ");
+        String codFiscale = in.nextLine();
+        System.out.println("Mail: ");
+        String mail = in.nextLine();
+        // Password generata randomicamente:
+        String randomPass = new RandomPass().genera();
+        System.out.println("Crea una nuova Password\n[Password consigliata: ] " + randomPass + ": ");
+        String pass = in.nextLine();
+        BufferedWriter bw = new BufferedWriter(new FileWriter(filePath, true));
+        String toWrite = uniqueId.toString() + "; " + nome + "; " + cognome + "; " +
+                codFiscale + "; " + mail + "; " + pass + "\n";
+
+        // Passa la stringa a user.dati
+        bw.write(toWrite);
+        bw.close();
     }
 }
