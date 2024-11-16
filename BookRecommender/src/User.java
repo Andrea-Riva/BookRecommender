@@ -115,4 +115,31 @@ public class User {
         bw.write(toWrite);
         bw.close();
     }
+
+    // Funzione di login
+    public LoggedUser login(String mail, String password) {
+        // Init del BufferedReader per leggere i dati dal file degli utenti registrati
+        String filePath = "src/data/utenti.dati.csv";
+        String line;
+
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            while ((line = br.readLine()) != null) {
+                String[] lineClear = line.split("; ");
+                // Decrypt della password
+                String passDecrypted = new PassSecurityUtils().decrypt(lineClear[5]);   // Password in chiaro [il fix prevedeva la modalità CBC di AES + IV per maggior sicurezza]
+                if(lineClear[4].equals(mail) && passDecrypted.equals(password)) {
+                    System.out.println("Loggato");
+                    return new LoggedUser(lineClear[0], lineClear[1], lineClear[2],
+                            lineClear[3], lineClear[4], lineClear[5]);  // Utente loggato se mail e pass sono corretti
+                }
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
 }

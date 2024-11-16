@@ -10,8 +10,9 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) throws Exception {
         User baseUser = new User(); // Utente non loggato
+        Scanner s = new Scanner(System.in);
         // Debugging ricerca libri
-        /*Scanner s = new Scanner(System.in);
+        /*
 
         ArrayList<Libro> solution = baseUser.cercaLibroByDataAutore("1985-04-01");
         System.out.println("Libri trovati per la data 1985-04-01:");
@@ -31,7 +32,14 @@ public class Main {
 
          */
 
-        // Debugging registrazione utente con crittaggio password
-        baseUser.register();
+        //Debugging registrazione utente con crittaggio password
+        //baseUser.register();
+
+        //Debudding login con decrittaggio password
+        System.out.print("Inserisci mail: ");
+        String mail = s.nextLine();
+        System.out.print("Inserisci password: ");
+        String password = s.nextLine();
+        System.out.println(baseUser.login(mail, password).toString());
     }
 }
