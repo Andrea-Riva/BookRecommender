@@ -2,19 +2,10 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-/**
-* Permette agli utenti di registrarsi ed effettuare ricerche di volumi.
-*/
 public class User {
     // Metodi
     public User() {
     }
-    
-    /**
-    * Permette la ricerca di un libro tramite titolo.
-    * @return il libro cercato (se incluso nel DataSet)
-    * @param titolo del libro
-    */
 
     public Libro cercaLibroByTitolo(String titolo) {    // Cerca libro by titolo
         String filePath = "src/data/libri.dati.csv";
@@ -36,11 +27,6 @@ public class User {
         }
     }
 
-   /**
-   * Permette di cercare tutti i volumi scritti da un autore.
-   * @return una lista di libri con relativa descrizione di ognuno.
-   * @param autore
-   */
     public ArrayList<Libro> cercaLibroByAutore(String autore) { // Cerca libri by autore
         ArrayList<Libro> libri = new ArrayList<>(); // to return
         String filePath = "src/data/libri.dati.csv";
@@ -62,24 +48,17 @@ public class User {
         }
         return libri;
     }
-    /**
-    * Permette la ricerca di libri in base all'autore e alla data di pubblicazione.
-    * @param autore e data
-    * @return una lista di libri
-    */
 
-    public ArrayList<Libro> cercaLibroByData(String data) {
-        ArrayList<Libro> libri = new ArrayList<>(); // to return
+    public Libro cercaLibroByDataAutore(String data, String autore) {
         String filePath = "src/data/libri.dati.csv";
         String line;
 
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             while ((line = br.readLine()) != null) {
                 String[] lineClear = line.split("; ");
-                if(lineClear[6].equals(data)) {
-                    Libro temp = new Libro(lineClear[0], lineClear[1], lineClear[2], lineClear[3], lineClear[4],
+                if(lineClear[6].equals(data) && lineClear[1].equals(autore)) {
+                    return new Libro(lineClear[0], lineClear[1], lineClear[2], lineClear[3], lineClear[4],
                             lineClear[5], lineClear[6]);
-                    libri.add(temp);
                 }
             }
         } catch (FileNotFoundException e) {
@@ -87,14 +66,10 @@ public class User {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return libri;
+        return null;
     }
 
-    /**
-    * Permette ad un utente di registrarsi, viene selezionato prima un UniqueId differente da ogni altro utente.
-    * Richiede l'inserimento di nome, cognome, codice fiscale, mail e password (tutti in formato String).
-    * Può essere richiesta dall'utente la creazione di una password casuale.
-    */
+    // Funzione di registrazione
     public void register() throws Exception {
         // Genera id univoco
         Integer uniqueId = 0;
@@ -123,11 +98,7 @@ public class User {
         String codFiscale = in.nextLine();
         System.out.println("Mail: ");
         String mail = in.nextLine();
-        /**
-        * La creazione della password può essere sia manuale (decisa dall'utente) che automatica.
-        * La password viene crittata prima della deposizione su file esterno (String encryptedPass = new PassSecurityUtils().encrypt(pass);)
-        * @param una stringa che rappresenta la password oppure vuota (solo invio) per la generazione casuale.
-        */
+        // Password generata randomicamente:
         String randomPass = new PassSecurityUtils().genera();
         System.out.println("Crea una nuova Password\n[Password consigliata: ] " + randomPass +
                 "\nPremi invio senza scrivere nulla per usare la password consigliata.");

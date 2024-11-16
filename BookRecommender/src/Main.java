@@ -13,7 +13,7 @@ public class Main {
         // Debugging ricerca libri
         /*Scanner s = new Scanner(System.in);
 
-        ArrayList<Libro> solution = baseUser.cercaLibroByData("1985-04-01");
+        ArrayList<Libro> solution = baseUser.cercaLibroByDataAutore("1985-04-01");
         System.out.println("Libri trovati per la data 1985-04-01:");
         for(Libro l : solution) {
             System.out.println(l.toString());
