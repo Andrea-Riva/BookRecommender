@@ -1,7 +1,13 @@
 import java.util.Date;
-
+/**
+* La classe permette di creare oggetti di tipo Libro necessari per i metodi di ricerca (User class) e creare Librerie di essi (Libreria class).
+* Un oggetto di tipo Libro è contraddistinto dai campi: titolo, autore, descrizione, categoria, pubblicazione, prezzo e data.
+* Il programma non permette la creazione degli oggetti da parte degli utenti ma solo di creare oggetti di tipo Libro utilizzando un file esterno
+* libri.dati.csv, la creazione quindi è possibile utilizzando metodi di lettura su file esterni (BufferedReader) mantenendo l'ordine degli attributi
+* dichiarati dalla classe Libro.
+* La classe mette a disposizione un metodo toString personalizzato dal programmatore.
+*/
 public class Libro {
-    // Campi
     private String titolo;
     private String autore;
     private String descrizione;
@@ -10,9 +16,8 @@ public class Libro {
     private String prezzo;
     private String data;
 
-    // Metodi
     public Libro(String titolo, String autore, String descrizione,
-                 String categoria, String pubblicatore, String prezzo, String data) {   // Costruttore
+                 String categoria, String pubblicatore, String prezzo, String data) {   
         this.titolo = titolo;
         this.autore = autore;
         this.descrizione = descrizione;
@@ -22,7 +27,6 @@ public class Libro {
         this.data = data;
     }
 
-    // Getter
     public String getTitolo() {
         return this.titolo;
     }
@@ -45,7 +49,7 @@ public class Libro {
         return this.data;
     }
 
-    // Setter
+    
     public void setTitolo(String titolo) {
         this.titolo = titolo;
     }
@@ -54,31 +58,29 @@ public class Libro {
         this.autore = autore;
     }
 
-    // Setter per la descrizione
     public void setDescrizione(String descrizione) {
         this.descrizione = descrizione;
     }
 
-    // Setter per la categoria
     public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
 
-    // Setter per il pubblicatore
     public void setPubblicatore(String pubblicatore) {
         this.pubblicatore = pubblicatore;
     }
 
-    // Setter per il prezzo
     public void setPrezzo(String prezzo) {
         this.prezzo = prezzo;
     }
 
-    // Setter per la data
     public void setData(String data) {
         this.data = data;
     }
-
+/**
+* La visualizzazione della descrizione tramite il metodo toString (personalizzato) avviene mostrando gli attributi
+* dell'oggetto su righe differenti (/n per ogni attributo).
+*/
     @Override
     public String toString() {
         return "Titolo: " + this.titolo + "\nAutore: " + this.autore + "\nDescrizione: " + this.descrizione
