@@ -95,7 +95,7 @@ public class User {
         System.out.println("Cognome: ");
         String cognome = in.nextLine();
         System.out.println("Codice fiscale: ");
-        String codFiscale = in.nextLine();
+        String codFiscale = in.nextLine().toUpperCase();
         System.out.println("Mail: ");
         String mail = in.nextLine().toLowerCase();
         // Password generata randomicamente:
