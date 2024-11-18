@@ -1,4 +1,3 @@
-import java.util.Date;
 /**
 * La classe permette di creare oggetti di tipo Libro necessari per i metodi di ricerca (User class) e creare Librerie di essi (Libreria class).
 * Un oggetto di tipo Libro è contraddistinto dai campi: titolo, autore, descrizione, categoria, pubblicazione, prezzo e data.
