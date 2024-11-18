@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 /**
 * La classe permette di creare oggetti di tipo Libreria. 
-* Ogni libreria è contraddistinta dai campi proprietario (loggedUser, cioè un oggetto che rappresenta un'utente registrato)
-* un nome (String) arbitrario scelto alla creazione e una collezione di libri (ArrayList<Libro> collectionLibri).
+* Ogni libreria è contraddistinta dai campi proprietario (loggedUser, cioè un oggetto che rappresenta un'utente registrato),
+* un nome (String) arbitrario scelto alla creazione ed una collezione di libri (ArrayList<Libro> collectionLibri).
 * Viene inoltre riscritto il metodo toString.
 */
 public class Libreria {
