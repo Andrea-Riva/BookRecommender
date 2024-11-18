@@ -1,3 +1,6 @@
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
@@ -66,18 +69,33 @@ public class LoggedUser extends User {
         this.mail = mail;
     }
 
-    public Libreria registraLibreria(String nomeLibreria, ArrayList<String> collectionTitoliLibri) {
+    public Libreria registraLibreria(String nomeLibreria, ArrayList<String> collectionTitoliLibri) throws IOException {
         ArrayList<Libro> constructCollectionLibri = new ArrayList<>();
-
+        ArrayList<String> existingLibri = new ArrayList<>();
         // Estrapolazione nomi dei libri dalla collection
         for(String titoloLibro : collectionTitoliLibri) {
             Libro libroTemp = new User().cercaLibroByTitolo(titoloLibro);
             if(Objects.isNull(libroTemp)) { // Se il libro non è stato trovato
                 System.out.println("Il libro " + titoloLibro + " non è stato trovato e non sarà aggiunto alla libreria");   //non viene aggiunto alla libreria e viene comunicato l'errore
             } else {    // Se il libro è stato trovato
+                existingLibri.add(titoloLibro); // Aggiunge il titolo ai libri esistenti
                 constructCollectionLibri.add(new User().cercaLibroByTitolo(titoloLibro));   // Aggiunge il libro alla collection
             }
         }
+        // Write sul file librerie.dati
+        String filePath = "src/data/librerie.dati.csv";
+        BufferedWriter bw = new BufferedWriter(new FileWriter(filePath, true));
+        String titoloLibri = "";
+        for(String titolo : existingLibri) {    // Memorizza in una stringa tutti i nomi dei libri esistenti inseriti dall'utente
+            System.out.println(titolo);
+            titoloLibri += titolo;
+            titoloLibri += "; ";
+        }
+        String toWrite = this.getId() + "; " + nomeLibreria + "; " + constructCollectionLibri.size() + "; " + titoloLibri + "\n";
+
+        // Passa la stringa a librerie.dati
+        bw.write(toWrite);
+        bw.close();
 
         // Costruzione Libreria
         return new Libreria(this, nomeLibreria, constructCollectionLibri);
