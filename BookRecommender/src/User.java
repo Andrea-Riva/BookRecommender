@@ -1,12 +1,17 @@
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+/**
+* Permette agli utenti di registrarsi ed effettuare ricerche di Libri mediante vari metodi.
+*/
 public class User {
-    // Metodi
     public User() {
     }
-
+/**
+* Permette la ricerca di un oggetto di tipo Libro tramite titolo.
+* @param titolo del libro da cercare
+* @return l'oggetto di tipo Libro cercato (se incluso nel DataSet)
+*/
     public Libro cercaLibroByTitolo(String titolo) {    // Cerca libro by titolo
         String filePath = "src/data/libri.dati.csv";
         String line;
@@ -26,7 +31,11 @@ public class User {
             throw new RuntimeException(e);
         }
     }
-
+/**
+* Permette di cercare tutti i Libri scritti da un autore.
+* @param autore
+* @return una lista di oggetti di tipo Libro.
+*/
     public ArrayList<Libro> cercaLibroByAutore(String autore) { // Cerca libri by autore
         ArrayList<Libro> libri = new ArrayList<>(); // to return
         String filePath = "src/data/libri.dati.csv";
@@ -48,7 +57,11 @@ public class User {
         }
         return libri;
     }
-
+/**
+* Permette la ricerca di libri in base all'autore e alla data di pubblicazione.
+* @param autore e data
+* @return una lista di oggetti di tipo Libro.
+*/
     public Libro cercaLibroByDataAutore(String data, String autore) {
         String filePath = "src/data/libri.dati.csv";
         String line;
@@ -68,8 +81,9 @@ public class User {
         }
         return null;
     }
-
-    // Funzione di registrazione
+/** Permette ad un utente di registrarsi, viene selezionato prima un UniqueId differente da ogni altro utente.
+* Richiede l'inserimento di nome, cognome, codice fiscale, mail e password (tutti in formato String).
+*/
     public void register() throws Exception {
         // Genera id univoco
         Integer uniqueId = 0;
@@ -98,7 +112,9 @@ public class User {
         String codFiscale = in.nextLine().toUpperCase();
         System.out.println("Mail: ");
         String mail = in.nextLine().toLowerCase();
-        // Password generata randomicamente:
+/** Prima di inserire una password decisa dall'utente viene fornita una password casuale creata dal programma.
+*L'utente può decidere di usare la password prodotta automaticamente premendo invio senza inserire caratteri. 
+*/
         String randomPass = new PassSecurityUtils().genera();
         System.out.println("Crea una nuova Password\n[Password consigliata: ] " + randomPass +
                 "\nPremi invio senza scrivere nulla per usare la password consigliata.");
@@ -106,17 +122,23 @@ public class User {
         if(pass.equals("")) {
             pass = randomPass;
         }
+/**
+* La password viene crittata prima della deposizione su file esterno (String encryptedPass = newPassSecurityUtils().encrypt(pass);)
+* Scrittura della riga di testo contente i dati dell'utente su file esterno user.dati
+ */
         String encryptedPass = new PassSecurityUtils().encrypt(pass);
         BufferedWriter bw = new BufferedWriter(new FileWriter(filePath, true));
         String toWrite = uniqueId.toString() + "; " + nome + "; " + cognome + "; " +
                 codFiscale + "; " + mail + "; " + encryptedPass + "\n";
 
-        // Passa la stringa a user.dati
         bw.write(toWrite);
         bw.close();
     }
 
-    // Funzione di login
+ /**
+*Metodo per effettuare il login
+*@param String mail, String password
+*/ 
     public LoggedUser login(String mail, String password) {
         // Init del BufferedReader per leggere i dati dal file degli utenti registrati
         String filePath = "src/data/utenti.dati.csv";
@@ -125,8 +147,10 @@ public class User {
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             while ((line = br.readLine()) != null) {
                 String[] lineClear = line.split("; ");
-                // Decrypt della password
-                String passDecrypted = new PassSecurityUtils().decrypt(lineClear[5]);   // Password in chiaro [il fix prevedeva la modalità CBC di AES + IV per maggior sicurezza]
+/**
+* Decrittazione della password e verifica correttezza coppia mail/password.
+*/           
+                String passDecrypted = new PassSecurityUtils().decrypt(lineClear[5]);   
                 if(lineClear[4].equals(mail.toLowerCase()) && passDecrypted.equals(password)) {
                     System.out.println("Loggato");
                     return new LoggedUser(lineClear[0], lineClear[1], lineClear[2],
