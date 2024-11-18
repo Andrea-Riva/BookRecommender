@@ -4,9 +4,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
-
+/**
+* Dichiara i campi per l'oggetto LoggedUser.
+* Fornisce metodi riservati ad utenti registrati (oggetti di tipo LoggedUser).
+* Ogni utente registrato è contraddistinto dai campi di tipo String id, nome, cognome, codiceFiscale
+* mail e password.
+*/
 public class LoggedUser extends User {
-    // Campi
     private String id;
     private String nome;
     private String cognome;
@@ -14,8 +18,7 @@ public class LoggedUser extends User {
     private String mail;
     private String password;
 
-    // Metodi
-    public LoggedUser(String id, String nome, String cognome, String codiceFiscale, String mail, String password) {    // Costruttore
+    public LoggedUser(String id, String nome, String cognome, String codiceFiscale, String mail, String password) {    
         this.id = id;
         this.nome = nome;
         this.cognome = cognome;
@@ -24,7 +27,6 @@ public class LoggedUser extends User {
         this.password = password;
     }
 
-    // Getter e Setter per id
     public String getId() {
         return id;
     }
@@ -33,7 +35,6 @@ public class LoggedUser extends User {
         this.id = id;
     }
 
-    // Getter e Setter per nome
     public String getNome() {
         return nome;
     }
@@ -42,7 +43,6 @@ public class LoggedUser extends User {
         this.nome = nome;
     }
 
-    // Getter e Setter per cognome
     public String getCognome() {
         return cognome;
     }
@@ -51,7 +51,6 @@ public class LoggedUser extends User {
         this.cognome = cognome;
     }
 
-    // Getter e Setter per codiceFiscale
     public String getCodiceFiscale() {
         return codiceFiscale;
     }
@@ -60,7 +59,6 @@ public class LoggedUser extends User {
         this.codiceFiscale = codiceFiscale;
     }
 
-    // Getter e Setter per mail
     public String getMail() {
         return mail;
     }
@@ -68,21 +66,42 @@ public class LoggedUser extends User {
     public void setMail(String mail) {
         this.mail = mail;
     }
-
+/**
+* Il metodo permette di salvare sul file "librerie.dati.csv"
+* Vengono inizializzati due ArrayList di tipo <Libro> constructCollectionLibri (utilizzato per definire la dimensione della Libreria
+* e per la costruzione della Libreria per il return) e <String> existingLibri (per la scrittura della libreria su file esterno). 
+* Viene creato un oggetto di tipo Libro temporaneo (libroTemp) utilizzando il metodo di ricerca per titolo [cercaLibroByTitolo(titoloLibro)]
+* Se titoloLibro compare nel DataSet di libri disponibili (libri.dati.csv) viene aggiunto all'ArrayList<String> existingLibri e all'ArrayList
+* constructCollectionLibri;
+* Altrimenti se libroTem risulta null (Object.isNull) viene visualizzato ub messaggio che informa l'utente dell'esito negativo della ricerca
+* con conseguente annullamento dell'aggiunta nella libreria.
+* @param nome della libreria e un ArrayList di String collectionTitoliLibri.
+*/
     public Libreria registraLibreria(String nomeLibreria, ArrayList<String> collectionTitoliLibri) throws IOException {
         ArrayList<Libro> constructCollectionLibri = new ArrayList<>();
         ArrayList<String> existingLibri = new ArrayList<>();
-        // Estrapolazione nomi dei libri dalla collection
+    
         for(String titoloLibro : collectionTitoliLibri) {
             Libro libroTemp = new User().cercaLibroByTitolo(titoloLibro);
-            if(Objects.isNull(libroTemp)) { // Se il libro non è stato trovato
-                System.out.println("Il libro " + titoloLibro + " non è stato trovato e non sarà aggiunto alla libreria");   //non viene aggiunto alla libreria e viene comunicato l'errore
-            } else {    // Se il libro è stato trovato
-                existingLibri.add(titoloLibro); // Aggiunge il titolo ai libri esistenti
-                constructCollectionLibri.add(new User().cercaLibroByTitolo(titoloLibro));   // Aggiunge il libro alla collection
+            if(Objects.isNull(libroTemp)) { 
+                System.out.println("Il libro " + titoloLibro + " non è stato trovato e non sarà aggiunto alla libreria");  
+            } else {    
+                existingLibri.add(titoloLibro); 
+                constructCollectionLibri.add(new User().cercaLibroByTitolo(titoloLibro));   
             }
         }
         // Write sul file librerie.dati
+/**
+* Viene salvata la directory di esportazione in un oggetto di tipo String (filePath) ed inizializzato il BufferedWriter.
+* Viene inizializzata una Stringa vuota titoliLibri, vengono scanditi gli oggetti String dell'ArrayList existingLibri e
+* concatenati alla stringa vuota creata in precedenza (totoloLibri), gli elementi vengono divisi ad ogni iterazione dalla
+* sequenza di caratteri "; ".
+* La stringa salvata nel file librerie.dati.csv è composta dal formato [id utente; nome libreria; dimensione della 
+* collection di libri creata; titolo dei libri], per effettuare ciò viene creato un oggetto String toWrite dove vengono
+* concatenati: Id dell'oggetto utente che esegue il metodo (this.getId) + nomeLibreria (scelto arbitrariamente all'invocazione
+* del metodo + constructCollectionLibri.size() (dimensione della collection in cui vengono inseriti i libri) + titoloLibri.
+* Scrittura sul file tramite bw.write(toWtite) e chiusura del BufferedWriter con bw.close().
+*/
         String filePath = "src/data/librerie.dati.csv";
         BufferedWriter bw = new BufferedWriter(new FileWriter(filePath, true));
         String titoloLibri = "";
@@ -93,7 +112,6 @@ public class LoggedUser extends User {
         }
         String toWrite = this.getId() + "; " + nomeLibreria + "; " + constructCollectionLibri.size() + "; " + titoloLibri + "\n";
 
-        // Passa la stringa a librerie.dati
         bw.write(toWrite);
         bw.close();
 
@@ -101,7 +119,10 @@ public class LoggedUser extends User {
         return new Libreria(this, nomeLibreria, constructCollectionLibri);
     }
 
-    // Metodo toString
+/**
+* La classe mette a disposizone un metodo toString che descrive l'oggetto nell'ordine Id, nome e cognome, mail e codice fiscale.
+*/
+    
     @Override
     public String toString() {
         return "ID: " + this.id + "\nNome e cognome: " + this.nome + " " + this.cognome +
