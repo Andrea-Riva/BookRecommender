@@ -1,16 +1,12 @@
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Objects;
-import java.util.Scanner;
 
 /**
  * Dichiara i campi per l'oggetto LoggedUser.
  * Fornisce metodi riservati ad utenti registrati (oggetti di tipo LoggedUser).
  * Ogni utente registrato è contraddistinto dai campi di tipo String id, nome, cognome, codiceFiscale
  * mail e password.
- * I metodi utilizzano file esterni di tipo csv per salvare le informazioni (librerie.dati.csv, ValutazioniLibri.dati.csv).
  */
 public class LoggedUser extends User {
     private String id;
@@ -116,7 +112,7 @@ public class LoggedUser extends User {
             titoloLibri += "; ";
         }
         titoloLibri = titoloLibri.substring(0, titoloLibri.length() - 2);   // Rimuove l'ultimo punto e virgola per la formattazione nel file csv
-        String toWrite = this.getId() + "; " + nomeLibreria + "; " + constructCollectionLibri.size() + "; " + titoloLibri + "\n";
+        String toWrite = this.getId() + "; " + nomeLibreria + "; " + titoloLibri + "\n";
 
         bw.write(toWrite);
         bw.close();
@@ -129,22 +125,19 @@ public class LoggedUser extends User {
      * Il metodo scrive sul file ValutazioniLibri.dati.csv l'utente che ha pubblicato la recensione, il titolo del libro e tutte le valutazioni in questo formato:
      * ID Utente; titolo del libro; voto stile; voto contenuto;  voto gradevolezza; voto originalità; voto edizione; voto complessivo
      *
-     * @param titoloLibro  il titolo del libro che si vuole valutare
+     * @param titoloLibro  il titolo del libro il quale si vuole valutare
      * @param stile        Valutazione sullo stile di scrittura del libro
      * @param contenuto    Valutazione sui contenuti del libro
      * @param gradevolezza Valutazione sul gradimento nella lettura del libro
      * @param originalità  Valutazione sulla originalità del libro
      * @param edizione     Valutazione sulla qualità dell’edizione del libro
      * @param votoFinale   Valutazione complessiva del libro
-     *
-     * @exception IOException viene sollevata nel caso in cui il titolo del libro ricercato dal metodo cercaLibroByTitolo della classe User
-     * non è presente nel DataSet / è scritto in modo errato.
      */
 
     public void inserisciValutazioneLibro(String titoloLibro, String stile, String contenuto, String gradevolezza, String originalità, String edizione, String votoFinale, String note) throws IOException {
         if (Objects.isNull(new User().cercaLibroByTitolo(titoloLibro))) {    // Se il libro non esiste
             throw new IOException("Il titolo del libro non è stato trovato"); // Solleva eccezione
-        }     // Se il libro esiste
+        }
         String filePath = "src/data/ValutazioniLibri.dati.csv";
         BufferedWriter bw = new BufferedWriter(new FileWriter(filePath, true));
 
@@ -154,12 +147,38 @@ public class LoggedUser extends User {
 
         bw.write(toWrite);  // Scrive la recensione sul file ValutazioneLibri.dati
         bw.close();
-
-
     }
 
     /**
-     * La classe mette a disposizone il metodo toString riscritto che descrive l'oggetto nel formato: Id, nome e cognome, mail e codice fiscale.
+     * Permette di inserire dei titoli suggeriti rispetto ad un libro principale; i dati vengono memorizzati in ConsigliLibri.dati.csv nel seguente formato:
+     * userID; Libro principale; {Titolo suggerito}I; {Titolo suggerito}II; ... ; {Titolo suggerito}N
+     * @param mainLib String che rapppresenta il titolo del libro principale
+     * @param libriSuggeriti Collection di String che rappresentano l'insieme dei titoli suggeriti dall'utente
+     * @throws IOException  Eccezione sollevata quando il libro principale non esiste
+     */
+
+    public void inserisciSuggerimentoLibro(String mainLib, ArrayList<String> libriSuggeriti) throws IOException {
+        if (Objects.isNull(new User().cercaLibroByTitolo(mainLib))) {    // Se il libro non esiste
+            throw new IOException("Il titolo del libro non è stato trovato"); // Solleva eccezione
+        }
+        String filePath = "src/data/ConsigliLibri.dati.csv";
+        BufferedWriter bw = new BufferedWriter(new FileWriter(filePath, true));
+        String titoliSuggeriti = "";
+        for(String titolo : libriSuggeriti) {
+            if (Objects.isNull(new User().cercaLibroByTitolo(mainLib))) {    // Se il libro non esiste
+                System.out.println("Il libro " + titolo + " non è stato trovato e non sarà aggiunto ai suggerimenti");
+            } else {    // Se il libro esiste
+                titoliSuggeriti += titolo + "; ";   // Aggiunge il titolo alla stringa
+            }
+        }
+        titoliSuggeriti = titoliSuggeriti.substring(0, titoliSuggeriti.length() - 2);   // Formattazione stringa
+        String toWrite = this.getId() + "; " + mainLib + "; " + titoliSuggeriti + "\n";
+        bw.write(toWrite);
+        bw.close();
+    }
+
+    /**
+     * La classe mette a disposizone un metodo toString che descrive l'oggetto nell'ordine Id, nome e cognome, mail e codice fiscale.
      */
 
     @Override

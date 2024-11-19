@@ -50,7 +50,7 @@ public class Main {
 
 //        Debugging registraLibreria()
 //        ArrayList<String> libri = new ArrayList<>();
-//        libri.add("Il ritratto di Dorian Gray"); libri.add("Il codice da Vinci");
+//        libri.add("Harry Potter e la camera dei segreti"); libri.add("Harry Potter e la pietra filosofale");
 //        Libreria debugLib = loggedUser.registraLibreria("Bestseller", libri);
 //        System.out.println("\n\n" + debugLib.toString());
 
@@ -58,5 +58,10 @@ public class Main {
 //        System.out.println("\n\n\nRecensione: ");
 //        loggedUser.inserisciValutazioneLibro("Don Chisciotte della Mancha", "5", "3",
 //            "4", "3", "4", "4", "Creativo");
+
+//        Debugging inserisciSuggerimentoLibro
+        ArrayList<String> suggerimenti = new ArrayList<>();
+        suggerimenti.add("Orgoglio e pregiudizio"); suggerimenti.add("La metamorfosi");
+        loggedUser.inserisciSuggerimentoLibro("Ragione e sentimento", suggerimenti);
     }
 }
