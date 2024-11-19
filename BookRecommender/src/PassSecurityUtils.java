@@ -48,7 +48,7 @@ public class PassSecurityUtils {
 
 /**
 * Fornisce la password crittata
-* @param una String pass
+* @param pass (tipo String)
 * @return la stringa cifrata in base 64
     */
     public String encrypt(String pass) throws Exception {    
@@ -76,7 +76,7 @@ public class PassSecurityUtils {
     }
 /**
 * Decritta la password precedentemente crittata in AES-18
-* @param String passWncrypted, cioè la password crittografata
+* @param passWncrypted (String), cioè la password crittografata
 * @return String passDecrittata
     */
     public String decrypt(String passEncrypted) throws Exception {   // Decritta password
