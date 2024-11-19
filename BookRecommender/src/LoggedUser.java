@@ -10,6 +10,7 @@ import java.util.Scanner;
  * Fornisce metodi riservati ad utenti registrati (oggetti di tipo LoggedUser).
  * Ogni utente registrato è contraddistinto dai campi di tipo String id, nome, cognome, codiceFiscale
  * mail e password.
+ * I metodi utilizzano file esterni di tipo csv per salvare le informazioni (librerie.dati.csv, ValutazioniLibri.dati.csv).
  */
 public class LoggedUser extends User {
     private String id;
@@ -128,13 +129,16 @@ public class LoggedUser extends User {
      * Il metodo scrive sul file ValutazioniLibri.dati.csv l'utente che ha pubblicato la recensione, il titolo del libro e tutte le valutazioni in questo formato:
      * ID Utente; titolo del libro; voto stile; voto contenuto;  voto gradevolezza; voto originalità; voto edizione; voto complessivo
      *
-     * @param titoloLibro  il titolo del libro il quale si vuole valutare
+     * @param titoloLibro  il titolo del libro che si vuole valutare
      * @param stile        Valutazione sullo stile di scrittura del libro
      * @param contenuto    Valutazione sui contenuti del libro
      * @param gradevolezza Valutazione sul gradimento nella lettura del libro
      * @param originalità  Valutazione sulla originalità del libro
      * @param edizione     Valutazione sulla qualità dell’edizione del libro
      * @param votoFinale   Valutazione complessiva del libro
+     *
+     * @exception IOException viene sollevata nel caso in cui il titolo del libro ricercato dal metodo cercaLibroByTitolo della classe User
+     * non è presente nel DataSet / è scritto in modo errato.
      */
 
     public void inserisciValutazioneLibro(String titoloLibro, String stile, String contenuto, String gradevolezza, String originalità, String edizione, String votoFinale, String note) throws IOException {
@@ -155,7 +159,7 @@ public class LoggedUser extends User {
     }
 
     /**
-     * La classe mette a disposizone un metodo toString che descrive l'oggetto nell'ordine Id, nome e cognome, mail e codice fiscale.
+     * La classe mette a disposizone il metodo toString riscritto che descrive l'oggetto nel formato: Id, nome e cognome, mail e codice fiscale.
      */
 
     @Override
