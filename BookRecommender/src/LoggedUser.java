@@ -125,6 +125,36 @@ public class LoggedUser extends User {
     }
 
     /**
+     * Il metodo scrive sul file ValutazioniLibri.dati.csv l'utente che ha pubblicato la recensione, il titolo del libro e tutte le valutazioni in questo formato:
+     * ID Utente; titolo del libro; voto stile; voto contenuto;  voto gradevolezza; voto originalità; voto edizione; voto complessivo
+     *
+     * @param titoloLibro  il titolo del libro il quale si vuole valutare
+     * @param stile        Valutazione sullo stile di scrittura del libro
+     * @param contenuto    Valutazione sui contenuti del libro
+     * @param gradevolezza Valutazione sul gradimento nella lettura del libro
+     * @param originalità  Valutazione sulla originalità del libro
+     * @param edizione     Valutazione sulla qualità dell’edizione del libro
+     * @param votoFinale   Valutazione complessiva del libro
+     */
+
+    public void inserisciValutazioneLibro(String titoloLibro, String stile, String contenuto, String gradevolezza, String originalità, String edizione, String votoFinale) throws IOException {
+        if (Objects.isNull(new User().cercaLibroByTitolo(titoloLibro))) {    // Se il libro non esiste
+            throw new IOException("Il titolo del libro non è stato trovato"); // Solleva eccezione
+        }     // Se il libro esiste
+        String filePath = "src/data/ValutazioniLibri.dati.csv";
+        BufferedWriter bw = new BufferedWriter(new FileWriter(filePath, true));
+
+        String toWrite = this.getId() + "; " + titoloLibro + "; " + stile + "; " + contenuto + "; " + gradevolezza +
+                "; " + originalità + "; " + edizione + "; " + votoFinale + "\n";
+        System.out.println(toWrite);
+
+        bw.write(toWrite);  // Scrive la recensione sul file ValutazioneLibri.dati
+        bw.close();
+
+
+    }
+
+    /**
      * La classe mette a disposizone un metodo toString che descrive l'oggetto nell'ordine Id, nome e cognome, mail e codice fiscale.
      */
 

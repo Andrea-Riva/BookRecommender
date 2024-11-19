@@ -34,21 +34,29 @@ public class Main {
 
          */
 
-        //Debugging registrazione utente con crittaggio password
-        //baseUser.register();
+        // Register
+        // baseUser.register();
 
-        //Debudding login con decrittaggio password
+        // Login
         System.out.print("Inserisci mail: ");
         String mail = s.nextLine();
         System.out.print("Inserisci password: ");
         String password = s.nextLine();
         LoggedUser loggedUser = baseUser.login(mail, password);
         System.out.println(loggedUser.toString());
+        if (!Objects.isNull(loggedUser)) {  // Se l'utente è loggato
+            isLogged = true;    // Il token di accesso viene messo a true
+        }
 
-        // Debugging registraLibreria()
-        ArrayList<String> libri = new ArrayList<>();
-        libri.add("Le notti bianche"); libri.add("Il giorno della civetta"); libri.add("La strada"); libri.add("Il piccolo principe");
-        Libreria debugLib = loggedUser.registraLibreria("debug", libri);
-        System.out.println("\n\n" + debugLib.toString());
+//        Debugging registraLibreria()
+//        ArrayList<String> libri = new ArrayList<>();
+//        libri.add("Il ritratto di Dorian Gray"); libri.add("Il codice da Vinci");
+//        Libreria debugLib = loggedUser.registraLibreria("Bestseller", libri);
+//        System.out.println("\n\n" + debugLib.toString());
+
+//        Debugging inserisciValutazioneLibro
+//        System.out.println("\n\n\nRecensione: ");
+//        loggedUser.inserisciValutazioneLibro("1984", "3", "2",
+//                "1", "3", "4", "2");
     }
 }
