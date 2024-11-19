@@ -3,6 +3,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 /**
 * Permette agli utenti di registrarsi ed effettuare ricerche di Libri mediante vari metodi.
+* La classe utilizza file csv esterni (libri.dati.csv, cioè il dataset dei libri), 
+* (utenti.dati.csv, per salvare le informazioni relative ad un account registrato con la funzione register).
 */
 public class User {
     public User() {
