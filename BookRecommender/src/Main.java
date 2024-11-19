@@ -56,7 +56,7 @@ public class Main {
 
 //        Debugging inserisciValutazioneLibro
 //        System.out.println("\n\n\nRecensione: ");
-//        loggedUser.inserisciValutazioneLibro("1984", "3", "2",
-//                "1", "3", "4", "2");
+//        loggedUser.inserisciValutazioneLibro("Don Chisciotte della Mancha", "5", "3",
+//            "4", "3", "4", "4", "Creativo");
     }
 }

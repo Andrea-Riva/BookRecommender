@@ -137,7 +137,7 @@ public class LoggedUser extends User {
      * @param votoFinale   Valutazione complessiva del libro
      */
 
-    public void inserisciValutazioneLibro(String titoloLibro, String stile, String contenuto, String gradevolezza, String originalità, String edizione, String votoFinale) throws IOException {
+    public void inserisciValutazioneLibro(String titoloLibro, String stile, String contenuto, String gradevolezza, String originalità, String edizione, String votoFinale, String note) throws IOException {
         if (Objects.isNull(new User().cercaLibroByTitolo(titoloLibro))) {    // Se il libro non esiste
             throw new IOException("Il titolo del libro non è stato trovato"); // Solleva eccezione
         }     // Se il libro esiste
@@ -145,7 +145,7 @@ public class LoggedUser extends User {
         BufferedWriter bw = new BufferedWriter(new FileWriter(filePath, true));
 
         String toWrite = this.getId() + "; " + titoloLibro + "; " + stile + "; " + contenuto + "; " + gradevolezza +
-                "; " + originalità + "; " + edizione + "; " + votoFinale + "\n";
+                "; " + originalità + "; " + edizione + "; " + votoFinale + "; " + note + "\n";
         System.out.println(toWrite);
 
         bw.write(toWrite);  // Scrive la recensione sul file ValutazioneLibri.dati
