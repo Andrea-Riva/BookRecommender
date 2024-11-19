@@ -38,15 +38,15 @@ public class Main {
         // baseUser.register();
 
         // Login
-        System.out.print("Inserisci mail: ");
-        String mail = s.nextLine();
-        System.out.print("Inserisci password: ");
-        String password = s.nextLine();
-        LoggedUser loggedUser = baseUser.login(mail, password);
-        System.out.println(loggedUser.toString());
-        if (!Objects.isNull(loggedUser)) {  // Se l'utente è loggato
-            isLogged = true;    // Il token di accesso viene messo a true
-        }
+//        System.out.print("Inserisci mail: ");
+//        String mail = s.nextLine();
+//        System.out.print("Inserisci password: ");
+//        String password = s.nextLine();
+//        LoggedUser loggedUser = baseUser.login(mail, password);
+//        System.out.println(loggedUser.toString());
+//        if (!Objects.isNull(loggedUser)) {  // Se l'utente è loggato
+//            isLogged = true;    // Il token di accesso viene messo a true
+//        }
 
 //        Debugging registraLibreria()
 //        ArrayList<String> libri = new ArrayList<>();
@@ -64,8 +64,7 @@ public class Main {
 //        suggerimenti.add("Orgoglio e pregiudizio"); suggerimenti.add("La metamorfosi");
 //        loggedUser.inserisciSuggerimentoLibro("Ragione e sentimento", suggerimenti);
 
-        // Debugging getLoggedUserFromConsiglio
-        LoggedUser publisher = new GetLoggedUser().getLoggedUserFromConsiglio("Ragione e sentimento");
-        System.out.println("Recensione pubblicata da: \n" + publisher.toString());
+        // Debugging visualizzaConsigli()
+        System.out.println(baseUser.visualizzaConsigli("Harry Potter e la pietra filosofale"));
     }
 }
