@@ -60,8 +60,12 @@ public class Main {
 //            "4", "3", "4", "4", "Creativo");
 
 //        Debugging inserisciSuggerimentoLibro
-        ArrayList<String> suggerimenti = new ArrayList<>();
-        suggerimenti.add("Orgoglio e pregiudizio"); suggerimenti.add("La metamorfosi");
-        loggedUser.inserisciSuggerimentoLibro("Ragione e sentimento", suggerimenti);
+//        ArrayList<String> suggerimenti = new ArrayList<>();
+//        suggerimenti.add("Orgoglio e pregiudizio"); suggerimenti.add("La metamorfosi");
+//        loggedUser.inserisciSuggerimentoLibro("Ragione e sentimento", suggerimenti);
+
+        // Debugging getLoggedUserFromConsiglio
+        LoggedUser publisher = new GetLoggedUser().getLoggedUserFromConsiglio("Ragione e sentimento");
+        System.out.println("Recensione pubblicata da: \n" + publisher.toString());
     }
 }
