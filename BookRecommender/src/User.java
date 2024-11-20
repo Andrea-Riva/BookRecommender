@@ -184,6 +184,7 @@ public class User {
 
     /**
      * Permette di visualizzare tutti i consigli di tutti gli utenti relativi ad un libro il cui titolo viene preso come parametro
+     *
      * @param titoloLibro String che rappresenta il titolo del libro del quale vogliamo visualizzare i consigli
      * @return String che contiene tutte le informazioni sugli utenti consigliatori e su tutti i libro consigliati da essi
      * @throws Exception Eccezione sollevata se il titolo del libro non è presente nel dataset
@@ -218,5 +219,33 @@ public class User {
         }
 
         return relatedConsigli;
+    }
+
+    /**
+     *
+     * @param titoloLibro Il titolo del libro del quale si vogliono vedere le valutazioni
+     * @return Una String che contiene tutte le valutazioni di tutti gli utenti
+     * @throws Exception Eccezione sollevata se il libro non è presente nel dataset
+     */
+    public String visualizzaValutazioni(String titoloLibro) throws Exception {
+        if (Objects.isNull(new User().cercaLibroByTitolo(titoloLibro))) {   // Se il titolo non è presente nel dataset
+            throw new Exception("Il libro non è presente nel dataset");
+        }
+        String filePath = "src/data/ValutazioniLibri.dati.csv";
+        String line;
+        String review = ""; // Stringa da restituire
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {    // Legge il file dei consigli
+            while ((line = br.readLine()) != null) {
+                String[] lineClear = line.split("; ");
+                if (lineClear[1].equals(titoloLibro)) {  // Se la recensione è inerente al libro
+                    LoggedUser reviewer = new GetLoggedUser().getLoggedUserFromId(lineClear[0]);    // L'utente che ha emesso la recensione
+                    review += "Recensione di " + reviewer.getNome() + " " + reviewer.getCognome()
+                            + ": \nStile: " + lineClear[2] + ", Contenuto: " + lineClear[3] + ", Gradevolezza: " + lineClear[4]
+                            + ", Originalità: " + lineClear[5] + ", Edizione: " + lineClear[6] + "\nValutazione complessiva: " + lineClear[7]
+                            + "\nNote aggiuntive: " + lineClear[8] + "\n";
+                }
+            }
+        }
+        return review;
     }
 }
