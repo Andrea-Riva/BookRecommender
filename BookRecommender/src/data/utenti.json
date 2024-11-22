@@ -1,0 +1,15 @@
+[ {
+  "id" : 1,
+  "nome" : "Andrea",
+  "cognome" : "Riva",
+  "codiceFiscale" : "RVA04LC",
+  "mail" : "riva@fake.it",
+  "password" : "wEjgSRv79Ls0X5WVJynFOwa9r1UK4g7T/26MXm94EF8="
+}, {
+  "id" : 2,
+  "nome" : "Francesco",
+  "cognome" : "Perrica",
+  "codiceFiscale" : "FRA04CO",
+  "mail" : "perry@fake.it",
+  "password" : "ige41Ag2OiMhVtmh3bJ/UX0xhLPUJMse08npg5rWLhQ="
+} ]
