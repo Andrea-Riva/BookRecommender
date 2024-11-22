@@ -11,14 +11,13 @@ import java.util.List;
 
 public class JsonUtils {
     /**
-     * Permette di deserializzare tutti i dati presenti nel dataset in JSON in una lista di libri
+     * Deserializza tutti i dati presenti nel dataset in JSON in una lista di libri
      * @return una collection con tutti i libri presenti nel dataset
      * @throws IOException
      */
     public List<Libro> getLibri() throws IOException {
         String jsonLibri =
                 FileUtils.readFileToString(new File("src/data/libri.json"), StandardCharsets.UTF_8); // Leggi il file JSON come stringa
-
         // Crea una nuova istanza di ObjectMapper
         ObjectMapper mapper = new ObjectMapper();
 
@@ -33,6 +32,20 @@ public class JsonUtils {
 
         // Deserializza il JSON nella lista di oggetti Libro
         return mapper.readValue(jsonLibri, libroTypeReference);
+    }
+
+    /**
+     * Deserializza tutti gli utenti registrati
+     * @return Una collection di oggetti LoggedUser
+     * @throws IOException
+     */
+    public List<LoggedUser> getUtenti() throws IOException {
+        String jsonUtenti =
+                FileUtils.readFileToString(new File("src/data/utenti.json"), StandardCharsets.UTF_8); // Leggi il file JSON come stringa
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+        TypeReference<List<LoggedUser>> loggedUserTypeReference = new TypeReference<List<LoggedUser>>() {};
+        return mapper.readValue(jsonUtenti, loggedUserTypeReference);
     }
 
     /**

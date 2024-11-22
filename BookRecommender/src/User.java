@@ -77,4 +77,20 @@ public class User {
         userArrayNode.add(utils.createUserNode(newUtente)); // Aggiunge il nuovo utente all'array di nodi
         utils.writeUtentiNodes(userArrayNode);
     }
+
+    /**
+     * Fa il login se mail e password sono corrette
+     * @param mail La mail dell'utente
+     * @param password La password dell'utente
+     * @return LoggedUser utente registrato
+     */
+    public LoggedUser login(String mail, String password) throws Exception {
+        SecurityUtils decypher = new SecurityUtils();   // Serve per decifrare la password
+        List<LoggedUser> utenti = new JsonUtils().getUtenti();  // Lista di tutti gli utenti
+        for(LoggedUser utente : utenti) {   // Scorre la lista degli utenti loggati
+            String decryptedPwd = decypher.decrypt(utente.getPassword());   // Pass in chiaro
+            if(utente.getMail().equals(mail) && decryptedPwd.equals(password)) return utente;   // Se le credenziali sono corrette, restituisci quell'utente
+        }
+        return null;    // Nessun utente è stato trovato e le credenziali non sono corrette
+    }
 }
