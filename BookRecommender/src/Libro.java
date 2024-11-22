@@ -12,9 +12,7 @@ public class Libro {
     private String categoria;
     private String pubblicatore;
     private double prezzo;
-
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")    // Formatta la data una volta deserializzata
-    private Date data;
+    private String data;
 
     // Costruttore annotato con @JsonCreator
     @JsonCreator
@@ -25,7 +23,7 @@ public class Libro {
             @JsonProperty("categoria") String categoria,
             @JsonProperty("pubblicatore") String pubblicatore,
             @JsonProperty("prezzo") double prezzo,
-            @JsonProperty("data") Date data) {
+            @JsonProperty("data") String data) {
         this.titolo = titolo;
         this.autore = autore;
         this.descrizione = descrizione;
@@ -42,7 +40,9 @@ public class Libro {
     public String getCategoria() { return this.categoria; }
     public String getPubblicatore() { return this.pubblicatore; }
     public double getPrezzo() { return this.prezzo; }
-    public Date getData() { return this.data; }
+    public String getData() {
+        return this.data;
+    }
 
     public void setTitolo(String titolo) { this.titolo = titolo; }
     public void setAutore(String autore) { this.autore = autore; }
@@ -50,15 +50,13 @@ public class Libro {
     public void setCategoria(String categoria) { this.categoria = categoria; }
     public void setPubblicatore(String pubblicatore) { this.pubblicatore = pubblicatore; }
     public void setPrezzo(double prezzo) { this.prezzo = prezzo; }
-    public void setData(Date data) { this.data = data; }
+    public void setData(String data) { this.data = data; }
 
     @Override
     public String toString() {
         // Formattazione data toString
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String formattedDate = sdf.format(data);
         return "Titolo: " + titolo + "\nAutore: " + autore + "\nDescrizione: " + descrizione +
                 "\nCategoria: " + categoria + "\nPubblicatore: " + pubblicatore + "\nPrezzo: " + prezzo +
-                "\nData di pubblicazione: " + formattedDate;
+                "\nData di pubblicazione: " + data;
     }
 }
