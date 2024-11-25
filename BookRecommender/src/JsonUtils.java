@@ -1,106 +1,129 @@
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.util.StdDateFormat;
 import com.fasterxml.jackson.core.type.TypeReference;
 import org.apache.commons.io.FileUtils;
+
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.List;
 
 public class JsonUtils {
-    /**
-     * Deserializza tutti i dati presenti nel dataset in JSON in una lista di libri
-     * @return una collection con tutti i libri presenti nel dataset
-     * @throws IOException
-     */
+
+    private ObjectMapper mapper;
+
+    public JsonUtils() {
+        this.mapper = new ObjectMapper();
+        mapper.setDateFormat(new StdDateFormat());  // Formato di data standard
+    }
+
+    // Leggere tutti i libri dal file JSON
     public List<Libro> getLibri() throws IOException {
-        String jsonLibri =
-                FileUtils.readFileToString(new File("src/data/libri.json"), StandardCharsets.UTF_8); // Leggi il file JSON come stringa
-        // Crea una nuova istanza di ObjectMapper
-        ObjectMapper mapper = new ObjectMapper();
-
-        // Imposta il formato della data, compatibile con il formato "yyyy-MM-dd"
-        mapper.setDateFormat(new StdDateFormat()); // Usa il formato di data standard
-
-        // Configura per ignorare le proprietà sconosciute
-        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-
-        // Usa il TypeReference per mappare il JSON alla lista di libri
-        TypeReference<List<Libro>> libroTypeReference = new TypeReference<List<Libro>>() {};
-
-        // Deserializza il JSON nella lista di oggetti Libro
-        return mapper.readValue(jsonLibri, libroTypeReference);
+        JsonNode libriNode = readFromFile("src/data/libri.json");
+        List<Libro> libri = new ArrayList<>();
+        for (JsonNode libroNode : libriNode) {
+            Libro libro = new Libro(
+                    libroNode.get("titolo").asText(),
+                    libroNode.get("autore").asText(),
+                    libroNode.get("descrizione").asText(),
+                    libroNode.get("categoria").asText(),
+                    libroNode.get("pubblicatore").asText(),
+                    libroNode.get("prezzo").asDouble(),
+                    libroNode.get("data").asText()
+            );
+            libri.add(libro);
+        }
+        return libri;
     }
 
-    /**
-     * Deserializza tutti gli utenti registrati
-     * @return Una collection di oggetti LoggedUser
-     * @throws IOException
-     */
+    // Leggere tutti gli utenti dal file JSON
     public List<LoggedUser> getUtenti() throws IOException {
-        String jsonUtenti =
-                FileUtils.readFileToString(new File("src/data/utenti.json"), StandardCharsets.UTF_8); // Leggi il file JSON come stringa
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        TypeReference<List<LoggedUser>> loggedUserTypeReference = new TypeReference<List<LoggedUser>>() {};
-        return mapper.readValue(jsonUtenti, loggedUserTypeReference);
+        JsonNode utentiNode = readFromFile("src/data/utenti.json");
+        List<LoggedUser> utenti = new ArrayList<>();
+        for (JsonNode userNode : utentiNode) {
+            LoggedUser user = new LoggedUser(
+                    userNode.get("id").asInt(),
+                    userNode.get("nome").asText(),
+                    userNode.get("cognome").asText(),
+                    userNode.get("codiceFiscale").asText(),
+                    userNode.get("mail").asText(),
+                    userNode.get("password").asText()
+            );
+            utenti.add(user);
+        }
+        return utenti;
     }
 
-    /**
-     * Restituisce il root node degli utenti
-     * @return JSON Root node
-     * @throws IOException
-     */
-    public JsonNode getUtentiAsJsonNode() throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-        File utentiJson = new File("src/data/utenti.json");
-        return mapper.readTree(utentiJson); // Struttura del JSON
+    // Leggere tutte le librerie dal file JSON
+    public List<Libreria> getLibrerie() throws IOException {
+        String filePath = "src/data/librerie.json";
+        File file = new File(filePath);
+        List<Libreria> librerie = new ArrayList<>();    // Librerie to return
+        if (file.exists()) {    // Lettura di tutte le librerie
+            librerie = mapper.readValue(file, new TypeReference<List<Libreria>>() {
+            });
+        }
+
+        return librerie;
     }
 
-    /**
-     * Partendo da un oggetto LoggedUser, crea un nodo Json da esso
-     * @param user L'utente registrato
-     * @return root JsonNode
-     */
-    public JsonNode createUserNode(LoggedUser user) {  // Crea un nodo per un oggetto LoggedUser
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.createObjectNode()
-                .put("id", user.getId())
-                .put("nome", user.getNome())
-                .put("cognome", user.getCognome())
-                .put("codiceFiscale", user.getCodiceFiscale())
-                .put("mail", user.getMail())
-                .put("password", user.getPassword());
+    // Creare un nodo JSON per un utente
+    public ObjectNode createUserNode(LoggedUser user) {
+        ObjectNode userNode = mapper.createObjectNode();
+        userNode.put("id", user.getId());
+        userNode.put("nome", user.getNome());
+        userNode.put("cognome", user.getCognome());
+        userNode.put("codiceFiscale", user.getCodiceFiscale());
+        userNode.put("mail", user.getMail());
+        userNode.put("password", user.getPassword());
+
+        return userNode;
     }
 
-    /**
-     * Scrive in formato JSON tutti i nodi che hanno come root node il parametro del metodo sul file degli utenti
-     * @param root Il root node degli utenti
-     * @throws IOException
-     */
-    public void writeUtentiNodes(JsonNode root) throws IOException {    // Scrive il nuovo nodo LoggedUser
-        ObjectMapper mapper = new ObjectMapper();
-        mapper.writerWithDefaultPrettyPrinter().writeValue(new File("src/data/utenti.json"), root);
+    // Scrivere un nodo JSON su file
+    public void writeToFile(JsonNode node, String filePath) throws IOException {
+        mapper.writerWithDefaultPrettyPrinter().writeValue(new File(filePath), node);
     }
 
-    /**
-     * Genera un Id univoco che è costruito prendendo l'Id massimo (dunque l'ultimo Id creato) e gli aggiunge 1
-     * @return Un Id univoco
-     * @throws IOException
-     */
+    // Leggere un file JSON in un JsonNode
+    public JsonNode readFromFile(String filePath) throws IOException {
+        return mapper.readTree(new File(filePath));
+    }
+
+    // Scrivere i nodi degli utenti su file
+    public void writeUtentiNodes(JsonNode root) throws IOException {
+        writeToFile(root, "src/data/utenti.json");
+    }
+
+    // Scrive i nodi delle librerie su file
+    public void writeLibrerieNodes(JsonNode root) throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.writerWithDefaultPrettyPrinter().writeValue(new File("src/data/librerie.json"), root);
+    }
+
+    // Generare un Id univoco per gli utenti
     public int getUniqueId() throws IOException {
-        JsonNode root = getUtentiAsJsonNode();
-        if(!root.isArray() || root.isEmpty()) { // Se il file è vuoto, gli ID partiranno da 1
-            return 1;
+        JsonNode root = readFromFile("src/data/utenti.json");
+        if (!root.isArray() || root.isEmpty()) {
+            return 1; // Se il file è vuoto, partiamo con Id = 1
         }
-        // Se il file contiene già utenti, trova l'ID massimo esistente
+
         int maxId = 0;
-        for(JsonNode userNode : root) {
-            int newId = userNode.get("id").asInt(); // Id dell'utente corrente
-            if(newId > maxId) maxId = newId;    // Confronta Id
+        for (JsonNode userNode : root) {
+            int userId = userNode.get("id").asInt();
+            if (userId > maxId) {
+                maxId = userId;
+            }
         }
-        return maxId + 1;   // Restituisce un Id univoco
+        return maxId + 1; // Restituisce un nuovo Id univoco
+    }
+
+    // Metodo per ottenere gli utenti come JsonNode (se si vuole manipolare i nodi direttamente)
+    public JsonNode getUtentiAsJsonNode() throws IOException {
+        return readFromFile("src/data/utenti.json");
     }
 }

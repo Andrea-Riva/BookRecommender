@@ -1,3 +1,15 @@
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Classe per l'utente loggato al sistema tramite credenziali
  */
@@ -7,13 +19,22 @@ public class LoggedUser extends User {
     private String cognome;
     private String codiceFiscale;
     private String mail;
+    private String password;
 
-    public LoggedUser(int id, String nome, String cognome, String codiceFiscale, String mail) {
+    @JsonCreator
+    public LoggedUser(
+            @JsonProperty("id") int id,
+            @JsonProperty("nome") String nome,
+            @JsonProperty("cognome") String cognome,
+            @JsonProperty("codiceFiscale") String codiceFiscale,
+            @JsonProperty("mail") String mail,
+            @JsonProperty("password") String password) {
         this.id = id;
         this.nome = nome;
         this.cognome = cognome;
         this.codiceFiscale = codiceFiscale;
         this.mail = mail;
+        this.password = password;
     }
 
     public int getId() { return this.id; }
@@ -21,9 +42,26 @@ public class LoggedUser extends User {
     public String getCognome() { return this.cognome; }
     public String getCodiceFiscale() { return this.codiceFiscale; }
     public String getMail() { return this.mail; }
+    public String getPassword() { return this.password; }
 
     public void setNome(String nome) { this.nome = nome; }
     public void setCognome(String cognome) { this.cognome = cognome; }
     public void setCodiceFiscale(String codiceFiscale) { this.codiceFiscale = codiceFiscale; }
     public void setMail(String mail) { this.mail = mail; }
+
+    @Override
+    public String toString() {
+        return "Id: " + id + "\nNome, cognome e cod fiscale: " + nome + " " + cognome +
+                " " + codiceFiscale + "\nMail: " + mail + "\nPassword crittata: " + password;
+    }
+
+    public void addLibreria(Libreria libreria) throws IOException {
+        String filePath = "src/data/librerie.json"; //Path del file sul quale fare override
+        // getLibrerie, aggiunge libreria, override del file
+        List<Libreria> userLibs = new JsonUtils().getLibrerie();    // Lista di tutte le librerie presenti nel file
+        userLibs.add(libreria); // Aggiunge la libreria mancante
+        // Aggiorna il file JSON
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.writerWithDefaultPrettyPrinter().writeValue(new File(filePath), userLibs);   // Override del file e scrittura libs
+    }
 }
