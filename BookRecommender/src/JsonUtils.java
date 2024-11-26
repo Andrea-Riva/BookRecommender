@@ -71,6 +71,18 @@ public class JsonUtils {
         return librerie;
     }
 
+    // Leggere tutte le recensioni dal file JSON
+    public List<Recensione> getRecensioni() throws IOException {
+        String filePath = "src/data/recensioni.json";
+        File file = new File(filePath);
+        List<Recensione> reviews = new ArrayList<>();
+        if(file.exists()) { // Lettura di tutte le recensioni
+            reviews = mapper.readValue(file, new TypeReference<List<Recensione>>() {
+            });
+        }
+        return reviews;
+    }
+
     // Creare un nodo JSON per un utente
     public ObjectNode createUserNode(LoggedUser user) {
         ObjectNode userNode = mapper.createObjectNode();

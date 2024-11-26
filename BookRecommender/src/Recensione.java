@@ -1,3 +1,6 @@
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Recensione {
     private LoggedUser publisher;
     private Libro referredLibro;
@@ -8,8 +11,14 @@ public class Recensione {
     private int edizione;
     private double votoFinale;
 
-    public Recensione(LoggedUser publisher, Libro referredLibro,int stile, int contenuto,
-                      int gradevolezza, int originalità, int edizione) {    // Costruttore
+    @JsonCreator
+    public Recensione(@JsonProperty("publisher") LoggedUser publisher,
+                      @JsonProperty("referredLibro") Libro referredLibro,
+                      @JsonProperty("stile") int stile,
+                      @JsonProperty("contenuto") int contenuto,
+                      @JsonProperty("gradevolezza") int gradevolezza,
+                      @JsonProperty("originalità") int originalità,
+                      @JsonProperty("edizione") int edizione) {    // Costruttore
         this.publisher = publisher;
         this.referredLibro = referredLibro;
         setStile(stile);
@@ -26,6 +35,14 @@ public class Recensione {
 
     public void setPublisher(LoggedUser publisher) {
         this.publisher = publisher;
+    }
+
+    public Libro getReferredLibro() {
+        return this.referredLibro;
+    }
+
+    public void setReferredLibro(Libro referredLibro) {
+        this.referredLibro = referredLibro;
     }
 
     public int getStile() {

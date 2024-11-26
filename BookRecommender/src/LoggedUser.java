@@ -64,4 +64,18 @@ public class LoggedUser extends User {
         ObjectMapper mapper = new ObjectMapper();
         mapper.writerWithDefaultPrettyPrinter().writeValue(new File(filePath), userLibs);   // Override del file e scrittura libs
     }
+
+    public Recensione addRecensione(String titolo, int stile, int contenuto,
+                              int gradevolezza, int originalità, int edizione) throws Exception {
+        String filePath = "src/data/recensioni.json";
+        ObjectMapper mapper = new ObjectMapper();
+        // Costruzione della recensione
+        Libro libroFound = new User().searchLibroByTitolo(titolo);
+        Recensione recensioneToAdd = new Recensione(this, new User().searchLibroByTitolo(titolo), 1, 1, 1, 1,1);
+        List<Recensione> allRecensioni = new JsonUtils().getRecensioni();   // Tutte le vecchie recensioni
+        allRecensioni.add(recensioneToAdd);
+        // Override sul vecchio file
+        mapper.writerWithDefaultPrettyPrinter().writeValue(new File(filePath), allRecensioni);
+        return recensioneToAdd;
+    }
 }

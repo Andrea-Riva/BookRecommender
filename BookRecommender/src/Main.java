@@ -34,10 +34,9 @@ public class Main {
 //        libri.add(log.searchLibroByTitolo("Dracula"));
 //        Libreria lib = new Libreria(log, "Libri classici", libri);
 //        log.addLibreria(lib);
-
-        List<Libreria> allLibs = new JsonUtils().getLibrerie();
-        for(Libreria library : allLibs) {
-            System.out.println(library.toString());
-        }
+        // Debug addRecensione
+//        LoggedUser alexandro = baseUser.login("tavian@fake.it", "tavian");
+//        Recensione added = alexandro.addRecensione("Il nome della rosa", 2, 2, 6, 0, 3);
+//        System.out.println(added.toString());
     }
 }
