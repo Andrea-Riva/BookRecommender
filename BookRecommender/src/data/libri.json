@@ -45,6 +45,60 @@
     "data": "1997-06-26"
   },
   {
+    "titolo": "Harry Potter e la camera dei segreti",
+    "autore": "J.K. Rowling",
+    "descrizione": "Il secondo libro della saga, dove Harry Potter torna alla scuola di magia di Hogwarts e affronta misteriosi eventi legati alla leggendaria Camera dei Segreti.",
+    "categoria": "Fantasy",
+    "pubblicatore": "Bloomsbury",
+    "prezzo": 13.50,
+    "data": "1998-07-02"
+  },
+  {
+    "titolo": "Harry Potter e il prigioniero di Azkaban",
+    "autore": "J.K. Rowling",
+    "descrizione": "Il terzo libro della serie, dove Harry scopre nuovi segreti sul passato della sua famiglia e affronta il pericolo del prigioniero fuggito da Azkaban.",
+    "categoria": "Fantasy",
+    "pubblicatore": "Bloomsbury",
+    "prezzo": 14.00,
+    "data": "1999-07-08"
+  },
+  {
+    "titolo": "Harry Potter e il calice di fuoco",
+    "autore": "J.K. Rowling",
+    "descrizione": "Nel quarto libro della saga, Harry Potter partecipa al pericoloso Torneo Tremaghi, dove dovrà affrontare sfide mortali e scoprirà una minaccia oscura che incombe su di lui.",
+    "categoria": "Fantasy",
+    "pubblicatore": "Bloomsbury",
+    "prezzo": 15.50,
+    "data": "2000-07-08"
+  },
+  {
+    "titolo": "Harry Potter e l'ordine della fenice",
+    "autore": "J.K. Rowling",
+    "descrizione": "Il quinto libro della saga, in cui Harry e i suoi amici si uniscono all'Ordine della Fenice per combattere il ritorno del malvagio Lord Voldemort.",
+    "categoria": "Fantasy",
+    "pubblicatore": "Bloomsbury",
+    "prezzo": 16.00,
+    "data": "2003-06-21"
+  },
+  {
+    "titolo": "Harry Potter e il principe mezzosangue",
+    "autore": "J.K. Rowling",
+    "descrizione": "Nel sesto libro, Harry Potter scopre segreti oscuri sul passato di Lord Voldemort e si prepara alla battaglia finale contro le forze del male.",
+    "categoria": "Fantasy",
+    "pubblicatore": "Bloomsbury",
+    "prezzo": 16.50,
+    "data": "2005-07-16"
+  },
+  {
+    "titolo": "Harry Potter e i doni della morte",
+    "autore": "J.K. Rowling",
+    "descrizione": "L'ultimo libro della saga, dove Harry, Ron e Hermione si avventurano alla ricerca degli Horcrux per sconfiggere definitivamente Lord Voldemort.",
+    "categoria": "Fantasy",
+    "pubblicatore": "Bloomsbury",
+    "prezzo": 17.00,
+    "data": "2007-07-21"
+  },
+  {
     "titolo": "Orgoglio e pregiudizio",
     "autore": "Jane Austen",
     "descrizione": "Un classico della letteratura inglese che esplora le dinamiche sociali e sentimentali della famiglia Bennet.",
