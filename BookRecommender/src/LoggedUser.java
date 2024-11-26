@@ -96,19 +96,7 @@ public class LoggedUser extends User {
     public void addRecensione(String titolo, int stile, int contenuto,
                               int gradevolezza, int originalità, int edizione) throws Exception {
         // Verifica se il libro è presente in una libreria dell'utente
-        boolean isPresente = false;
-        List<Libreria> userLibs = new JsonUtils().getLibrerie();
-        for (Libreria lib : userLibs) {  // Per ogni libreria presente
-            if (lib.getProprietario().getId() == this.id) { // Se la libreria appartiene all'utente
-                List<Libro> libriPresenti = lib.getLibri(); // Incapsula tutti i libri di tale libreria
-                for(Libro l : libriPresenti) {  // Controlla se il titolo del libro che si vuole recensire è presente
-                    if(l.getTitolo().equals(titolo)) {
-                        isPresente = true;
-                    }
-                }
-            }
-        }
-        if(!isPresente) {   // Se il libro non è presente in nessuna libreria
+        if(new JsonUtils().isPresente(this, titolo)) {   // Se il libro non è presente in nessuna libreria
             throw new Exception("Il libro " + titolo + " non risulta presente in nessuna tua libreria");
         }
         String filePath = "src/data/recensioni.json";
@@ -132,5 +120,9 @@ public class LoggedUser extends User {
         }
 
         return myRecensioni;
+    }
+
+    public void addConsiglio(String titolo, List<Libro> consigli) {
+
     }
 }

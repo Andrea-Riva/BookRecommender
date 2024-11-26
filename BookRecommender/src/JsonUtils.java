@@ -83,6 +83,18 @@ public class JsonUtils {
         return reviews;
     }
 
+    // Leggere tutti i consigli dal file JSON
+    public List<Consiglio> getConsigli() throws IOException {
+        String filePath = "src/data/consigli.json";
+        File file = new File(filePath);
+        List<Consiglio> consigli = new ArrayList<>();
+        if(file.exists()) { // Lettura di tutti i consigli
+            consigli = mapper.readValue(file, new TypeReference<List<Consiglio>>() {});
+        }
+
+        return consigli;
+    }
+
     // Creare un nodo JSON per un utente
     public ObjectNode createUserNode(LoggedUser user) {
         ObjectNode userNode = mapper.createObjectNode();
@@ -137,5 +149,22 @@ public class JsonUtils {
     // Metodo per ottenere gli utenti come JsonNode (se si vuole manipolare i nodi direttamente)
     public JsonNode getUtentiAsJsonNode() throws IOException {
         return readFromFile("src/data/utenti.json");
+    }
+
+    public boolean isPresente(LoggedUser proprietario, String titolo) throws IOException {  //Verifica se un libro è presente nelle librerie di un certo utente
+        boolean presente = false;
+        List<Libreria> userLibs = new JsonUtils().getLibrerie();
+        for (Libreria lib : userLibs) {  // Per ogni libreria presente
+            if (lib.getProprietario().getId() == proprietario.getId()) { // Se la libreria appartiene all'utente
+                List<Libro> libriPresenti = lib.getLibri(); // Incapsula tutti i libri di tale libreria
+                for(Libro l : libriPresenti) {  // Controlla se il titolo del libro che si vuole recensire è presente
+                    if (l.getTitolo().equals(titolo)) {
+                        presente = true;
+                        break;
+                    }
+                }
+            }
+        }
+        return presente;
     }
 }
