@@ -37,17 +37,45 @@ public class LoggedUser extends User {
         this.password = password;
     }
 
-    public int getId() { return this.id; }
-    public String getNome() { return this.nome; }
-    public String getCognome() { return this.cognome; }
-    public String getCodiceFiscale() { return this.codiceFiscale; }
-    public String getMail() { return this.mail; }
-    public String getPassword() { return this.password; }
+    public int getId() {
+        return this.id;
+    }
 
-    public void setNome(String nome) { this.nome = nome; }
-    public void setCognome(String cognome) { this.cognome = cognome; }
-    public void setCodiceFiscale(String codiceFiscale) { this.codiceFiscale = codiceFiscale; }
-    public void setMail(String mail) { this.mail = mail; }
+    public String getNome() {
+        return this.nome;
+    }
+
+    public String getCognome() {
+        return this.cognome;
+    }
+
+    public String getCodiceFiscale() {
+        return this.codiceFiscale;
+    }
+
+    public String getMail() {
+        return this.mail;
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setCognome(String cognome) {
+        this.cognome = cognome;
+    }
+
+    public void setCodiceFiscale(String codiceFiscale) {
+        this.codiceFiscale = codiceFiscale;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
 
     @Override
     public String toString() {
@@ -65,17 +93,44 @@ public class LoggedUser extends User {
         mapper.writerWithDefaultPrettyPrinter().writeValue(new File(filePath), userLibs);   // Override del file e scrittura libs
     }
 
-    public Recensione addRecensione(String titolo, int stile, int contenuto,
+    public void addRecensione(String titolo, int stile, int contenuto,
                               int gradevolezza, int originalità, int edizione) throws Exception {
+        // Verifica se il libro è presente in una libreria dell'utente
+        boolean isPresente = false;
+        List<Libreria> userLibs = new JsonUtils().getLibrerie();
+        for (Libreria lib : userLibs) {  // Per ogni libreria presente
+            if (lib.getProprietario().getId() == this.id) { // Se la libreria appartiene all'utente
+                List<Libro> libriPresenti = lib.getLibri(); // Incapsula tutti i libri di tale libreria
+                for(Libro l : libriPresenti) {  // Controlla se il titolo del libro che si vuole recensire è presente
+                    if(l.getTitolo().equals(titolo)) {
+                        isPresente = true;
+                    }
+                }
+            }
+        }
+        if(!isPresente) {   // Se il libro non è presente in nessuna libreria
+            throw new Exception("Il libro " + titolo + " non risulta presente in nessuna tua libreria");
+        }
         String filePath = "src/data/recensioni.json";
         ObjectMapper mapper = new ObjectMapper();
         // Costruzione della recensione
         Libro libroFound = new User().searchLibroByTitolo(titolo);
-        Recensione recensioneToAdd = new Recensione(this, new User().searchLibroByTitolo(titolo), 1, 1, 1, 1,1);
+        Recensione recensioneToAdd = new Recensione(this, new User().searchLibroByTitolo(titolo), 1, 1, 1, 1, 1);
         List<Recensione> allRecensioni = new JsonUtils().getRecensioni();   // Tutte le vecchie recensioni
         allRecensioni.add(recensioneToAdd);
         // Override sul vecchio file
         mapper.writerWithDefaultPrettyPrinter().writeValue(new File(filePath), allRecensioni);
-        return recensioneToAdd;
+    }
+
+    public List<Recensione> visualizzaLeMieRecensioni() throws IOException {    // Visualizza le recensioni pubblicate dall'utente loggato
+        List<Recensione> usersReview = new JsonUtils().getRecensioni(); // Tutte le recensioni di tutti gli utenti
+        List<Recensione> myRecensioni = new ArrayList<>();
+        for (Recensione review : usersReview) {
+            if (review.getPublisher().getId() == this.id) {  // Se gli ID combaciano
+                myRecensioni.add(review);
+            }
+        }
+
+        return myRecensioni;
     }
 }
