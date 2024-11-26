@@ -6,27 +6,27 @@ import java.util.Base64;
 import java.util.Random;
 
 /**
-* Classe che mette a disposizione metodi per la creazione di password sicure e crittazione/decritazione
-* Chiave di 16 byte, utilizza AES-128 con la stessa chiave per crittografare e decrittografare la password
-* AES_key specifica la chiave di crittaggio/decrittaggio (askd021_dja_351:) (final String)
-* AES_BLOCK_SIZE specifica la lunghezza dei blocchi (16 byte) (final int)
-*/
-public class PassSecurityUtils {
-    private static final String AES_key = "askd021_dja_351:";   
-    private static final int AES_BLOCK_SIZE = 16;  
-/**
-* Genera una password di tipo String casuale di lunghezza 10
-* Prende in consideazione come candidati tutti i caratteri dell'alfabeto sia maiuscoli che minuscoli (String lettere_maiuscole, lettere_minuscole)
-* I caratteri speciali (String simboli) candidati sono: -/.^&*_!@%=+>)
-* I caratteri numerici candidati sono le cifre 0123456789
-* Per la generazione della password, viene creato prima un oggetto di tipo String concatenando le String di caratteri candidati
-* Viene costruito un Array di char con dimensione lenght (10), ad ogni iterazione viene scelto un carattere in posizione casuale della stringa unioneSet +
-* + e viene inserito nella posizione dell'array password a cui si riferisce il ciclo. Si ripete il processo fino a riempire tutte le posizioni dell'array.
-* @return una String password del metodo toString dell'array password.
-    */
-    public String genera()  
+ * Classe che mette a disposizione metodi per la creazione di password sicure e crittazione/decritazione
+ * Chiave di 16 byte, utilizza AES-128 con la stessa chiave per crittografare e decrittografare la password
+ * AES_key specifica la chiave di crittaggio/decrittaggio (askd021_dja_351:) (final String)
+ * AES_BLOCK_SIZE specifica la lunghezza dei blocchi (16 byte) (final int)
+ */
+public class SecurityUtils {
+    private static final String AES_key = "askd021_dja_351:";
+    private static final int AES_BLOCK_SIZE = 16;
+    /**
+     * Genera una password di tipo String casuale di lunghezza 10
+     * Prende in consideazione come candidati tutti i caratteri dell'alfabeto sia maiuscoli che minuscoli (String lettere_maiuscole, lettere_minuscole)
+     * I caratteri speciali (String simboli) candidati sono: -/.^&*_!@%=+>)
+     * I caratteri numerici candidati sono le cifre 0123456789
+     * Per la generazione della password, viene creato prima un oggetto di tipo String concatenando le String di caratteri candidati
+     * Viene costruito un Array di char con dimensione lenght (10), ad ogni iterazione viene scelto un carattere in posizione casuale della stringa unioneSet +
+     * + e viene inserito nella posizione dell'array password a cui si riferisce il ciclo. Si ripete il processo fino a riempire tutte le posizioni dell'array.
+     * @return una String password del metodo toString dell'array password.
+     */
+    public String genera()
     {
-        int length = 10;    
+        int length = 10;
         String simboli = "-/.^&*_!@%=+>)";
         String lettere_maiuscole = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         String lettere_minuscole = "abcdefghijklmnopqrstuvwxyz";
@@ -43,15 +43,15 @@ public class PassSecurityUtils {
                     unioneSet.charAt(random.nextInt(unioneSet.length()));
 
         }
-        return new String(password); 
+        return new String(password);
     }
 
-/**
-* Fornisce la password crittata
-* @param pass (tipo String)
-* @return la stringa cifrata in base 64
-    */
-    public String encrypt(String pass) throws Exception {    
+    /**
+     * Fornisce la password crittata
+     * @param pass la password da crittare
+     * @return la password cifrata in base 64 usando AES
+     */
+    public String encrypt(String pass) throws Exception {
         SecretKeySpec secretKey = new SecretKeySpec(AES_key.getBytes("UTF-8"), "AES");
 
         // Crea un IV casuale
@@ -74,11 +74,11 @@ public class PassSecurityUtils {
 
         return Base64.getEncoder().encodeToString(encryptedDataWithIv);
     }
-/**
-* Decritta la password precedentemente crittata in AES-18
-* @param passWncrypted (String), cioè la password crittografata
-* @return String passDecrittata
-    */
+    /**
+     * Decritta la password precedentemente crittata in AES-18
+     * @param passEncrypted Password crittografata
+     * @return Password decrittata
+     */
     public String decrypt(String passEncrypted) throws Exception {   // Decritta password
         // Creazione oggetto SecretKeySpec con la stessa chiave
         SecretKeySpec secretKey = new SecretKeySpec(AES_key.getBytes("UTF-8"), "AES");
@@ -110,6 +110,4 @@ public class PassSecurityUtils {
         // Restituiamo la password decifrata come stringa
         return new String(passDecrittata);
     }
-
 }
-

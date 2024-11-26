@@ -1,70 +1,42 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) throws Exception {
-        boolean isLogged = false;   // Token per verificare se c'è un utente loggato
-        User baseUser = new User(); // Utente non loggato
-        Scanner s = new Scanner(System.in);
-        // Debugging ricerca libri
-        /*
-
-        ArrayList<Libro> solution = baseUser.cercaLibroByDataAutore("1985-04-01");
-        System.out.println("Libri trovati per la data 1985-04-01:");
-        for(Libro l : solution) {
-            System.out.println(l.toString());
-            System.out.println("\n");
-        }
-
-        solution = baseUser.cercaLibroByAutore("J.K. Rowling");
-        System.out.println("Tutti i libri trovati di J.K. Rowling:");
-        for(Libro l : solution) {
-            System.out.println(l.toString());
-            System.out.println("\n");
-        }
-
-        System.out.println("Cerca libro per titolo ragione e sentimento: " + baseUser.cercaLibroByTitolo("Ragione e sentimento").toString());
-
-         */
-
-        // Register
-        // baseUser.register();
-
-        // Login
-//        System.out.print("Inserisci mail: ");
-//        String mail = s.nextLine();
-//        System.out.print("Inserisci password: ");
-//        String password = s.nextLine();
-//        LoggedUser loggedUser = baseUser.login(mail, password);
-//        System.out.println(loggedUser.toString());
-//        if (!Objects.isNull(loggedUser)) {  // Se l'utente è loggato
-//            isLogged = true;    // Il token di accesso viene messo a true
+        Scanner in = new Scanner(System.in);
+        User baseUser = new User();
+        // Debug searchLibroByTitolo
+//        Libro libroFound = baseUser.searchLibroByTitolo("cazzo nero");
+//        if(Objects.isNull(libroFound)) {
+//            System.out.println("Libro non trovato");
+//        } else {
+//            System.out.println(libroFound.toString());
 //        }
 
-//        Debugging registraLibreria()
-//        ArrayList<String> libri = new ArrayList<>();
-//        libri.add("Harry Potter e la camera dei segreti"); libri.add("Harry Potter e la pietra filosofale");
-//        Libreria debugLib = loggedUser.registraLibreria("Bestseller", libri);
-//        System.out.println("\n\n" + debugLib.toString());
+        // Debug searchLibroByAuth
+//        List<Libro> libriFound = baseUser.searchLibroByAuth("J.K. Rowling");
+//        for(Libro l : libriFound) System.out.println(l.toString());
 
-//        Debugging inserisciValutazioneLibro
-//        System.out.println("\n\n\nRecensione: ");
-//        loggedUser.inserisciValutazioneLibro("Don Chisciotte della Mancha", "5", "3",
-//            "4", "3", "4", "4", "Creativo");
-
-//        Debugging inserisciSuggerimentoLibro
-//        ArrayList<String> suggerimenti = new ArrayList<>();
-//        suggerimenti.add("Orgoglio e pregiudizio"); suggerimenti.add("La metamorfosi");
-//        loggedUser.inserisciSuggerimentoLibro("Ragione e sentimento", suggerimenti);
-
-        // Debugging visualizzaConsigli()
-        System.out.println(baseUser.visualizzaConsigli("Harry Potter e la pietra filosofale"));
+        // Debug searchLibroByDataAuth
+//        Libro libroFound = baseUser.searchLibroByDataAuth("J.K. Rowling", "1997-06-26");
+//        System.out.println(libroFound.toString());
+        // Debug addLibreria
+//        System.out.print("Mail: ");
+//        String mail = in.nextLine();
+//        System.out.print("Password: ");
+//        String password = in.nextLine();
+//        LoggedUser log = baseUser.login(mail, password);
+//        ArrayList<Libro> libri = new ArrayList<>();
+//        libri.add(log.searchLibroByTitolo("I malavoglia")); libri.add(log.searchLibroByTitolo("Il giardino segreto"));
+//        libri.add(log.searchLibroByTitolo("Dracula"));
+//        Libreria lib = new Libreria(log, "Libri classici", libri);
+//        log.addLibreria(lib);
+        // Debug addRecensione
+//        LoggedUser alexandro = baseUser.login("tavian@fake.it", "tavian");
+//        Recensione added = alexandro.addRecensione("Il nome della rosa", 2, 2, 6, 0, 3);
+//        System.out.println(added.toString());
     }
 }
