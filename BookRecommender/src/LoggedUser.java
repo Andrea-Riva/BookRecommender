@@ -1,9 +1,6 @@
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.io.File;
 import java.io.IOException;
@@ -96,7 +93,7 @@ public class LoggedUser extends User {
     public void addRecensione(String titolo, int stile, int contenuto,
                               int gradevolezza, int originalità, int edizione) throws Exception {
         // Verifica se il libro è presente in una libreria dell'utente
-        if(new JsonUtils().isPresente(this, titolo)) {   // Se il libro non è presente in nessuna libreria
+        if(!(new JsonUtils().isPresente(this, titolo))) {   // Se il libro non è presente in nessuna libreria
             throw new Exception("Il libro " + titolo + " non risulta presente in nessuna tua libreria");
         }
         String filePath = "src/data/recensioni.json";
@@ -122,7 +119,18 @@ public class LoggedUser extends User {
         return myRecensioni;
     }
 
-    public void addConsiglio(String titolo, List<Libro> consigli) {
-
+    public void addConsiglio(String titolo, List<Libro> consigli) throws Exception {
+        // Verifica se il libro è presente in almeno una libreria dell'utente
+        if(!(new JsonUtils().isPresente(this, titolo))) {
+            throw new Exception("Il libro " + titolo + " non risulta presente in nessuna tua libreria");
+        }
+        String filePath = "src/data/consigli.json";
+        ObjectMapper mapper = new ObjectMapper();
+        // Costruzione del consiglio
+        Consiglio newConsiglio = new Consiglio(this, new User().searchLibroByTitolo(titolo), consigli); // Tutti i consigli da tutti gli utenti
+        List<Consiglio> allConsigli = new JsonUtils().getConsigli();
+        allConsigli.add(newConsiglio);  // Aggiungi il nuovo consiglio a tutti i consigli
+        // Override sul vecchio file
+        mapper.writerWithDefaultPrettyPrinter().writeValue(new File(filePath), allConsigli);
     }
 }
