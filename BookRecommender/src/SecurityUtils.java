@@ -110,5 +110,4 @@ public class SecurityUtils {
         // Restituiamo la password decifrata come stringa
         return new String(passDecrittata);
     }
-
 }
