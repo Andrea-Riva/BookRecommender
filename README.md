@@ -12,6 +12,4 @@
 *   Ricerca di Librerie libri consigli e recensioni
 
 <h2>Collaboratori</h2>
-<a href="https://github.com/Andrea-Riva/BookRecommender/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=Andrea-Riva/BookRecommender" />
-</a>
+[<img src="https://github.com/https://github.com/CostaAris.png" width="60px;"/><br /><sub><ahref="https://github.com/CostaAris}">Costa Aris</a></sub>](https://github.com/CostaAris/BookRecommender
