@@ -12,17 +12,6 @@
 *   Ricerca di Librerie libri consigli e recensioni
 
 <h2>Collaboratori</h2>
-
-<div style="display: inline-block;
-  position: relative;
-  width: 200px;
-  height: 200px;
-  overflow: hidden;
-  border-radius: 50%;">
-<a href="https://github.com/CostaAris"> 
-  <img href="https://avatars.githubusercontent.com/u/169836651?v=4"> 
-</a> 
-<div style="display: inline-block; position: relative; width: 200px; height: 200px; overflow: hidden; border-radius: 50%;">
-<a href="https://github.com/ErPanzet"> 
-  <img href="https://avatars.githubusercontent.com/u/169908490?v=4"> 
-</a> 
+<a href="https://github.com/Andrea-Riva/BookRecommender/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Andrea-Riva/BookRecommender" />
+</a>
