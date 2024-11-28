@@ -1,4 +1,4 @@
-<p align="center"><img src="https://socialify.git.ci/Andrea-Riva/BookRecommender/image?description=1&amp;descriptionEditable=Visualizza%20librerie%2C%20consigli%20e%20valutazioni.&amp;font=Inter&amp;language=1&amp;name=1&amp;owner=1&amp;pattern=Solid&amp;stargazers=1&amp;theme=Dark" alt="project-image"></p>
+<p align="center"><img src="https://socialify.git.ci/Andrea-Riva/BookRecommender/image?language=1&name=1&owner=1&pattern=Solid&stargazers=1&theme=Dark" alt="project-image"></p>
 
 <p id="description">Sistema per la valutazione e raccomandazione di libri in grado di permettere agli utenti registrati di inserire recensioni e a tutti gli utenti di consultare le valutazioni e ricevere consigli di lettura.</p>
 
