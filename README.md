@@ -12,9 +12,13 @@
 *   Ricerca di Librerie libri consigli e recensioni
 
 <h2>Group Leader</h2> 
-- ![Andrea Riva](https://avatars.githubusercontent.com/u/10710142?v=4) [Andrea-Riva](https://github.com/Andrea-Riva)
+- ![Andrea-Riva](https://avatars.githubusercontent.com/u/10710142?v=4) [Andrea-Riva](https://github.com/Andrea-Riva)
 
 <h2>Collaborators</h2>
-- ![Alexandro Tavian](https://avatars.githubusercontent.com/u/10710142?v=4) [ErPanzet](https://github.com/ErPanzet)
-- ![Aris Costa](https://avatars.githubusercontent.com/u/59606366?v=4) [CostaAris](https://github.com/CostaAris)
-- ![Francesco Perrica](https://avatars.githubusercontent.com/u/9079789?v=4) [perryfra](https://github.com/perryfra)
+# Collaboratori del progetto
+
+Questi sono i collaboratori del nostro progetto:
+- ![ErPanzet](https://avatars.githubusercontent.com/u/10710142?v=4) [ErPanzet](https://github.com/ErPanzet)
+- ![CostaAris](https://avatars.githubusercontent.com/u/59606366?v=4) [CostaAris](https://github.com/CostaAris)
+- ![perryfra](https://avatars.githubusercontent.com/u/9079789?v=4) [perryfra](https://github.com/perryfra)
+
