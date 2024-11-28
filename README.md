@@ -12,13 +12,11 @@
 *   Ricerca di Librerie libri consigli e recensioni
 
 <h2>Group Leader</h2> 
-- ![Andrea-Riva](https://avatars.githubusercontent.com/u/10710142?v=4) [Andrea-Riva](https://github.com/Andrea-Riva)
-
-<h2>Collaborators</h2>
-# Collaboratori del progetto
 <a href="https://github.com/Andrea-Riva">
   <img src="https://avatars.githubusercontent.com/u/167135900?v=4" width=100>
 </a>
+
+<h2>Collaborators</h2>
 <a href="https://github.com/ErPanzet">
   <img src="https://avatars.githubusercontent.com/u/169908490?v=4" width=100>
 </a>
