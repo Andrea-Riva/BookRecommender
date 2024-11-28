@@ -17,18 +17,17 @@
 <h2>Collaborators</h2>
 # Collaboratori del progetto
 
-Questi sono i collaboratori del nostro progetto:
 <a href="https://github.com/Andrea-Riva">
-  <img src="https://github.com/Andrea-Riva?size=50">
+  <img src="https://avatars.githubusercontent.com/u/167135900?v=4">
 </a>
 <a href="https://github.com/ErPanzet">
-  <img src="https://github.com/ErPanzet?size=50">
+  <img src="https://avatars.githubusercontent.com/u/169908490?v=4">
 </a>
 <a href="https://github.com/CostaAris">
-  <img src="https://github.com/CostaAris?size=50">
+  <img src="https://avatars.githubusercontent.com/u/169836651?v=4">
 </a>
 <a href="https://github.com/perryfra">
-  <img src="https://github.com/perryfra?size=50">
+  <img src="https://avatars.githubusercontent.com/u/104194759?v=4">
 </a>
 
 
