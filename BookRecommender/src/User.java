@@ -75,6 +75,9 @@ public class User {
      */
     public void register(String nome, String cognome, String codiceFiscale, String mail, String password) throws Exception {
         JsonUtils utils = new JsonUtils();  // Utils per gestire i nodi e l'Id
+        if(password.isBlank()) {    // Se il parametro non presenta caratteri
+            password = new SecurityUtils().genera();    // Genera una password casuale
+        }
         String encryptedPwd = new SecurityUtils().encrypt(password);    // La password crittata
         int uniqueId = utils.getUniqueId();   // L'Id univoco
         LoggedUser newUtente = new LoggedUser(uniqueId, nome, cognome, codiceFiscale, mail, encryptedPwd);  // Crea un obj LoggedUser con i campi del register
