@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.FileSystemNotFoundException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -75,7 +76,7 @@ public class User {
      */
     public void register(String nome, String cognome, String codiceFiscale, String mail, String password) throws Exception {
         JsonUtils utils = new JsonUtils();  // Utils per gestire i nodi e l'Id
-        if(password.isBlank()) {    // Se il parametro non presenta caratteri
+        if (password.isBlank()) {    // Se il parametro non presenta caratteri
             password = new SecurityUtils().genera();    // Genera una password casuale
         }
         String encryptedPwd = new SecurityUtils().encrypt(password);    // La password crittata
@@ -105,6 +106,13 @@ public class User {
         return null;    // Nessun utente è stato trovato e le credenziali non sono corrette
     }
 
+    /**
+     * Cerca tutte le librerie appartenenti ad un certo utente registrato
+     *
+     * @param mail la mail dell'utente del quale si vogliono vedere le librerie
+     * @return una collection di tutte le librerie dell'utente cercato
+     * @throws IOException
+     */
     public List<Libreria> visualizzaLibrerieByUser(String mail) throws IOException {   // Cerca le librerie del singolo utente
         List<Libreria> userLibs = new JsonUtils().getLibrerie();    // Tutte le librerie di tutti gli utenti
         List<Libreria> librerieFound = new ArrayList<>();
@@ -116,6 +124,13 @@ public class User {
         return librerieFound;
     }
 
+    /**
+     * Cerca le recensioni da tutti gli utenti per un certo libro
+     *
+     * @param titolo il titolo del libro che si vuole cercare
+     * @return una collection delle recensioni di tutti gli utenti relative al libro cercato
+     * @throws IOException
+     */
     public List<Recensione> visualizzaRecensioneByLibro(String titolo) throws IOException {
         List<Recensione> userReviews = new JsonUtils().getRecensioni();
         List<Recensione> recensioniFound = new ArrayList<>();
@@ -124,10 +139,44 @@ public class User {
                 recensioniFound.add(r);
             }
         }
-
         return recensioniFound;
     }
 
+    /**
+     * Visualizza le recensioni del proprietario di tutti i libri di una certa libreria
+     *
+     * @param nome il nome della libreria
+     * @return una collection delle recensioni di tutti i libri presenti pubblicate dal proprietario della libreria
+     */
+    public List<Recensione> visualizzaRecensioniByLibreria(String nome) throws IOException {
+        List<Libreria> userLibs = new JsonUtils().getLibrerie();    // Tutte le librerie di tutti gli utenti
+        List<Recensione> recensioniLibreria = new ArrayList<>();
+        Libreria lib = null;    // Libreria trovata
+        // Trova la libreria in questione
+        for (Libreria l : userLibs) {
+            if (l.getNome().equals(nome)) {  // Se il nome della libreria corrisponde
+                lib = l;
+            }
+        }
+        // Trova per tutte le recensioni di tutti i libri presenti nella libreria quelle pubblicate dal proprietario
+        for (Libro l : lib.getLibri()) {
+            List<Recensione> recensioniLibro = visualizzaRecensioneByLibro(l.getTitolo());
+            for (Recensione review : recensioniLibro) {  // Per ogni recensione presente nella collection
+                if (lib.getProprietario().getCodiceFiscale().equals(review.getPublisher().getCodiceFiscale())) { // Verifica se chi ha pubblicato la recensione è anche il proprietario della libreria
+                    recensioniLibreria.add(review);
+                }
+            }
+        }
+        return recensioniLibreria;
+    }
+
+    /**
+     * Cerca i consigli da tutti gli utenti per un certo libro
+     *
+     * @param titolo il titolo del libro che si vuole cercare
+     * @return una collection di consigli da parte di tutti gli utenti relativi al libro cercato
+     * @throws IOException
+     */
     public List<Consiglio> visualizzaConsigliByLibro(String titolo) throws IOException {
         List<Consiglio> userConsigli = new JsonUtils().getConsigli();
         List<Consiglio> consigliFound = new ArrayList<>();
@@ -136,7 +185,27 @@ public class User {
                 consigliFound.add(c);
             }
         }
-
         return consigliFound;
+    }
+
+    public List<Consiglio> visualizzaConsigliByLibreria(String nome) throws IOException {
+        List<Libreria> userLibs = new JsonUtils().getLibrerie();
+        List<Consiglio> consigliLibreria = new ArrayList<>();
+        Libreria lib = null;
+        // Trova la libreria
+        for(Libreria l : userLibs) {
+            if(l.getNome().equals(nome)) {  // Se il nome della libreria corrisponde
+                lib = l;
+            }
+        }
+        for(Libro libro : lib.getLibri()) {
+            List<Consiglio> consigliLibro = visualizzaConsigliByLibro(libro.getTitolo());
+            for(Consiglio consiglio : consigliLibro) {
+                if(consiglio.getPublisher().getCodiceFiscale().equals(lib.getProprietario().getCodiceFiscale())) {
+                    consigliLibreria.add(consiglio);
+                }
+            }
+        }
+        return consigliLibreria;
     }
 }
