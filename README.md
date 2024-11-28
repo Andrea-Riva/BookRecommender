@@ -1,4 +1,5 @@
-.photos {
+<style>
+  .photos {
   display: inline-block;
   position: relative;
   width: 200px;
@@ -6,6 +7,7 @@
   overflow: hidden;
   border-radius: 50%;
 }
+</style>
 
 <div class="photos">
 <a href="https://github.com/CostaAris"> 
