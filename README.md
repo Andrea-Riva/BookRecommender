@@ -11,5 +11,10 @@
 *   Visualizzazione di Librerie consigli e recensioni
 *   Ricerca di Librerie libri consigli e recensioni
 
-<h2>Collaboratori</h2>
-[<img src="https://github.com/https://github.com/CostaAris.png" width="60px;"/><br /><sub><ahref="https://github.com/CostaAris}">Costa Aris</a></sub>](https://github.com/CostaAris/BookRecommender
+<h2>Group Leader</h2> 
+- ![Andrea Riva](https://avatars.githubusercontent.com/u/10710142?v=4) [Andrea-Riva](https://github.com/Andrea-Riva)
+
+<h2>Collaborators</h2>
+- ![Alexandro Tavian](https://avatars.githubusercontent.com/u/10710142?v=4) [ErPanzet](https://github.com/ErPanzet)
+- ![Aris Costa](https://avatars.githubusercontent.com/u/59606366?v=4) [CostaAris](https://github.com/CostaAris)
+- ![Francesco Perrica](https://avatars.githubusercontent.com/u/9079789?v=4) [perryfra](https://github.com/perryfra)
