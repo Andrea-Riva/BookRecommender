@@ -1,0 +1,73 @@
+[ {
+  "publisher" : {
+    "id" : 4,
+    "nome" : "Alexandro",
+    "cognome" : "Tavian",
+    "codiceFiscale" : "ALEX02MI",
+    "mail" : "tavian@fake.it",
+    "password" : "zVM7V9rOh9JR0s2pBfGc6BhGCqAfgMquG4eAAsT521o="
+  },
+  "referredLibro" : {
+    "titolo" : "Harry Potter e i doni della morte",
+    "autore" : "J.K. Rowling",
+    "descrizione" : "L'ultimo libro della saga, dove Harry, Ron e Hermione si avventurano alla ricerca degli Horcrux per sconfiggere definitivamente Lord Voldemort.",
+    "categoria" : "Fantasy",
+    "pubblicatore" : "Bloomsbury",
+    "prezzo" : 17.0,
+    "data" : "2007-07-21"
+  },
+  "stile" : 1,
+  "contenuto" : 3,
+  "gradevolezza" : 5,
+  "originalità" : 1,
+  "edizione" : 3,
+  "votoFinale" : 2.6
+}, {
+  "publisher" : {
+    "id" : 4,
+    "nome" : "Alexandro",
+    "cognome" : "Tavian",
+    "codiceFiscale" : "ALEX02MI",
+    "mail" : "tavian@fake.it",
+    "password" : "zVM7V9rOh9JR0s2pBfGc6BhGCqAfgMquG4eAAsT521o="
+  },
+  "referredLibro" : {
+    "titolo" : "Il nome della rosa",
+    "autore" : "Umberto Eco",
+    "descrizione" : "Un romanzo storico e giallo ambientato in un monastero medievale, intriso di mistero e filosofia.",
+    "categoria" : "Giallo",
+    "pubblicatore" : "Bompiani",
+    "prezzo" : 17.5,
+    "data" : "1980-01-01"
+  },
+  "stile" : 1,
+  "contenuto" : 1,
+  "gradevolezza" : 1,
+  "originalità" : 1,
+  "edizione" : 1,
+  "votoFinale" : 1.0
+}, {
+  "publisher" : {
+    "id" : 4,
+    "nome" : "Alexandro",
+    "cognome" : "Tavian",
+    "codiceFiscale" : "ALEX02MI",
+    "mail" : "tavian@fake.it",
+    "password" : "zVM7V9rOh9JR0s2pBfGc6BhGCqAfgMquG4eAAsT521o="
+  },
+  "referredLibro" : {
+    "titolo" : "I malavoglia",
+    "autore" : "Giovanni Verga",
+    "descrizione" : "Un romanzo verista che racconta la vita della famiglia Toscano, dei suoi drammi e delle sue difficoltà nella Sicilia di fine Ottocento.",
+    "categoria" : "Romanzo",
+    "pubblicatore" : "Fratelli Treves",
+    "prezzo" : 9.5,
+    "data" : "1881-04-10"
+  },
+  "stile" : 1,
+  "contenuto" : 1,
+  "gradevolezza" : 1,
+  "originalità" : 1,
+  "edizione" : 1,
+  "votoFinale" : 1.0
+} ]
