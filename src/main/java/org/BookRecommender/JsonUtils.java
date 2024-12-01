@@ -24,7 +24,7 @@ public class JsonUtils {
      */
     // Leggere tutti i libri dal file JSON
     public List<Libro> getLibri() throws IOException {
-        JsonNode libriNode = readFromFile("src/data/libri.json");
+        JsonNode libriNode = readFromFile("src/main/java/org/BookRecommender/data/libri.json");
         List<Libro> libri = new ArrayList<>();
         for (JsonNode libroNode : libriNode) {
             Libro libro = new Libro(
@@ -48,7 +48,7 @@ public class JsonUtils {
      */
     // Leggere tutti gli utenti dal file JSON
     public List<LoggedUser> getUtenti() throws IOException {
-        JsonNode utentiNode = readFromFile("src/data/utenti.json");
+        JsonNode utentiNode = readFromFile("src/main/java/org/BookRecommender/data/utenti.json");
         List<LoggedUser> utenti = new ArrayList<>();
         for (JsonNode userNode : utentiNode) {
             LoggedUser user = new LoggedUser(
@@ -66,7 +66,7 @@ public class JsonUtils {
 
     // Leggere tutte le librerie dal file JSON
     public List<Libreria> getLibrerie() throws IOException {
-        String filePath = "src/data/librerie.json";
+        String filePath = "src/main/java/org/BookRecommender/data/librerie.json";
         File file = new File(filePath);
         List<Libreria> librerie = new ArrayList<>();    // Librerie to return
         if (file.exists()) {    // Lettura di tutte le librerie
@@ -79,7 +79,7 @@ public class JsonUtils {
 
     // Leggere tutte le recensioni dal file JSON
     public List<Recensione> getRecensioni() throws IOException {
-        String filePath = "src/data/recensioni.json";
+        String filePath = "src/main/java/org/BookRecommender/data/recensioni.json";
         File file = new File(filePath);
         List<Recensione> reviews = new ArrayList<>();
         if(file.exists()) { // Lettura di tutte le recensioni
@@ -91,7 +91,7 @@ public class JsonUtils {
 
     // Leggere tutti i consigli dal file JSON
     public List<Consiglio> getConsigli() throws IOException {
-        String filePath = "src/data/consigli.json";
+        String filePath = "src/main/java/org/BookRecommender/data/consigli.json";
         File file = new File(filePath);
         List<Consiglio> consigli = new ArrayList<>();
         if(file.exists()) { // Lettura di tutti i consigli
@@ -126,18 +126,18 @@ public class JsonUtils {
 
     // Scrivere i nodi degli utenti su file
     public void writeUtentiNodes(JsonNode root) throws IOException {
-        writeToFile(root, "src/data/utenti.json");
+        writeToFile(root, "src/main/java/org/BookRecommender/data/utenti.json");
     }
 
     // Scrive i nodi delle librerie su file
     public void writeLibrerieNodes(JsonNode root) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
-        mapper.writerWithDefaultPrettyPrinter().writeValue(new File("src/data/librerie.json"), root);
+        mapper.writerWithDefaultPrettyPrinter().writeValue(new File("src/main/java/org/BookRecommender/data/librerie.json"), root);
     }
 
     // Generare un Id univoco per gli utenti
     public int getUniqueId() throws IOException {
-        JsonNode root = readFromFile("src/data/utenti.json");
+        JsonNode root = readFromFile("src/main/java/org/BookRecommender/data/utenti.json");
         if (!root.isArray() || root.isEmpty()) {
             return 1; // Se il file è vuoto, partiamo con Id = 1
         }
@@ -154,7 +154,7 @@ public class JsonUtils {
 
     // Metodo per ottenere gli utenti come JsonNode (se si vuole manipolare i nodi direttamente)
     public JsonNode getUtentiAsJsonNode() throws IOException {
-        return readFromFile("src/data/utenti.json");
+        return readFromFile("src/main/java/org/BookRecommender/data/utenti.json");
     }
 
     public boolean isPresente(LoggedUser proprietario, String titolo) throws IOException {  //Verifica se un libro è presente nelle librerie di un certo utente

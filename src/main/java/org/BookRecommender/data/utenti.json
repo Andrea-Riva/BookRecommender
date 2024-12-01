@@ -26,4 +26,11 @@
   "codiceFiscale" : "ALEX02MI",
   "mail" : "tavian@fake.it",
   "password" : "zVM7V9rOh9JR0s2pBfGc6BhGCqAfgMquG4eAAsT521o="
+}, {
+  "id" : 5,
+  "nome" : "prova",
+  "cognome" : "gui",
+  "codiceFiscale" : "GUI1",
+  "mail" : "gui@fake.com",
+  "password" : "LNn0Tx8lU8piA0cQwZt3QJ6eYacq4Jsdpdo2PB1tmw8="
 } ]

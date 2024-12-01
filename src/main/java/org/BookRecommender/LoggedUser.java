@@ -78,7 +78,7 @@ public class LoggedUser extends User {
     }
 
     public void addLibreria(Libreria libreria) throws IOException {
-        String filePath = "src/data/librerie.json"; //Path del file sul quale fare override
+        String filePath = "src/main/java/org/BookRecommender/data/librerie.json"; //Path del file sul quale fare override
         // getLibrerie, aggiunge libreria, override del file
         List<Libreria> userLibs = new JsonUtils().getLibrerie();    // Lista di tutte le librerie presenti nel file
         userLibs.add(libreria); // Aggiunge la libreria mancante
@@ -121,7 +121,7 @@ public class LoggedUser extends User {
         if(!(new JsonUtils().isPresente(this, titolo))) {
             throw new Exception("Il libro " + titolo + " non risulta presente in nessuna tua libreria");
         }
-        String filePath = "src/data/consigli.json";
+        String filePath = "src/main/java/org/BookRecommender/data/consigli.json";
         ObjectMapper mapper = new ObjectMapper();
         // Costruzione del consiglio
         Consiglio newConsiglio = new Consiglio(this, new User().searchLibroByTitolo(titolo), consigli); // Tutti i consigli da tutti gli utenti
