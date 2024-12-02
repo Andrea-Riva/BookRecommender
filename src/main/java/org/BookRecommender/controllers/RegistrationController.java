@@ -60,10 +60,18 @@ public class RegistrationController {
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
         clipboard.setContents(selection, selection);
     }
-
     @FXML
-    private void switchToAccesso() throws IOException {
+    private void switchAccesso() throws IOException { // Click btn ho già un account
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/BookRecommender/loginPage.fxml"));
+        Parent root = loader.load();
+
+        Stage stage = (Stage) accediBtn.getScene().getWindow();
+        stage.setScene(new Scene(root));
+        stage.show();
+    }
+    @FXML
+    private void switchHome() throws IOException {  // Click btn continua senza account
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/BookRecommender/homePage.fxml"));
         Parent root = loader.load();
 
         Stage stage = (Stage) accediBtn.getScene().getWindow();

@@ -23,8 +23,8 @@
         <Button fx:id="genPassBtn" layoutX="391.0" layoutY="251.0" mnemonicParsing="false" text="Genera password"
                 onAction="#generatePasswordField"/>
         <Button fx:id="accediBtn" layoutX="38.0" layoutY="301.0" mnemonicParsing="false" text="Ho già un account"
-                onAction="#switchToAccesso"/>
-        <Button layoutX="23.0" layoutY="344.0" mnemonicParsing="false" text="Continua senza account"/>
+                onAction="#switchAccesso"/>
+        <Button layoutX="23.0" layoutY="344.0" mnemonicParsing="false" text="Continua senza account" onAction="#switchHome"/>
         <Button layoutX="264.0" layoutY="301.0" mnemonicParsing="false" text="Registrami"
                 onAction="#handleRegistrazione"/>
     </children>
