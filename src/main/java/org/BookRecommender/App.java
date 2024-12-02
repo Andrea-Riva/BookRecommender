@@ -18,7 +18,7 @@ public class App extends Application {
         var javaVersion = SystemInfo.javaVersion();
         var javafxVersion = SystemInfo.javafxVersion();
         // Setup FXML file
-        var root = new FXMLLoader(App.class.getResource("/org/BookRecommender/registrationPage.fxml"));
+        var root = new FXMLLoader(App.class.getResource("/org/BookRecommender/View/registrationPage.fxml"));
         var scene = new Scene(root.load(), 640, 480);
         stage.setTitle("BookRecommender");
         stage.setScene(scene);

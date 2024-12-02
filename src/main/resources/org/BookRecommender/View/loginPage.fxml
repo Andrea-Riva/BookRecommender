@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.BookRecommender.controllers.LoginController">
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.BookRecommender.Controller.LoginController">
     <Label layoutX="277.0" layoutY="42.0" prefHeight="26.0" prefWidth="45.0" text="Accesso"/>
     <TextField fx:id="mailField" layoutX="225.0" layoutY="145.0"/>
     <Label layoutX="185.0" layoutY="148.0" prefHeight="18.0" prefWidth="26.0" text="Mail"/>

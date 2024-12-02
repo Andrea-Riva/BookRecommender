@@ -1,4 +1,4 @@
-package org.BookRecommender.controllers;
+package org.BookRecommender.Controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -44,9 +44,12 @@ public class RegistrationController {
             alert.setContentText("Per favore, compila tutti i campi.");
             alert.showAndWait();
         } else {    // Tutti i campi sono stati compilati correttamente
+            String mail = mailField.getText();  // Mail per il login
+            String password = passwordField.getText();  // Password per il login
             new User().register(nomeField.getText(), cognomeField.getText(), cfField.getText(),
                     mailField.getText(), passwordField.getText());  // Esegui la registrazione
-            System.out.println("Registrazione eseguita con successo");
+            System.out.println("Registrazione eseguita con successo");  // Debug console
+            switchHome();
         }
     }
 
@@ -62,7 +65,7 @@ public class RegistrationController {
     }
     @FXML
     private void switchAccesso() throws IOException { // Click btn ho già un account
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/BookRecommender/loginPage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/BookRecommender/View/loginPage.fxml"));
         Parent root = loader.load();
 
         Stage stage = (Stage) accediBtn.getScene().getWindow();
@@ -71,7 +74,7 @@ public class RegistrationController {
     }
     @FXML
     private void switchHome() throws IOException {  // Click btn continua senza account
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/BookRecommender/homePage.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/BookRecommender/View/homePage.fxml"));
         Parent root = loader.load();
 
         Stage stage = (Stage) accediBtn.getScene().getWindow();

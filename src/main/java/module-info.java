@@ -6,6 +6,6 @@ module org.BookRecommender {
     requires java.desktop;
     opens org.BookRecommender to javafx.fxml;
     exports org.BookRecommender;
-    exports org.BookRecommender.controllers;
-    opens org.BookRecommender.controllers to javafx.fxml;
+    exports org.BookRecommender.Controller;
+    opens org.BookRecommender.Controller to javafx.fxml;
 }
