@@ -9,6 +9,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.layout.AnchorPane;
 import org.BookRecommender.LoggedUser;
 import org.BookRecommender.Model.SceneSwitch;
+import org.BookRecommender.Model.UserInfo;
 import org.BookRecommender.User;
 
 import java.io.IOException;
@@ -42,6 +43,9 @@ public class LoginController {
             alert.setHeaderText("Mail o password sono sbagliate");
             alert.showAndWait();
         } else {    // Se il login è andato a buon fine
+            // Passaggio dei parametri dell'utente tra Controller
+            UserInfo.user = log;
+            System.out.println(UserInfo.user.toString());
             switchHomepage();
         }
     }

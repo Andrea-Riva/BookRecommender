@@ -3,6 +3,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import org.BookRecommender.LoggedUser;
+import org.BookRecommender.Model.UserInfo;
 
 public class HomeController {
     @FXML
@@ -12,10 +13,8 @@ public class HomeController {
     @FXML
     private Label welcomeUserLabel;
     @FXML
-    public void displayLoggedUser(LoggedUser log) {   // Display del logged user, se ha fatto login o registrazione
-        String nome = log.getNome();
-        String mail = log.getMail();
-        loggedUserLabel.setText(mail);
-        welcomeUserLabel.setText("Benvenuto, " + nome);
+    public void initialize() {   // Display del logged user, se ha fatto login o registrazione
+        loggedUserLabel.setText(UserInfo.user.getMail());
+        welcomeUserLabel.setText("Benvenuto, " + UserInfo.user.getNome());
     }
 }
