@@ -1,6 +1,7 @@
 package org.BookRecommender;
 
 import javafx.application.Application;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.fxml.FXMLLoader;
@@ -18,8 +19,8 @@ public class App extends Application {
         var javaVersion = SystemInfo.javaVersion();
         var javafxVersion = SystemInfo.javafxVersion();
         // Setup FXML file
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("/org/BookRecommender/registrationPage.fxml"));
-        var scene = new Scene(fxmlLoader.load(), 640, 480);
+        var root = new FXMLLoader(App.class.getResource("/org/BookRecommender/registrationPage.fxml"));
+        var scene = new Scene(root.load(), 640, 480);
         stage.setTitle("BookRecommender");
         stage.setScene(scene);
         stage.show();

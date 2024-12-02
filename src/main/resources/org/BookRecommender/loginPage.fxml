@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.BookRecommender.controllers.LoginController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.BookRecommender.controllers.LoginController">
+    <Label layoutX="277.0" layoutY="42.0" prefHeight="26.0" prefWidth="45.0" text="Accesso" />
+   <TextField fx:id="mailField" layoutX="225.0" layoutY="145.0" />
+   <Label layoutX="185.0" layoutY="148.0" prefHeight="18.0" prefWidth="26.0" text="Mail" />
+   <Label layoutX="160.0" layoutY="191.0" text="Password" />
+   <PasswordField fx:id="passField" layoutX="225.0" layoutY="187.0" />
+   <Button fx:id="accediBtn" layoutX="275.0" layoutY="266.0" mnemonicParsing="false" text="Accedi" />
+   <Button fx:id="indietroBtn" layoutX="43.0" layoutY="266.0" mnemonicParsing="false" text="Indietro" />
+   <Button fx:id="noAccountBtn" layoutX="43.0" layoutY="313.0" mnemonicParsing="false" text="Continua senza account" />
+   <Label fx:id="loggedLabel" layoutX="259.0" layoutY="81.0" prefHeight="44.0" prefWidth="82.0" />
 </AnchorPane>
