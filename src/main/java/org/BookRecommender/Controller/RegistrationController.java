@@ -1,4 +1,5 @@
 package org.BookRecommender.Controller;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,7 +8,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.BookRecommender.Model.SceneSwitch;
 import org.BookRecommender.SecurityUtils;
 import org.BookRecommender.User;
 
@@ -17,6 +20,8 @@ import java.awt.datatransfer.StringSelection;
 import java.io.IOException;
 
 public class RegistrationController {
+    @FXML
+    private AnchorPane registrazioneAnchorPane;
     @FXML
     private TextField nomeField;
     @FXML
@@ -63,22 +68,14 @@ public class RegistrationController {
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
         clipboard.setContents(selection, selection);
     }
+
     @FXML
     private void switchAccesso() throws IOException { // Click btn ho già un account
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/BookRecommender/View/loginPage.fxml"));
-        Parent root = loader.load();
-
-        Stage stage = (Stage) accediBtn.getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
+        new SceneSwitch(registrazioneAnchorPane, "/org/BookRecommender/View/loginPage.fxml");
     }
+
     @FXML
     private void switchHome() throws IOException {  // Click btn continua senza account
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/BookRecommender/View/homePage.fxml"));
-        Parent root = loader.load();
-
-        Stage stage = (Stage) accediBtn.getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
+        new SceneSwitch(registrazioneAnchorPane, "/org/BookRecommender/View/homePage.fxml");
     }
 }

@@ -3,7 +3,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.BookRecommender.Controller.HomeController">
+<AnchorPane fx:id="homeAnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.BookRecommender.Controller.HomeController">
    <children>
       <Label fx:id="loggedUserLabel" alignment="TOP_CENTER" layoutX="14.0" layoutY="14.0" wrapText="true" text="not logged"/>
       <Label fx:id="welcomeUserLabel" alignment="TOP_CENTER" layoutX="272.0" layoutY="55.0" wrapText="true" text="not logged"/>

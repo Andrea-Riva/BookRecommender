@@ -1,9 +1,12 @@
 package org.BookRecommender.Controller;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import org.BookRecommender.LoggedUser;
 
 public class HomeController {
+    @FXML
+    private AnchorPane homeAnchorPane;
     @FXML
     private Label loggedUserLabel;
     @FXML

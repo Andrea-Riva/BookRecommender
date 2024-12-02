@@ -6,14 +6,17 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
-import javafx.stage.Stage;
+import javafx.scene.layout.AnchorPane;
 import org.BookRecommender.LoggedUser;
+import org.BookRecommender.Model.SceneSwitch;
 import org.BookRecommender.User;
 
 import java.io.IOException;
 import java.util.Objects;
 
 public class LoginController {
+    @FXML
+    private AnchorPane loginAnchorPane;
     @FXML
     private javafx.scene.control.Button accediBtn;
     @FXML
@@ -39,27 +42,15 @@ public class LoginController {
             alert.setHeaderText("Mail o password sono sbagliate");
             alert.showAndWait();
         } else {    // Se il login è andato a buon fine
-            // Passa i dati del login e cambia scena
-            switchHome();
+            switchHomepage();
         }
     }
-
     @FXML
-    private void switchRegistration() throws IOException { // Click btn indietro
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/BookRecommender/View/registrationPage.fxml"));
-        Parent root = loader.load();
-
-        Stage stage = (Stage) accediBtn.getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
+    private void switchRegistrazione() throws IOException {
+        new SceneSwitch(loginAnchorPane, "/org/BookRecommender/View/registrationPage.fxml");
     }
-
     @FXML
-    private void switchHome() throws IOException {  // Click btn continua senza account
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/BookRecommender/View/homePage.fxml"));
-        Parent root = loader.load();
-        Stage stage = (Stage) accediBtn.getScene().getWindow();
-        stage.setScene(new Scene(root));
-        stage.show();
+    private void switchHomepage() throws IOException {
+        new SceneSwitch(loginAnchorPane, "/org/BookRecommender/View/homePage.fxml");
     }
 }
