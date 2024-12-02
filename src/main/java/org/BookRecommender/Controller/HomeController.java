@@ -5,6 +5,8 @@ import javafx.scene.layout.AnchorPane;
 import org.BookRecommender.LoggedUser;
 import org.BookRecommender.Model.UserInfo;
 
+import java.util.Objects;
+
 public class HomeController {
     @FXML
     private AnchorPane homeAnchorPane;
@@ -14,7 +16,9 @@ public class HomeController {
     private Label welcomeUserLabel;
     @FXML
     public void initialize() {   // Display del logged user, se ha fatto login o registrazione
-        loggedUserLabel.setText(UserInfo.user.getMail());
-        welcomeUserLabel.setText("Benvenuto, " + UserInfo.user.getNome());
+        if(!(Objects.isNull(UserInfo.user))) {  // Se l'utente è loggato allora display schermata di benvenuto
+            loggedUserLabel.setText(UserInfo.user.getMail());
+            welcomeUserLabel.setText("Benvenuto, " + UserInfo.user.getNome());
+        }
     }
 }
