@@ -3,8 +3,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import org.BookRecommender.LoggedUser;
+import org.BookRecommender.Model.SceneSwitch;
 import org.BookRecommender.Model.UserInfo;
 
+import java.io.IOException;
 import java.util.Objects;
 
 public class HomeController {
@@ -20,5 +22,10 @@ public class HomeController {
             loggedUserLabel.setText(UserInfo.user.getMail());
             welcomeUserLabel.setText("Benvenuto, " + UserInfo.user.getNome());
         }
+    }
+    @FXML
+    public void goBack() throws IOException {
+        UserInfo.user = null;   // Effettua il logout
+        new SceneSwitch(homeAnchorPane, "/org/BookRecommender/View/registrationPage.fxml");
     }
 }
