@@ -10,21 +10,9 @@
 *   Pubblicazione di consigli e recensioni inerenti ai libri presenti in una Libreria
 *   Visualizzazione di Librerie consigli e recensioni
 *   Ricerca di Librerie libri consigli e recensioni
-
-<h2>Group Leader</h2> 
-<a href="https://github.com/Andrea-Riva">
-  <img src="https://avatars.githubusercontent.com/u/167135900?v=4" width=100>
-</a>
-
-<h2>Collaborators</h2>
-<a href="https://github.com/ErPanzet">
-  <img src="https://avatars.githubusercontent.com/u/169908490?v=4" width=100>
-</a>
-<a href="https://github.com/CostaAris">
-  <img src="https://avatars.githubusercontent.com/u/169836651?v=4" width=100>
-</a>
-<a href="https://github.com/perryfra">
-  <img src="https://avatars.githubusercontent.com/u/104194759?v=4" width=100>
+<h2>Contribuzioni</h2>
+<a href="https://github.com/Andrea-Riva/BookRecommender/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Andrea-Riva/BookRecommender" />
 </a>
 
 
