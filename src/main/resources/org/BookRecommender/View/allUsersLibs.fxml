@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+
+<AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.BookRecommender.Controller.AllUsersLibsController">
+    <Button layoutX="537.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToHome" text="Home" />
+    <Label fx:id="loggedUserLabel" layoutX="14.0" layoutY="18.0" text="Senza account" />
+    <ScrollPane id="scroll-bar" fitToHeight="true" fitToWidth="true" layoutX="14.0" layoutY="100.0" prefHeight="250" prefWidth="572">
+        <GridPane fx:id="libGridPane" hgap="10" vgap="10">
+            <!-- Contenuto creato dinamicamente -->
+        </GridPane>
+    </ScrollPane>
+   <Label layoutX="260.0" layoutY="18.0" text="Portale Librerie" />
+
+</AnchorPane>

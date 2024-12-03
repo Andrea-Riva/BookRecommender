@@ -51,7 +51,6 @@ public class HomeController {
 
             bookGridPane.add(libroLabel, 0, row);
             bookGridPane.add(libroButton, 1, row);
-            //System.out.println(libro.getTitolo());
             row++; // Aumenta il contatore
 
             // Attribuisce OnAction al button
@@ -97,5 +96,10 @@ public class HomeController {
     @FXML
     public void goToRicercaAvanzata() throws IOException {  // Click Btn ricerca avanzata
         new SceneSwitch(homeAnchorPane, "/org/BookRecommender/View/ricercaAvanzataPage.fxml");
+    }
+
+    @FXML
+    public void goToAllUsersLibs() throws IOException {    // Click btn visualizza librerie
+        new SceneSwitch(homeAnchorPane, "/org/BookRecommender/View/allUsersLibs.fxml");
     }
 }

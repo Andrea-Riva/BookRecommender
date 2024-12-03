@@ -45,7 +45,7 @@ public class RicercaAvanzataController {
             alert.showAndWait();
         } else {    // Se il libro è stato trovato
             LibroModel.libro = found;   // Assegna al model il libro trovato
-            new SceneSwitch(anchorPane, "/org/BookRecommender/View/dettagliLibroFromAuth.fxml");    // Apre la pagina coi dettagli del libro
+            new SceneSwitch(anchorPane, "/org/BookRecommender/View/dettagliLibroPage.fxml");    // Apre la pagina coi dettagli del libro
         }
     }
 

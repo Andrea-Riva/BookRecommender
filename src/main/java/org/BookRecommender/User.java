@@ -201,4 +201,14 @@ public class User {
         }
         return consigliLibreria;
     }
+
+    public Libreria searchLibByNome(String nomeLib) throws IOException {    // Usata in AllUserLibsController btn setAction
+        List<Libreria> userLibs = new JsonUtils().getLibrerie();
+        for(Libreria lib : userLibs) {
+            if(lib.getNome().equalsIgnoreCase(nomeLib)) {   // Lib trovata
+                return lib;
+            }
+        }
+        return null;    // Lib non trovata
+    }
 }

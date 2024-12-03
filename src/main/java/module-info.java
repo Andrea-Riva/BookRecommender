@@ -4,7 +4,8 @@ module org.BookRecommender {
     requires org.apache.commons.io;
     requires javafx.fxml;
     requires java.desktop;
-    opens org.BookRecommender to javafx.fxml;
+
+    opens org.BookRecommender to javafx.fxml, com.fasterxml.jackson.databind;
     exports org.BookRecommender;
     exports org.BookRecommender.Controller;
     opens org.BookRecommender.Controller to javafx.fxml;
