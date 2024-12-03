@@ -1,15 +1,9 @@
 package org.BookRecommender;
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.node.ArrayNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
-import java.io.File;
+
 import java.io.IOException;
-import java.nio.file.FileSystemNotFoundException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 public class User {
     public User() {
@@ -37,7 +31,7 @@ public class User {
      * @return Una collection di libri aventi lo stesso autore
      * @throws IOException Se la deserializzazione non va a buon fine
      */
-    public List<Libro> searchLibroByAuth(String auth) throws IOException {
+    public List<Libro> searchLibriByAuth(String auth) throws IOException {
         List<Libro> dataset = new JsonUtils().getLibri();
         List<Libro> libriFound = new ArrayList<Libro>();    // To return
         for (Libro l : dataset) {

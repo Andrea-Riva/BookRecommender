@@ -4,7 +4,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
-
+<!-- Viene fatto redirect se si vogliono visualizzare i dettagli di un libro dalla homepage -->
 <AnchorPane fx:id="dettagliAnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.BookRecommender.Controller.DettagliLibroController">
     <Button layoutX="537.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBackHome" text="Home" />
     <Label layoutX="254.0" layoutY="31.0" text="Dettagli del libro:" />

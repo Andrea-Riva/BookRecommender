@@ -11,4 +11,5 @@ import java.io.IOException;
 
 public class LibroModel {
     public static Libro libro;
+    public static String autore;    // Ricerca by autore
 }

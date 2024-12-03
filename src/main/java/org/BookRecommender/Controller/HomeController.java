@@ -55,8 +55,6 @@ public class HomeController {
             bookGridPane.add(libroButton, 1, row);
             //System.out.println(libro.getTitolo());
             row++; // Aumenta il contatore
-            // Get controller
-
 
             // Attribuisce OnAction al button
             libroButton.setOnAction(actionEvent -> { // L'evento apre una nuova pagina FXML e fa il display dei dettagli del libro
