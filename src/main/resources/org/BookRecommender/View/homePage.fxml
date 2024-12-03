@@ -17,14 +17,13 @@
 
     <ScrollPane id="scroll-bar" fx:id="bookScrollPane" fitToHeight="true" fitToWidth="true" layoutX="14.0"
                 layoutY="100.0" prefHeight="250" prefWidth="572">
-        <content>
-            <GridPane fx:id="bookGridPane" hgap="10" vgap="10">
-            </GridPane>
-        </content>
+        <GridPane fx:id="bookGridPane" hgap="10" vgap="10">
+        </GridPane>
     </ScrollPane>
     <TextField fx:id="ricercaTextField" layoutX="225.0" layoutY="54.0"/>
     <Label layoutX="137.0" layoutY="58.0" text="Cerca un titolo:"/>
     <Button layoutX="383.0" layoutY="54.0" mnemonicParsing="false" text="Cerca" onAction="#ricercaByTitolo"/>
-    <Button layoutX="488.0" layoutY="10.0" mnemonicParsing="false" text="Ricerca avanzata"/>
+    <Button layoutX="488.0" layoutY="10.0" mnemonicParsing="false" text="Ricerca avanzata"
+            onAction="#goToRicercaAvanzata"/>
 
 </AnchorPane>

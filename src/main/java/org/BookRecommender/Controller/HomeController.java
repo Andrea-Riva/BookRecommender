@@ -94,8 +94,12 @@ public class HomeController {
     }
 
     @FXML
-    public void goBack() throws IOException {
+    public void goBack() throws IOException {   // Click btn Indietro
         LoggedUserModel.user = null;   // Effettua il logout
         new SceneSwitch(homeAnchorPane, "/org/BookRecommender/View/registrationPage.fxml");
+    }
+    @FXML
+    public void goToRicercaAvanzata() throws IOException {  // Click Btn ricerca avanzata
+        new SceneSwitch(homeAnchorPane, "/org/BookRecommender/View/ricercaAvanzataPage.fxml");
     }
 }
