@@ -5,15 +5,16 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.BookRecommender.Controller.RicercaAvanzataController">
-   <children>
-      <Label layoutX="14.0" layoutY="14.0" text="Senza account" />
-      <Button layoutX="537.0" layoutY="10.0" mnemonicParsing="false" text="Home" />
-      <Label layoutX="231.0" layoutY="14.0" text="Portale di ricerca avanzata" />
-      <Label id="autoreLabel" layoutX="170.0" layoutY="169.0" text="Autore:" />
-      <Label id="dataLabel" layoutX="181.0" layoutY="200.0" text="Data:" />
-      <TextField id="autoreField" layoutX="225.0" layoutY="165.0" />
-      <TextField id="dataField" layoutX="225.0" layoutY="196.0" />
-   </children>
+    <Label fx:id="loggedAccountLabel" layoutX="14.0" layoutY="14.0" text="Senza account" />
+    <Button layoutX="537.0" layoutY="10.0" mnemonicParsing="false" onAction="#goToHome" text="Home" />
+    <Label layoutX="231.0" layoutY="14.0" text="Portale di ricerca avanzata" />
+    <Label id="autoreLabel" layoutX="170.0" layoutY="169.0" text="Autore:" />
+    <Label id="dataLabel" layoutX="181.0" layoutY="200.0" text="Data:" />
+    <TextField id="autoreField" fx:id="authField" layoutX="225.0" layoutY="165.0" />
+    <TextField id="dataField" fx:id="dataField" layoutX="225.0" layoutY="196.0" />
+    <Button id="autoreBtn" layoutX="390.0" layoutY="165.0" mnemonicParsing="false" text="Filtra per autore" />
+    <Button id="autoreDataBtn" layoutX="390.0" layoutY="196.0" mnemonicParsing="false" onAction="#ricercaByAutoreData" text="Filtra per autore e data" />
+   <Label layoutX="263.0" layoutY="235.0" text="Formato data:" />
+   <Label layoutX="266.0" layoutY="253.0" text="yyyy-mm-dd" />
 </AnchorPane>
