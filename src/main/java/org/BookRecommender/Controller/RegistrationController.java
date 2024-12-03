@@ -1,18 +1,13 @@
 package org.BookRecommender.Controller;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
-import org.BookRecommender.LoggedUser;
 import org.BookRecommender.Model.SceneSwitch;
-import org.BookRecommender.Model.UserInfo;
+import org.BookRecommender.Model.LoggedUserModel;
 import org.BookRecommender.SecurityUtils;
 import org.BookRecommender.User;
 
@@ -56,7 +51,7 @@ public class RegistrationController {
             new User().register(nomeField.getText(), cognomeField.getText(), cfField.getText(),
                     mailField.getText(), passwordField.getText());  // Esegui la registrazione
             System.out.println("Registrazione eseguita con successo");  // Debug console
-            UserInfo.user = new User().login(mail, password);   // Login con credenziali di registrazione
+            LoggedUserModel.user = new User().login(mail, password);   // Login con credenziali di registrazione
             switchHome();
         }
     }

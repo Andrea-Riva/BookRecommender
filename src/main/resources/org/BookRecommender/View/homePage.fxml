@@ -2,12 +2,22 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
 
 <AnchorPane fx:id="homeAnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.BookRecommender.Controller.HomeController">
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.BookRecommender.Controller.HomeController" stylesheets="@style/homePage.css">
     <Label fx:id="loggedUserLabel" alignment="TOP_CENTER" layoutX="14.0" layoutY="14.0" text="Senza account"
            wrapText="true"/>
     <Label fx:id="welcomeUserLabel" alignment="TOP_CENTER" layoutX="272.0" layoutY="55.0" text=" " wrapText="true"/>
     <Button layoutX="14.0" layoutY="361.0" mnemonicParsing="false" text="Logout" onAction="#goBack"/>
+
+    <ScrollPane fx:id="bookScrollPane" id="scroll-bar" layoutX="14.0" layoutY="100.0" prefWidth="572" prefHeight="250" fitToWidth="true" fitToHeight="true">
+        <content>
+            <GridPane fx:id="bookGridPane" hgap="10" vgap="10">
+            </GridPane>
+        </content>
+    </ScrollPane>
+
 </AnchorPane>

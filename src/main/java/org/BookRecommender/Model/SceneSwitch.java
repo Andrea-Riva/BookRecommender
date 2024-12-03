@@ -7,7 +7,7 @@ import org.BookRecommender.App;
 import java.io.IOException;
 import java.util.Objects;
 
-public class SceneSwitch {
+public class SceneSwitch {  // Cambio scena semplice senza comunicazione fra controller
     public SceneSwitch(AnchorPane currentAnchorPane, String fxml) throws IOException {  // Cambio schermata
         AnchorPane nextAnchorPane = FXMLLoader.load(Objects.requireNonNull(App.class.getResource(fxml))); // Richiede il file FXML al path specificato
         currentAnchorPane.getChildren().removeAll();    // Rimuove il FXML precedente

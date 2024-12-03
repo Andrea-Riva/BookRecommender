@@ -1,15 +1,12 @@
 package org.BookRecommender.Controller;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.layout.AnchorPane;
 import org.BookRecommender.LoggedUser;
 import org.BookRecommender.Model.SceneSwitch;
-import org.BookRecommender.Model.UserInfo;
+import org.BookRecommender.Model.LoggedUserModel;
 import org.BookRecommender.User;
 
 import java.io.IOException;
@@ -44,8 +41,8 @@ public class LoginController {
             alert.showAndWait();
         } else {    // Se il login è andato a buon fine
             // Passaggio dei parametri dell'utente tra Controller
-            UserInfo.user = log;
-            System.out.println(UserInfo.user.toString());
+            LoggedUserModel.user = log;
+            System.out.println(LoggedUserModel.user.toString());
             switchHomepage();
         }
     }

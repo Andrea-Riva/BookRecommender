@@ -2,6 +2,6 @@ package org.BookRecommender.Model;
 
 import org.BookRecommender.LoggedUser;
 
-public class UserInfo {
+public class LoggedUserModel {
     public static LoggedUser user;  // Utente loggato
 }

@@ -1,0 +1,28 @@
+/* Nasconde il contorno del GridPane e della scrollbar */
+#bookGridPane, .scroll-bar {
+  -fx-border-width: 0;
+  -fx-background-color: transparent;
+  -fx-effect: null; /* Rimuove eventuali effetti visivi */
+}
+
+.scroll-bar {
+  -fx-opacity: 0; /* Oscura la scrollbar */
+}
+/* Stilizzazione della scrollbar */
+.scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-shape: null;
+}
+
+.scroll-bar:vertical .track {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #cccccc;
+    -fx-background-radius: 4px;
+    -fx-pref-width: 10px;
+}
