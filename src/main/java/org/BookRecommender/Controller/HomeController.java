@@ -1,7 +1,6 @@
 package org.BookRecommender.Controller;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -35,7 +34,6 @@ public class HomeController {
     public void initialize() throws IOException {   // Display delle user info e di tutti i libri presenti nel dataset
         if (!(Objects.isNull(LoggedUserModel.user))) {  // Se l'utente è loggato allora display schermata di benvenuto
             loggedUserLabel.setText(LoggedUserModel.user.getMail());
-            welcomeUserLabel.setText("Benvenuto, " + LoggedUserModel.user.getNome());
         }
         // Display dinamico dei libri
         bookGridPane.setHgap(10);  // Distanza tra le colonne

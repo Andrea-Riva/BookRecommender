@@ -1,6 +1,7 @@
 package org.BookRecommender.Controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
@@ -28,42 +29,51 @@ public class LibriAuthController {
 
     @FXML
     private void initialize() throws IOException {
-        if(!(Objects.isNull(LoggedUserModel.user))) {   // Se l'utente è loggato
+        if (!(Objects.isNull(LoggedUserModel.user))) {   // Se l'utente è loggato
             loggedUserLabel.setText(LoggedUserModel.user.getMail());    // Display mail
         }
         // Ricerca dei libri per autore specifico
         List<Libro> libriFound = new User().searchLibriByAuth(LibroModel.autore);
-        // Display dei libri trovati, come in homepage
-        int row = 0;    // Contatore per le row
-        for(Libro libro : libriFound) {
-            Label libroLabel = new Label();
-            Button libroButton = new Button();
+        if (libriFound.isEmpty()) {  // Se non è stato trovato nessun libro da quell'autore
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Errore di ricerca");
+            alert.setHeaderText("Autore non trovato");
+            alert.setContentText("nessun libro di " + LibroModel.autore + " in archivio");
+            alert.showAndWait();    // Lancia un alert di non successo della ricerca
+            new SceneSwitch(anchorPane, "org/BookRecommender/View/ricercaAvanzataPage.fxml");
+        } else {    // Se i libri sono stati trovati
+            // Display dei libri trovati, come in homepage
+            int row = 0;    // Contatore per le row
+            for (Libro libro : libriFound) {
+                Label libroLabel = new Label();
+                Button libroButton = new Button();
 
-            libroLabel.setText(libro.getTitolo());
-            libroButton.setText("Dettagli");
+                libroLabel.setText(libro.getTitolo());
+                libroButton.setText("Dettagli");
 
-            bookGridPane.add(libroLabel, 0, row);
-            bookGridPane.add(libroButton, 1, row);
-            //System.out.println(libro.getTitolo());
-            row++; // Aumenta il contatore
+                bookGridPane.add(libroLabel, 0, row);
+                bookGridPane.add(libroButton, 1, row);
+                //System.out.println(libro.getTitolo());
+                row++; // Aumenta il contatore
 
-            // Attribuisce OnAction al button
-            libroButton.setOnAction(actionEvent -> { // L'evento apre una nuova pagina FXML e fa il display dei dettagli del libro
-                // Assegna il campo Libro a LibroModel
-                try {
-                    LibroModel.libro = new User().searchLibroByTitolo(libroLabel.getText());
-                    System.out.println(libroButton.getText());
-                    System.out.println(libro.getTitolo());
-                } catch (Exception e) {
-                    throw new RuntimeException(e);
-                }
-                // Switch scene
-                try {
-                    new SceneSwitch(anchorPane, "/org/BookRecommender/View/dettagliLibroFromAuth.fxml");
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            });
+                // Attribuisce OnAction al button
+                libroButton.setOnAction(actionEvent -> { // L'evento apre una nuova pagina FXML e fa il display dei dettagli del libro
+                    // Assegna il campo Libro a LibroModel
+                    try {
+                        LibroModel.libro = new User().searchLibroByTitolo(libroLabel.getText());
+                        System.out.println(libroButton.getText());
+                        System.out.println(libro.getTitolo());
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                    // Switch scene
+                    try {
+                        new SceneSwitch(anchorPane, "/org/BookRecommender/View/dettagliLibroFromAuth.fxml");
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                });
+            }
         }
     }
 
