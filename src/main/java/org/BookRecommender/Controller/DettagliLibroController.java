@@ -2,8 +2,8 @@ package org.BookRecommender.Controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
-import org.BookRecommender.Libro;
 import org.BookRecommender.Model.LibroModel;
 import org.BookRecommender.Model.LoggedUserModel;
 import org.BookRecommender.Model.SceneSwitch;
@@ -13,13 +13,13 @@ import java.util.Objects;
 
 public class DettagliLibroController {
     @FXML
+    public TextArea descrizioneTextArea;
+    @FXML
     AnchorPane dettagliAnchorPane;
     @FXML
     public Label titoloLabel;
     @FXML
     public Label autoreLabel;
-    @FXML
-    public Label descrizioneLabel;
     @FXML
     public Label categoriaLabel;
     @FXML
@@ -40,7 +40,7 @@ public class DettagliLibroController {
         // Display delle informazioni tramite label
         titoloLabel.setText("Titolo: " + LibroModel.libro.getTitolo());
         autoreLabel.setText("Autore: " + LibroModel.libro.getAutore());
-        descrizioneLabel.setText("Descrizione:" + LibroModel.libro.getDescrizione());
+        descrizioneTextArea.setText("Descrizione: " + LibroModel.libro.getDescrizione());
         categoriaLabel.setText("Categoria: " + LibroModel.libro.getCategoria());
         pubblicatoreLabel.setText("Pubblicatore: " + LibroModel.libro.getPubblicatore());
         prezzoLabel.setText("Prezzo: " + String.valueOf(LibroModel.libro.getPrezzo()));

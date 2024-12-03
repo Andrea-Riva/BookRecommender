@@ -2,8 +2,10 @@ package org.BookRecommender.Controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import org.BookRecommender.JsonUtils;
@@ -26,6 +28,8 @@ public class HomeController {
     private Label welcomeUserLabel;
     @FXML
     private GridPane bookGridPane;
+    @FXML
+    private TextField ricercaTextField;
 
     @FXML
     public void initialize() throws IOException {   // Display delle user info e di tutti i libri presenti nel dataset
@@ -71,6 +75,21 @@ public class HomeController {
                     throw new RuntimeException(e);
                 }
             });
+        }
+    }
+
+    @FXML
+    public void ricercaByTitolo() throws Exception { // Click btn cerca
+        LibroModel.libro = new User().searchLibroByTitolo(ricercaTextField.getText());  // Trova il libro
+        // Gestisce il caso nel quale il titolo non è stato trovato
+        if(Objects.isNull(LibroModel.libro)) {  // Se il libro non è stato trovato
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Errore di ricerca");
+            alert.setHeaderText("Libro non trovato");
+            alert.setContentText("Il libro non è presente nella biblioteca");
+            alert.showAndWait();    // Lancia un alert di non successo della ricerca
+        } else {
+            new SceneSwitch(homeAnchorPane, "/org/BookRecommender/View/dettagliLibroPage.fxml");    // Switch scena
         }
     }
 

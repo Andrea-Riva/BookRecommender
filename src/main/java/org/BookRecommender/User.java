@@ -25,7 +25,7 @@ public class User {
     public Libro searchLibroByTitolo(String titolo) throws Exception {
         List<Libro> dataset = new JsonUtils().getLibri();   // Deserializza dataset
         for (Libro l : dataset) {    // Ciclo su tutta la lista
-            if (l.getTitolo().equals(titolo)) return l;  // Se i titoli corrispondono
+            if (l.getTitolo().equalsIgnoreCase(titolo)) return l;  // Se i titoli corrispondono
         }
         return null;    // Libro non trovato
     }
@@ -41,7 +41,7 @@ public class User {
         List<Libro> dataset = new JsonUtils().getLibri();
         List<Libro> libriFound = new ArrayList<Libro>();    // To return
         for (Libro l : dataset) {
-            if (l.getAutore().equals(auth))
+            if (l.getAutore().equalsIgnoreCase(auth))
                 libriFound.add(l);   // Se i titoli corrispondono aggiunge il Libro alla lista
         }
         return libriFound;
@@ -58,7 +58,7 @@ public class User {
     public Libro searchLibroByDataAuth(String auth, String data) throws IOException {
         List<Libro> dataset = new JsonUtils().getLibri();
         for (Libro l : dataset) {
-            if (l.getAutore().equals(auth) && l.getData().equals(data)) return l;
+            if (l.getAutore().equalsIgnoreCase(auth) && l.getData().equalsIgnoreCase(data)) return l;
         }
         return null;
     }
