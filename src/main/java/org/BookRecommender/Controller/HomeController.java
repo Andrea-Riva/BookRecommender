@@ -20,11 +20,11 @@ import java.util.Objects;
 
 public class HomeController {
     @FXML
+    public Button creaLibButton;
+    @FXML
     private AnchorPane homeAnchorPane;
     @FXML
     private Label loggedUserLabel;
-    @FXML
-    private Label welcomeUserLabel;
     @FXML
     private GridPane bookGridPane;
     @FXML
@@ -34,6 +34,9 @@ public class HomeController {
     public void initialize() throws IOException {   // Display delle user info e di tutti i libri presenti nel dataset
         if (!(Objects.isNull(LoggedUserModel.user))) {  // Se l'utente è loggato allora display schermata di benvenuto
             loggedUserLabel.setText(LoggedUserModel.user.getMail());
+            creaLibButton.setVisible(true);    // Nasconde button di creazione libreria se l'utente non è loggato
+        } else {
+            creaLibButton.setVisible(false);    // Se l'utente non è loggato
         }
         // Display dinamico dei libri
         bookGridPane.setHgap(10);  // Distanza tra le colonne

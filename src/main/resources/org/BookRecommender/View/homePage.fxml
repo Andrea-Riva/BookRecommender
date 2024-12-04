@@ -26,6 +26,6 @@
             text="Ricerca avanzata"/>
     <Button layoutX="137.0" layoutY="10.0" mnemonicParsing="false" text="Visualizza Librerie"
             onAction="#goToAllUsersLibs"/>
-    <Button layoutX="258.0" layoutY="10.0" mnemonicParsing="false" text="Crea Libreria"/>
+    <Button fx:id="creaLibButton" layoutX="258.0" layoutY="10.0" mnemonicParsing="false" text="Crea Libreria"/>
 
 </AnchorPane>
