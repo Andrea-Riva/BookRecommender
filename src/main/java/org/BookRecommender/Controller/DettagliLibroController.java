@@ -7,6 +7,7 @@ import javafx.scene.layout.AnchorPane;
 import org.BookRecommender.Model.LibroModel;
 import org.BookRecommender.Model.LoggedUserModel;
 import org.BookRecommender.Model.SceneSwitch;
+import org.BookRecommender.User;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -45,7 +46,13 @@ public class DettagliLibroController {
         pubblicatoreLabel.setText("Pubblicatore: " + LibroModel.libro.getPubblicatore());
         prezzoLabel.setText("Prezzo: " + String.valueOf(LibroModel.libro.getPrezzo()));
     }
+    @FXML
+    private void goToRecensioni() throws Exception { // Click btn recensioni
+        new SceneSwitch(dettagliAnchorPane, "/org/BookRecommender/View/reviewsFromHome.fxml");  // Switch to recensioni
+    }
+
+    @FXML
     public void goBackHome() throws IOException {   // Click btn Home
-        new SceneSwitch(dettagliAnchorPane, "/org/BookRecommender/View/homePage.fxml");
+        new SceneSwitch(dettagliAnchorPane, "/org/BookRecommender/View/homePage.fxml"); // Switch to homepage
     }
 }

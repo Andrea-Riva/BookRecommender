@@ -7,25 +7,20 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.GridPane?>
 
-<AnchorPane fx:id="homeAnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@style/homePage.css"
-            xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="org.BookRecommender.Controller.HomeController">
-    <Label fx:id="loggedUserLabel" alignment="CENTER" layoutX="14.0" layoutY="14.0" text="Senza account"
-           wrapText="true"/>
-    <Button layoutX="14.0" layoutY="361.0" mnemonicParsing="false" onAction="#goBack" text="Logout"/>
+<AnchorPane fx:id="homeAnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@style/homePage.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.BookRecommender.Controller.HomeController">
+    <Label fx:id="loggedUserLabel" alignment="CENTER" layoutX="14.0" layoutY="14.0" text="Senza account" wrapText="true" />
+    <Button fx:id="logoutButton" layoutX="14.0" layoutY="36.0" mnemonicParsing="false" onAction="#goBack" text="Logout" />
 
-    <ScrollPane id="scroll-bar" fitToHeight="true" fitToWidth="true" layoutX="14.0" layoutY="100.0" prefHeight="250"
-                prefWidth="572">
+    <ScrollPane id="scroll-bar" fitToHeight="true" fitToWidth="true" layoutX="14.0" layoutY="100.0" prefHeight="250" prefWidth="572">
         <GridPane fx:id="bookGridPane" hgap="10" vgap="10">
         </GridPane>
     </ScrollPane>
-    <TextField fx:id="ricercaTextField" layoutX="225.0" layoutY="54.0"/>
-    <Label layoutX="137.0" layoutY="58.0" text="Cerca un titolo:"/>
-    <Button layoutX="383.0" layoutY="54.0" mnemonicParsing="false" onAction="#ricercaByTitolo" text="Cerca"/>
-    <Button layoutX="488.0" layoutY="10.0" mnemonicParsing="false" onAction="#goToRicercaAvanzata"
-            text="Ricerca avanzata"/>
-    <Button layoutX="137.0" layoutY="10.0" mnemonicParsing="false" text="Visualizza Librerie"
-            onAction="#goToAllUsersLibs"/>
-    <Button fx:id="creaLibButton" layoutX="258.0" layoutY="10.0" mnemonicParsing="false" text="Crea Libreria"/>
+    <TextField fx:id="ricercaTextField" layoutX="225.0" layoutY="54.0" />
+    <Label layoutX="137.0" layoutY="58.0" text="Cerca un titolo:" />
+    <Button layoutX="383.0" layoutY="54.0" mnemonicParsing="false" onAction="#ricercaByTitolo" text="Cerca" />
+    <Button layoutX="488.0" layoutY="10.0" mnemonicParsing="false" onAction="#goToRicercaAvanzata" text="Ricerca avanzata" />
+    <Button layoutX="137.0" layoutY="10.0" mnemonicParsing="false" onAction="#goToAllUsersLibs" text="Visualizza Librerie" />
+    <Button fx:id="creaLibButton" layoutX="258.0" layoutY="10.0" mnemonicParsing="false" text="Crea Libreria" />
+   <Button fx:id="loginButton" layoutX="14.0" layoutY="36.0" mnemonicParsing="false" onAction="#goToLogin" text="Login" />
 
 </AnchorPane>

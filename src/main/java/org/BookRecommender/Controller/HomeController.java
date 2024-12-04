@@ -22,6 +22,10 @@ public class HomeController {
     @FXML
     public Button creaLibButton;
     @FXML
+    public Button logoutButton;
+    @FXML
+    public Button loginButton;
+    @FXML
     private AnchorPane homeAnchorPane;
     @FXML
     private Label loggedUserLabel;
@@ -34,9 +38,14 @@ public class HomeController {
     public void initialize() throws IOException {   // Display delle user info e di tutti i libri presenti nel dataset
         if (!(Objects.isNull(LoggedUserModel.user))) {  // Se l'utente è loggato allora display schermata di benvenuto
             loggedUserLabel.setText(LoggedUserModel.user.getMail());
-            creaLibButton.setVisible(true);    // Nasconde button di creazione libreria se l'utente non è loggato
+            creaLibButton.setVisible(true);    // Visualizza crea libreria se l'utente è loggato
+            logoutButton.setVisible(true);
+            loginButton.setVisible(false);
+
         } else {
-            creaLibButton.setVisible(false);    // Se l'utente non è loggato
+            creaLibButton.setVisible(false);    // Nasconde crea libreria se l'utente non è loggato
+            logoutButton.setVisible(false);     // Nasconde logout se l'utente non è loggato
+            loginButton.setVisible(true);
         }
         // Display dinamico dei libri
         bookGridPane.setHgap(10);  // Distanza tra le colonne
@@ -92,9 +101,9 @@ public class HomeController {
     }
 
     @FXML
-    public void goBack() throws IOException {   // Click btn Indietro
+    public void goBack() throws IOException {   // Click btn Logout
         LoggedUserModel.user = null;   // Effettua il logout
-        new SceneSwitch(homeAnchorPane, "/org/BookRecommender/View/registrationPage.fxml");
+        new SceneSwitch(homeAnchorPane, "/org/BookRecommender/View/homePage.fxml");
     }
     @FXML
     public void goToRicercaAvanzata() throws IOException {  // Click Btn ricerca avanzata
@@ -104,5 +113,10 @@ public class HomeController {
     @FXML
     public void goToAllUsersLibs() throws IOException {    // Click btn visualizza librerie
         new SceneSwitch(homeAnchorPane, "/org/BookRecommender/View/allUsersLibs.fxml");
+    }
+
+    @FXML
+    private void goToLogin() throws IOException {  // Click btn login
+        new SceneSwitch(homeAnchorPane, "/org/BookRecommender/View/loginPage.fxml");
     }
 }

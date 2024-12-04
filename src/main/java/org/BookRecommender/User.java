@@ -211,4 +211,16 @@ public class User {
         }
         return null;    // Lib non trovata
     }
+
+    public Recensione searchRecensioneByUserTitolo(String nome, String cognome, String titoloLibro) throws IOException {   // Usata in ReviewsFromHomeController user btn
+        List<Recensione> allReviews = new JsonUtils().getRecensioni();  // Get recensioni
+        for(Recensione review : allReviews) {
+            if(review.getPublisher().getNome().equals(nome)
+            && review.getPublisher().getCognome().equals(cognome)
+            && review.getReferredLibro().getTitolo().equalsIgnoreCase(titoloLibro)) {   // Se tutti i parametri corrispondono
+                return review;  // Restituisce la recensione
+            }
+        }
+        return null;
+    }
 }

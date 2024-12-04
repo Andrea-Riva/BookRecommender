@@ -15,7 +15,7 @@
     <PasswordField fx:id="passField" layoutX="225.0" layoutY="187.0"/>
     <Button fx:id="accediBtn" layoutX="275.0" layoutY="266.0" mnemonicParsing="false" onAction="#handleLogin"
             text="Accedi"/>
-    <Button fx:id="indietroBtn" layoutX="43.0" layoutY="266.0" mnemonicParsing="false" text="Indietro"
+    <Button fx:id="indietroBtn" layoutX="43.0" layoutY="266.0" mnemonicParsing="false" text="Registrati"
             onAction="#switchRegistrazione"/>
     <Button fx:id="noAccountBtn" layoutX="43.0" layoutY="313.0" mnemonicParsing="false" text="Continua senza account"
             onAction="#switchHomepage"/>
