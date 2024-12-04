@@ -3,6 +3,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.ArrayList;
 
+/**
+* La classe definisce l'oggetto libreria che può essere creato da un oggetto LoggedUser;
+* Ogni libreria è contraddistinta dall'appartenenza ad un oggetto LoggedUser, un nome che la contraddistingue e una collection (ArrayList) di oggetti di tipo Libro.
+* Vengono utilizzati i packages com.fasterxml.jackson.annotation.JsonCreator e com.fasterxml.jackson.annotation.JsonProperty per la scrittura del file in formato Json.
+*/
 public class Libreria {
     private LoggedUser proprietario;
     private String nome;
