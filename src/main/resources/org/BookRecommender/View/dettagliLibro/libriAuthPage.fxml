@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.GridPane?>
 
-<AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.BookRecommender.Controller.LibriAuthController">
+<AnchorPane fx:id="anchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.BookRecommender.Controller.dettagliLibro.LibriAuthController">
     <ScrollPane id="scroll-bar" fx:id="bookScrollPane" fitToHeight="true" fitToWidth="true" layoutX="14.0" layoutY="100.0" prefHeight="250" prefWidth="572">
         <GridPane fx:id="bookGridPane" hgap="10" vgap="10">
             <!-- Contenuto creato dinamicamente -->

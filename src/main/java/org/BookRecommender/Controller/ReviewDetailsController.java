@@ -59,6 +59,6 @@ public class ReviewDetailsController {
 
     @FXML
     private void goToRecensioniLibro() throws IOException {    // Click btn Indietro
-        new SceneSwitch(anchorPane, "/org/BookRecommender/View/reviewsFromHome.fxml");
+        new SceneSwitch(anchorPane, "/org/BookRecommender/View/reviews/reviewsFromHome.fxml");
     }
 }

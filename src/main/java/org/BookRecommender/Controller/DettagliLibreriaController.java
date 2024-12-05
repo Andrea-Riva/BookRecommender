@@ -57,7 +57,7 @@ public class DettagliLibreriaController {
                 }
                 // Switch scene
                 try {
-                    new SceneSwitch(anchorPane, "/org/BookRecommender/View/dettagliLibroFromLib.fxml");
+                    new SceneSwitch(anchorPane, "/org/BookRecommender/View/dettagliLibro/dettagliLibroFromLib.fxml");
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }

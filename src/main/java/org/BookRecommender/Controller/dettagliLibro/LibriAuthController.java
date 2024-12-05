@@ -1,4 +1,4 @@
-package org.BookRecommender.Controller;
+package org.BookRecommender.Controller.dettagliLibro;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -68,7 +68,7 @@ public class LibriAuthController {
                     }
                     // Switch scene
                     try {
-                        new SceneSwitch(anchorPane, "/org/BookRecommender/View/dettagliLibroFromAuth.fxml");
+                        new SceneSwitch(anchorPane, "/org/BookRecommender/View/dettagliLibro/dettagliLibroFromAuth.fxml");
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }

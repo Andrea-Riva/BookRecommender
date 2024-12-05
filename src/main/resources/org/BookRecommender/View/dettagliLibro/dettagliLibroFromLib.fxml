@@ -5,12 +5,12 @@
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<!-- viene fatto redirect se si clickano dettagli di un libro dalla ricerca avanzata per autore -->
+
 <AnchorPane fx:id="anchorPane" xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.BookRecommender.Controller.DettagliFromAuthController"
+            fx:controller="org.BookRecommender.Controller.dettagliLibro.DettagliFromLibController"
             prefHeight="400.0" prefWidth="600.0">
-    <Button layoutX="537.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBackLibriAutore" text="Indietro"/>
+    <Button layoutX="537.0" layoutY="14.0" mnemonicParsing="false" text="Indietro" onAction="#goToLibreria"/>
     <Label layoutX="254.0" layoutY="31.0" text="Dettagli del libro:"/>
     <Label fx:id="titoloLabel" layoutX="139.0" layoutY="122.0" text="Titolo:"/>
     <Label fx:id="autoreLabel" layoutX="133.0" layoutY="157.0" text="Autore:"/>
@@ -20,4 +20,5 @@
     <Label fx:id="pubblicatoreLabel" layoutX="102.0" layoutY="310.0" text="Pubblicatore:"/>
     <Label fx:id="prezzoLabel" layoutX="129.0" layoutY="338.0" text="Prezzo:"/>
     <Label fx:id="loggedUserLabel" layoutX="14.0" layoutY="18.0" text=" "/>
+
 </AnchorPane>

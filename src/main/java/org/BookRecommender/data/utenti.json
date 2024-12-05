@@ -33,4 +33,11 @@
   "codiceFiscale" : "GUI1",
   "mail" : "gui@fake.com",
   "password" : "LNn0Tx8lU8piA0cQwZt3QJ6eYacq4Jsdpdo2PB1tmw8="
+}, {
+  "id" : 6,
+  "nome" : "prova",
+  "cognome" : "prova",
+  "codiceFiscale" : "PRAOEGOD",
+  "mail" : "prova2@fake.it",
+  "password" : "j1PIQuWgkFe1wSlegfMUSAx6qHzsgQy+RVPkIrqmYGI="
 } ]

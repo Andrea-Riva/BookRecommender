@@ -1,6 +1,5 @@
-package org.BookRecommender.Controller;
+package org.BookRecommender.Controller.dettagliLibro;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -12,13 +11,15 @@ import org.BookRecommender.Model.SceneSwitch;
 import java.io.IOException;
 import java.util.Objects;
 
-public class DettagliFromAuthController {
+public class DettagliFromLibController {
+    @FXML
+    public TextArea descrizioneTextArea;
+    @FXML
+    AnchorPane anchorPane;
     @FXML
     public Label titoloLabel;
     @FXML
     public Label autoreLabel;
-    @FXML
-    public TextArea descrizioneTextArea;
     @FXML
     public Label categoriaLabel;
     @FXML
@@ -26,12 +27,10 @@ public class DettagliFromAuthController {
     @FXML
     public Label prezzoLabel;
     @FXML
-    public Label loggedUserLabel;
-    @FXML
-    public AnchorPane anchorPane;
+    private Label loggedUserLabel;
 
     @FXML
-    public void initialize() {
+    private void initialize() {
         if (Objects.isNull(LoggedUserModel.user)) {  // Non loggato
             loggedUserLabel.setText("Non loggato");
         } else {
@@ -40,7 +39,7 @@ public class DettagliFromAuthController {
         displayLibroDetails();  // Display dei dettagli del libro
     }
 
-    public void displayLibroDetails() {
+    private void displayLibroDetails() {
         // Display delle informazioni tramite label
         titoloLabel.setText("Titolo: " + LibroModel.libro.getTitolo());
         autoreLabel.setText("Autore: " + LibroModel.libro.getAutore());
@@ -51,7 +50,7 @@ public class DettagliFromAuthController {
     }
 
     @FXML
-    public void goBackLibriAutore() throws IOException {
-        new SceneSwitch(anchorPane, "/org/BookRecommender/View/libriAuthPage.fxml");
+    private void goToLibreria() throws IOException {
+        new SceneSwitch(anchorPane, "/org/BookRecommender/View/dettagliLibreria.fxml");
     }
 }

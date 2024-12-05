@@ -9,4 +9,6 @@ module org.BookRecommender {
     exports org.BookRecommender;
     exports org.BookRecommender.Controller;
     opens org.BookRecommender.Controller to javafx.fxml;
+    exports org.BookRecommender.Controller.dettagliLibro;
+    opens org.BookRecommender.Controller.dettagliLibro to javafx.fxml;
 }

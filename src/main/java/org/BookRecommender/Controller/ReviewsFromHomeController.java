@@ -60,7 +60,7 @@ public class ReviewsFromHomeController {
                 }
                 // Switch scene
                 try {
-                    new SceneSwitch(anchorPane, "/org/BookRecommender/View/reviewDetails.fxml");
+                    new SceneSwitch(anchorPane, "/org/BookRecommender/View/reviews/reviewDetails.fxml");
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }

@@ -77,7 +77,7 @@ public class HomeController {
                 }
                 // Switch scene
                 try {
-                    new SceneSwitch(homeAnchorPane, "/org/BookRecommender/View/dettagliLibroPage.fxml");
+                    new SceneSwitch(homeAnchorPane, "/org/BookRecommender/View/dettagliLibro/dettagliLibroPage.fxml");
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -96,7 +96,7 @@ public class HomeController {
             alert.setContentText("Il libro non è presente nella biblioteca");
             alert.showAndWait();    // Lancia un alert di non successo della ricerca
         } else {
-            new SceneSwitch(homeAnchorPane, "/org/BookRecommender/View/dettagliLibroPage.fxml");    // Switch scena
+            new SceneSwitch(homeAnchorPane, "/org/BookRecommender/View/dettagliLibro/dettagliLibroPage.fxml");    // Switch scena
         }
     }
 

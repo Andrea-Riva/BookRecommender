@@ -45,7 +45,7 @@ public class RicercaAvanzataController {
             alert.showAndWait();
         } else {    // Se il libro è stato trovato
             LibroModel.libro = found;   // Assegna al model il libro trovato
-            new SceneSwitch(anchorPane, "/org/BookRecommender/View/dettagliLibroPage.fxml");    // Apre la pagina coi dettagli del libro
+            new SceneSwitch(anchorPane, "/org/BookRecommender/View/dettagliLibro/dettagliLibroPage.fxml");    // Apre la pagina coi dettagli del libro
         }
     }
 
@@ -53,7 +53,7 @@ public class RicercaAvanzataController {
     private void ricercaByAutore() throws IOException {
         LibroModel.autore = authField.getText();  // Campo autore
         System.out.println(LibroModel.autore);
-        new SceneSwitch(anchorPane, "/org/BookRecommender/View/libriAuthPage.fxml");
+        new SceneSwitch(anchorPane, "/org/BookRecommender/View/dettagliLibro/libriAuthPage.fxml");
     }
 
     @FXML
