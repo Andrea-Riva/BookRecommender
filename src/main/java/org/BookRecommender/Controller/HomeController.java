@@ -112,11 +112,16 @@ public class HomeController {
 
     @FXML
     public void goToAllUsersLibs() throws IOException {    // Click btn visualizza librerie
-        new SceneSwitch(homeAnchorPane, "/org/BookRecommender/View/allUsersLibs.fxml");
+        new SceneSwitch(homeAnchorPane, "/org/BookRecommender/View/library/allUsersLibs.fxml");
     }
 
     @FXML
     private void goToLogin() throws IOException {  // Click btn login
         new SceneSwitch(homeAnchorPane, "/org/BookRecommender/View/loginPage.fxml");
+    }
+
+    @FXML
+    private void goToCreazioneLib() throws IOException {    // Click btn crea libreria
+        new SceneSwitch(homeAnchorPane, "/org/BookRecommender/View/library/createLibreria.fxml");
     }
 }

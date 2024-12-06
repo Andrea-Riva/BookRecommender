@@ -20,7 +20,7 @@
     <Button layoutX="383.0" layoutY="54.0" mnemonicParsing="false" onAction="#ricercaByTitolo" text="Cerca" />
     <Button layoutX="488.0" layoutY="10.0" mnemonicParsing="false" onAction="#goToRicercaAvanzata" text="Ricerca avanzata" />
     <Button layoutX="137.0" layoutY="10.0" mnemonicParsing="false" onAction="#goToAllUsersLibs" text="Visualizza Librerie" />
-    <Button fx:id="creaLibButton" layoutX="258.0" layoutY="10.0" mnemonicParsing="false" text="Crea Libreria" />
+    <Button fx:id="creaLibButton" layoutX="258.0" layoutY="10.0" mnemonicParsing="false" text="Crea Libreria" onAction="#goToCreazioneLib"/>
    <Button fx:id="loginButton" layoutX="14.0" layoutY="36.0" mnemonicParsing="false" onAction="#goToLogin" text="Login" />
 
 </AnchorPane>

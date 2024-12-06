@@ -67,6 +67,6 @@ public class DettagliLibreriaController {
 
     @FXML
     private void goToAllLibs() throws IOException {    // Click btn Indietro
-            new SceneSwitch(anchorPane, "/org/BookRecommender/View/allUsersLibs.fxml");
+            new SceneSwitch(anchorPane, "/org/BookRecommender/View/library/allUsersLibs.fxml");
     }
 }
