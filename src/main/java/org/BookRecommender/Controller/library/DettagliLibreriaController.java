@@ -1,4 +1,4 @@
-package org.BookRecommender.Controller;
+package org.BookRecommender.Controller.library;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

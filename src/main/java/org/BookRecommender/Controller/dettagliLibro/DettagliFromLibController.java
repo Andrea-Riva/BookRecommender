@@ -51,6 +51,6 @@ public class DettagliFromLibController {
 
     @FXML
     private void goToLibreria() throws IOException {
-        new SceneSwitch(anchorPane, "/org/BookRecommender/View/dettagliLibreria.fxml");
+        new SceneSwitch(anchorPane, "/org/BookRecommender/View/library/dettagliLibreria.fxml");
     }
 }

@@ -50,7 +50,7 @@ public class AllUsersLibsController {
                 }
                 // Switch scene
                 try {
-                    new SceneSwitch(anchorPane, "/org/BookRecommender/View/dettagliLibreria.fxml");
+                    new SceneSwitch(anchorPane, "/org/BookRecommender/View/library/dettagliLibreria.fxml");
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
