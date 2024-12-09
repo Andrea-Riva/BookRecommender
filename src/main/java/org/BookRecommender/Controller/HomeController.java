@@ -1,6 +1,7 @@
 package org.BookRecommender.Controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -26,6 +27,8 @@ public class HomeController {
     @FXML
     public Button loginButton;
     @FXML
+    public Button mieLibrerieButton;
+    @FXML
     private AnchorPane homeAnchorPane;
     @FXML
     private Label loggedUserLabel;
@@ -41,11 +44,13 @@ public class HomeController {
             creaLibButton.setVisible(true);    // Visualizza crea libreria se l'utente è loggato
             logoutButton.setVisible(true);
             loginButton.setVisible(false);
+            mieLibrerieButton.setVisible(true);
 
-        } else {
+        } else {    // Se l'utente non è loggato
             creaLibButton.setVisible(false);    // Nasconde crea libreria se l'utente non è loggato
             logoutButton.setVisible(false);     // Nasconde logout se l'utente non è loggato
             loginButton.setVisible(true);
+            mieLibrerieButton.setVisible(false);
         }
         // Display dinamico dei libri
         bookGridPane.setHgap(10);  // Distanza tra le colonne
@@ -123,5 +128,10 @@ public class HomeController {
     @FXML
     private void goToCreazioneLib() throws IOException {    // Click btn crea libreria
         new SceneSwitch(homeAnchorPane, "/org/BookRecommender/View/library/createLibreria.fxml");
+    }
+
+    @FXML
+    private void goToMieLibrerie() throws IOException { // Click btn le mie librerie
+            new SceneSwitch(homeAnchorPane, "/org/BookRecommender/View/library/mieLibrerie.fxml");
     }
 }

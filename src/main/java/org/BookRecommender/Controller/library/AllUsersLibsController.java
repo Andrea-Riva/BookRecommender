@@ -1,4 +1,4 @@
-package org.BookRecommender.Controller;
+package org.BookRecommender.Controller.library;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -31,13 +31,17 @@ public class AllUsersLibsController {
 
         int row = 0;    // Contatore per le row
         for(Libreria lib : new JsonUtils().getLibrerie()) {   // Per ogni libreria presente
-            System.out.println(lib.toString());
             Button libButton = new Button();
             Label libLabel = new Label();
+            Label numLibriLabel = new Label();
             libButton.setText(lib.getNome());  // Il bottone avrà il nome della libreria
-            libLabel.setText("Proprietario: " + lib.getProprietario().getNome() + " " + lib.getProprietario().getCognome());
+            libLabel.setText(lib.getProprietario().getNome() + " " + lib.getProprietario().getCognome());
+            numLibriLabel.setText("Libri contenuti: " +
+                    lib.getLibri().size()); // Numero di libri nella libreria
+
             libGridPane.add(libButton, 0, row);   // Aggiunta bottone alla grid
             libGridPane.add(libLabel, 1, row);
+            libGridPane.add(numLibriLabel, 4, row);
             row++;  // Incremento contatore
             // Assegna l'action al button
             libButton.setOnAction(actionEvent -> {

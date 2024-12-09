@@ -47,4 +47,11 @@
   "codiceFiscale" : "PROVA21",
   "mail" : "prova2@fake.it",
   "password" : "ZR/aDK1znsbLgd9JNaOAyRvKiPZQqA2RDD3RcmLXPPw="
+}, {
+  "id" : 8,
+  "nome" : "Gianni",
+  "cognome" : "Sironi",
+  "codiceFiscale" : "GNSR201",
+  "mail" : "gianni@fake.it",
+  "password" : "Z7/12S0WhvmCiqL7q7DzKEzs0OUzEBA1aRLk36r4CXY="
 } ]

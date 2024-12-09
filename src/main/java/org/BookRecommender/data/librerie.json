@@ -181,4 +181,98 @@
     "prezzo" : 17.5,
     "data" : "1980-01-01"
   } ]
+}, {
+  "proprietario" : {
+    "id" : 8,
+    "nome" : "Gianni",
+    "cognome" : "Sironi",
+    "codiceFiscale" : "GNSR201",
+    "mail" : "gianni@fake.it",
+    "password" : "Z7/12S0WhvmCiqL7q7DzKEzs0OUzEBA1aRLk36r4CXY="
+  },
+  "nome" : "prova Gianni",
+  "libri" : [ {
+    "titolo" : "1984",
+    "autore" : "George Orwell",
+    "descrizione" : "Un romanzo distopico che esplora un futuro totalitario sotto il controllo di un regime oppressivo.",
+    "categoria" : "Fantascienza",
+    "pubblicatore" : "Secker and Warburg",
+    "prezzo" : 12.99,
+    "data" : "1949-06-08"
+  }, {
+    "titolo" : "Il nome della rosa",
+    "autore" : "Umberto Eco",
+    "descrizione" : "Un romanzo storico e giallo ambientato in un monastero medievale, intriso di mistero e filosofia.",
+    "categoria" : "Giallo",
+    "pubblicatore" : "Bompiani",
+    "prezzo" : 17.5,
+    "data" : "1980-01-01"
+  }, {
+    "titolo" : "Dracula",
+    "autore" : "Bram Stoker",
+    "descrizione" : "Il celebre romanzo gotico che racconta la lotta tra il giovane avvocato Jonathan Harker e il conte Dracula.",
+    "categoria" : "Horror",
+    "pubblicatore" : "Archibald Constable and Co.",
+    "prezzo" : 10.99,
+    "data" : "1897-05-26"
+  }, {
+    "titolo" : "I malavoglia",
+    "autore" : "Giovanni Verga",
+    "descrizione" : "Un romanzo verista che racconta la vita della famiglia Toscano, dei suoi drammi e delle sue difficoltà nella Sicilia di fine Ottocento.",
+    "categoria" : "Romanzo",
+    "pubblicatore" : "Fratelli Treves",
+    "prezzo" : 9.5,
+    "data" : "1881-04-10"
+  } ]
+}, {
+  "proprietario" : {
+    "id" : 1,
+    "nome" : "Andrea",
+    "cognome" : "Riva",
+    "codiceFiscale" : "RVA04LC",
+    "mail" : "riva@fake.it",
+    "password" : "wEjgSRv79Ls0X5WVJynFOwa9r1UK4g7T/26MXm94EF8="
+  },
+  "nome" : "Libri molto belli",
+  "libri" : [ {
+    "titolo" : "La solitudine dei numeri primi",
+    "autore" : "Paolo Giordano",
+    "descrizione" : "Un romanzo che esplora la vita di due giovani, i cui destini sono legati in modo misterioso e doloroso.",
+    "categoria" : "Romanzo Contemporaneo",
+    "pubblicatore" : "Mondadori",
+    "prezzo" : 14.9,
+    "data" : "2008-02-01"
+  }, {
+    "titolo" : "Il vecchio e il mare",
+    "autore" : "Ernest Hemingway",
+    "descrizione" : "Un racconto breve che narra la lotta tra un vecchio pescatore e un enorme marlin.",
+    "categoria" : "Narrativa",
+    "pubblicatore" : "Charles Scribner's Sons",
+    "prezzo" : 13.5,
+    "data" : "1952-09-01"
+  }, {
+    "titolo" : "1984",
+    "autore" : "George Orwell",
+    "descrizione" : "Un romanzo distopico che esplora un futuro totalitario sotto il controllo di un regime oppressivo.",
+    "categoria" : "Fantascienza",
+    "pubblicatore" : "Secker and Warburg",
+    "prezzo" : 12.99,
+    "data" : "1949-06-08"
+  }, {
+    "titolo" : "Orgoglio e pregiudizio",
+    "autore" : "Jane Austen",
+    "descrizione" : "Un classico della letteratura inglese che esplora le dinamiche sociali e sentimentali della famiglia Bennet.",
+    "categoria" : "Romanzo",
+    "pubblicatore" : "T. Egerton",
+    "prezzo" : 10.99,
+    "data" : "1813-01-28"
+  }, {
+    "titolo" : "Il nome della rosa",
+    "autore" : "Umberto Eco",
+    "descrizione" : "Un romanzo storico e giallo ambientato in un monastero medievale, intriso di mistero e filosofia.",
+    "categoria" : "Giallo",
+    "pubblicatore" : "Bompiani",
+    "prezzo" : 17.5,
+    "data" : "1980-01-01"
+  } ]
 } ]
