@@ -1,7 +1,9 @@
 package org.BookRecommender;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
+/**
+*La classe permette la creazione di oggetti "Recensione";
+*/
 public class Recensione {
     private LoggedUser publisher;
     private Libro referredLibro;
@@ -49,6 +51,17 @@ public class Recensione {
     public int getStile() {
         return this.stile;
     }
+ /**
+*Ogni campo di tipo int del costruttore public Recensione può assumere valori da 1 a 5;
+*Il controllo avviene nei metodi setter con il codice:
+* <pre>{@code
+* if (stile < 1) {
+*     stile = 1;
+* }
+* if (stile > 5) {
+*     stile = 5;
+* }
+*/
 
     public void setStile(int stile) {
         if (stile < 1) {
@@ -66,10 +79,10 @@ public class Recensione {
 
     public void setContenuto(int contenuto) {
         if (contenuto < 1) {
-            contenuto = 1;  // Imposto il valore minimo
+            contenuto = 1;  
         }
         if (contenuto > 5) {
-            contenuto = 5;  // Imposto il valore massimo
+            contenuto = 5;  
         }
         this.contenuto = contenuto;
     }
@@ -80,10 +93,10 @@ public class Recensione {
 
     public void setGradevolezza(int gradevolezza) {
         if (gradevolezza < 1) {
-            gradevolezza = 1;  // Imposto il valore minimo
+            gradevolezza = 1;  
         }
         if (gradevolezza > 5) {
-            gradevolezza = 5;  // Imposto il valore massimo
+            gradevolezza = 5;  
         }
         this.gradevolezza = gradevolezza;
     }
@@ -94,10 +107,10 @@ public class Recensione {
 
     public void setOriginalità(int originalità) {
         if (originalità < 1) {
-            originalità = 1;  // Imposto il valore minimo
+            originalità = 1;  
         }
         if (originalità > 5) {
-            originalità = 5;  // Imposto il valore massimo
+            originalità = 5;  
         }
         this.originalità = originalità;
     }
@@ -108,10 +121,10 @@ public class Recensione {
 
     public void setEdizione(int edizione) {
         if (edizione < 1) {
-            edizione = 1;  // Imposto il valore minimo
+            edizione = 1;  
         }
         if (edizione > 5) {
-            edizione = 5;  // Imposto il valore massimo
+            edizione = 5;  
         }
         this.edizione = edizione;
     }
