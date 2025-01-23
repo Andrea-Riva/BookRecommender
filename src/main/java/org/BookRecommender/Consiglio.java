@@ -4,6 +4,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+* Rappresenta un oggetto Consiglio
+* Questa classe utilizza le annotazioni di Jackson per la deserializzazione JSON.
+* - {@code @JsonCreator} viene utilizzato per specificare il costruttore da usare nella deserializzazione. <br>
+* - {@code @JsonProperty} viene utilizzato per mappare i nomi dei campi JSON agli attributi della classe.
+*/
+
 public class Consiglio {
     private LoggedUser publisher;
     private Libro referredLibro;
@@ -37,13 +44,23 @@ public class Consiglio {
     public List<Libro> getConsigli() {
         return this.consigli;
     }
+    /**
+    * metodo setConsigli
+    * @param List<Libro> consigli
+    * Il metodo implementa una verifica (massimo 3 oggetti Libro nella lista consigli);
+    * Se gli oggetti nella lista sono > 3, sublist (0, 3).
+    */
 
-    public void setConsigli(List<Libro> consigli) {  // Ci possono essere massimo 3 libri consigliati
-        if (consigli.size() > 3) {   // Se i libri consigliati sono troppi
-            consigli = consigli.subList(0, 3);  // Mantiene solo i primi 3 libri inseriti
+    public void setConsigli(List<Libro> consigli) { 
+        if (consigli.size() > 3) {   
+            consigli = consigli.subList(0, 3);  
         }
         this.consigli = consigli;
     }
+
+    /**
+    * Override metodo toString
+    */
 
     @Override
     public String toString() {
