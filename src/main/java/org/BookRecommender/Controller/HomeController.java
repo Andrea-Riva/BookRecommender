@@ -19,6 +19,10 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Controller per la gestione della home page dell'applicazione.
+ * Gestisce la visualizzazione dei libri e le interazioni dell'utente con la home.
+ */
 public class HomeController {
     @FXML
     public Button creaLibButton;
@@ -36,30 +40,38 @@ public class HomeController {
     private GridPane bookGridPane;
     @FXML
     private TextField ricercaTextField;
-
+    
+    /**
+    * Metodo per la gestione della home page dell'applicazione
+    * La visualizzazione dipende dal tipo dell'oggetto che segue il metodo (LoggedUser o User)
+    * Le due visualizzazioni vengono selezionato con il costrutto if-else iniziale
+    *
+    * Il Display dei libri avviene dinamicamente, la distanza tra colonne e righe è data da
+    * {@code  bookGridPane.setHgap(10);  
+    *         bookGridPane.setVgap(10);}
+    */
     @FXML
-    public void initialize() throws IOException {   // Display delle user info e di tutti i libri presenti nel dataset
-        if (!(Objects.isNull(LoggedUserModel.user))) {  // Se l'utente è loggato allora display schermata di benvenuto
+    public void initialize() throws IOException {   
+        if (!(Objects.isNull(LoggedUserModel.user))) {  
             loggedUserLabel.setText(LoggedUserModel.user.getMail());
-            creaLibButton.setVisible(true);    // Visualizza crea libreria se l'utente è loggato
+            creaLibButton.setVisible(true);    
             logoutButton.setVisible(true);
             loginButton.setVisible(false);
             mieLibrerieButton.setVisible(true);
 
-        } else {    // Se l'utente non è loggato
-            creaLibButton.setVisible(false);    // Nasconde crea libreria se l'utente non è loggato
-            logoutButton.setVisible(false);     // Nasconde logout se l'utente non è loggato
+        } else {    
+            creaLibButton.setVisible(false);    
+            logoutButton.setVisible(false);     
             loginButton.setVisible(true);
             mieLibrerieButton.setVisible(false);
         }
-        // Display dinamico dei libri
-        bookGridPane.setHgap(10);  // Distanza tra le colonne
-        bookGridPane.setVgap(10);  // Distanza tra le righe
+        bookGridPane.setHgap(10);  
+        bookGridPane.setVgap(10);  
 
-        List<Libro> allLibri = new JsonUtils().getLibri();  // Get tutti i libri nel dataset
+        List<Libro> allLibri = new JsonUtils().getLibri();  
 
-        int row = 0;    // Contatore per la riga del grid
-        for (Libro libro : allLibri) {   // Display libri nel grid
+        int row = 0;    
+        for (Libro libro : allLibri) {   
             Label libroLabel = new Label();
             Button libroButton = new Button();
 
@@ -68,11 +80,9 @@ public class HomeController {
 
             bookGridPane.add(libroLabel, 0, row);
             bookGridPane.add(libroButton, 1, row);
-            row++; // Aumenta il contatore
+            row++; 
 
-            // Attribuisce OnAction al button
-            libroButton.setOnAction(actionEvent -> { // L'evento apre una nuova pagina FXML e fa il display dei dettagli del libro
-                // Assegna il campo Libro a LibroModel
+            libroButton.setOnAction(actionEvent -> {
                 try {
                     LibroModel.libro = new User().searchLibroByTitolo(libroLabel.getText());
                     System.out.println(libroButton.getText());
@@ -80,7 +90,6 @@ public class HomeController {
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
-                // Switch scene
                 try {
                     new SceneSwitch(homeAnchorPane, "/org/BookRecommender/View/dettagliLibro/dettagliLibroPage.fxml");
                 } catch (IOException e) {
@@ -90,6 +99,11 @@ public class HomeController {
         }
     }
 
+    /**
+     * Metodo per la ricerca di un libro per titolo.
+     * Mostra un alert se il libro non viene trovato.
+     * @throws Exception Se si verifica un errore durante la ricerca.
+     */
     @FXML
     public void ricercaByTitolo() throws Exception { // Click btn cerca
         LibroModel.libro = new User().searchLibroByTitolo(ricercaTextField.getText());  // Trova il libro
@@ -104,32 +118,51 @@ public class HomeController {
             new SceneSwitch(homeAnchorPane, "/org/BookRecommender/View/dettagliLibro/dettagliLibroPage.fxml");    // Switch scena
         }
     }
-
+    /**
+     * Effettua il logout dell'utente e ritorna alla home page.
+     * @throws IOException Se si verifica un errore durante il cambio di scena.
+     */
     @FXML
-    public void goBack() throws IOException {   // Click btn Logout
-        LoggedUserModel.user = null;   // Effettua il logout
+    public void goBack() throws IOException {  
+        LoggedUserModel.user = null;   
         new SceneSwitch(homeAnchorPane, "/org/BookRecommender/View/homePage.fxml");
     }
+     /**
+     * Naviga alla pagina di ricerca avanzata.
+     * @throws IOException Se si verifica un errore durante il cambio di scena.
+     */
     @FXML
-    public void goToRicercaAvanzata() throws IOException {  // Click Btn ricerca avanzata
+    public void goToRicercaAvanzata() throws IOException {  
         new SceneSwitch(homeAnchorPane, "/org/BookRecommender/View/ricercaAvanzataPage.fxml");
     }
-
+     /**
+     * Naviga alla pagina delle librerie di tutti gli utenti.
+     * @throws IOException Se si verifica un errore durante il cambio di scena.
+     */
     @FXML
-    public void goToAllUsersLibs() throws IOException {    // Click btn visualizza librerie
+    public void goToAllUsersLibs() throws IOException {    
         new SceneSwitch(homeAnchorPane, "/org/BookRecommender/View/library/allUsersLibs.fxml");
     }
-
+     /**
+     * Naviga alla pagina di login.
+     * @throws IOException Se si verifica un errore durante il cambio di scena.
+     */
     @FXML
     private void goToLogin() throws IOException {  // Click btn login
         new SceneSwitch(homeAnchorPane, "/org/BookRecommender/View/loginPage.fxml");
     }
-
+     /**
+     * Naviga alla pagina di creazione libreria.
+     * @throws IOException Se si verifica un errore durante il cambio di scena.
+     */
     @FXML
     private void goToCreazioneLib() throws IOException {    // Click btn crea libreria
         new SceneSwitch(homeAnchorPane, "/org/BookRecommender/View/library/createLibreria.fxml");
     }
-
+     /**
+     * Naviga alla pagina delle mie librerie.
+     * @throws IOException Se si verifica un errore durante il cambio di scena.
+     */
     @FXML
     private void goToMieLibrerie() throws IOException { // Click btn le mie librerie
             new SceneSwitch(homeAnchorPane, "/org/BookRecommender/View/library/mieLibrerie.fxml");
