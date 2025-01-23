@@ -1,9 +1,15 @@
 package org.BookRecommender;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 /**
 *La classe permette la creazione di oggetti "Recensione";
+*
+* Questa classe utilizza le annotazioni di Jackson per la deserializzazione JSON.
+* - {@code @JsonCreator} viene utilizzato per specificare il costruttore da usare nella deserializzazione. <br>
+* - {@code @JsonProperty} viene utilizzato per mappare i nomi dei campi JSON agli attributi della classe.
 */
+
 public class Recensione {
     private LoggedUser publisher;
     private Libro referredLibro;
@@ -21,7 +27,7 @@ public class Recensione {
                       @JsonProperty("contenuto") int contenuto,
                       @JsonProperty("gradevolezza") int gradevolezza,
                       @JsonProperty("originalità") int originalità,
-                      @JsonProperty("edizione") int edizione) {    // Costruttore
+                      @JsonProperty("edizione") int edizione) {    
         this.publisher = publisher;
         this.referredLibro = referredLibro;
         setStile(stile);
@@ -51,6 +57,7 @@ public class Recensione {
     public int getStile() {
         return this.stile;
     }
+    
  /**
 *Ogni campo di tipo int del costruttore public Recensione può assumere valori da 1 a 5;
 *Il controllo avviene nei metodi setter con il codice:
