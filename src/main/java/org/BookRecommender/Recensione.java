@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 * - {@code @JsonCreator} viene utilizzato per specificare il costruttore da usare nella deserializzazione. <br>
 * - {@code @JsonProperty} viene utilizzato per mappare i nomi dei campi JSON agli attributi della classe.
 */
-
 public class Recensione {
     private LoggedUser publisher;
     private Libro referredLibro;
@@ -69,7 +68,6 @@ public class Recensione {
 *     stile = 5;
 * }
 */
-
     public void setStile(int stile) {
         if (stile < 1) {
             stile = 1;
