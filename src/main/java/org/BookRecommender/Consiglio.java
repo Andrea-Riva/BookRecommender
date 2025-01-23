@@ -11,7 +11,6 @@ import java.util.List;
 * - {@code @JsonCreator} viene utilizzato per specificare il costruttore da usare nella deserializzazione. <br>
 * - {@code @JsonProperty} viene utilizzato per mappare i nomi dei campi JSON agli attributi della classe.
 */
-
 public class Consiglio {
     private LoggedUser publisher;
     private Libro referredLibro;
@@ -51,7 +50,6 @@ public class Consiglio {
     * Il metodo implementa una verifica (massimo 3 oggetti Libro nella lista consigli);
     * Se gli oggetti nella lista sono > 3, sublist (0, 3).
     */
-
     public void setConsigli(List<Libro> consigli) { 
         if (consigli.size() > 3) {   
             consigli = consigli.subList(0, 3);  
@@ -62,7 +60,6 @@ public class Consiglio {
     /**
     * Override metodo toString
     */
-
     @Override
     public String toString() {
         String libriConsigliati = "";
