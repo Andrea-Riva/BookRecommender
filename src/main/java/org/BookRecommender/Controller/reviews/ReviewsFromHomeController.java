@@ -73,7 +73,12 @@ public class ReviewsFromHomeController {
             });
         }
     }
-
+    
+    /**
+    * Metodo per la gestione del ritorno alla home page
+    *
+    * @throws IOException in caso di errori durante l'esecuzione del metodo
+    */
     @FXML
     private void goToHome() throws IOException {  
         new SceneSwitch(anchorPane, "/org/BookRecommender/View/homePage.fxml");
