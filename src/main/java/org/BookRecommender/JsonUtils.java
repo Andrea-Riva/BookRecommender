@@ -12,7 +12,6 @@ import java.util.List;
 /**
 * Classe per utility JSON
 */
-
 public class JsonUtils {
     private ObjectMapper mapper;
 
@@ -26,7 +25,6 @@ public class JsonUtils {
      *
      * @return una collection di libri deserializzati dal file JSON
      */
-
     public List<Libro> getLibri() throws IOException {
         JsonNode libriNode = readFromFile("src/main/java/org/BookRecommender/data/libri.json");
         List<Libro> libri = new ArrayList<>();
@@ -50,7 +48,6 @@ public class JsonUtils {
      *
      * @return una collection di utenti deserializzati dal file JSON
      */
-  
     public List<LoggedUser> getUtenti() throws IOException {
         JsonNode utentiNode = readFromFile("src/main/java/org/BookRecommender/data/utenti.json");
         List<LoggedUser> utenti = new ArrayList<>();
@@ -73,7 +70,6 @@ public class JsonUtils {
      *
      * @return una collection di Libri deserializzati dal file JSON
      */
-   
     public List<Libreria> getLibrerie() throws IOException {
         String filePath = "src/main/java/org/BookRecommender/data/librerie.json";
         File file = new File(filePath);
@@ -91,7 +87,6 @@ public class JsonUtils {
      *
      * @return una collection di recensioni deserializzati dal file JSON
      */
-    
     public List<Recensione> getRecensioni() throws IOException {
         String filePath = "src/main/java/org/BookRecommender/data/recensioni.json";
         File file = new File(filePath);
@@ -108,7 +103,6 @@ public class JsonUtils {
      *
      * @return una collection di Consigli deserializzati dal file JSON
      */
-    
     public List<Consiglio> getConsigli() throws IOException {
         String filePath = "src/main/java/org/BookRecommender/data/consigli.json";
         File file = new File(filePath);
@@ -126,7 +120,6 @@ public class JsonUtils {
     * @param oggetto di tipo LoggedUser (user)
     * @return oggetto ObjectNode che rappresenta l'oggetto LoggedUser
     */
-    
     public ObjectNode createUserNode(LoggedUser user) {
         ObjectNode userNode = mapper.createObjectNode();
         userNode.put("id", user.getId());
@@ -143,8 +136,7 @@ public class JsonUtils {
     * Metodo per scrivere il nodo Json su file 
     *
     * @param JsonNode, filePath (String)
-    */
-    
+    */ 
     public void writeToFile(JsonNode node, String filePath) throws IOException {
         mapper.writerWithDefaultPrettyPrinter().writeValue(new File(filePath), node);
     }
@@ -154,7 +146,6 @@ public class JsonUtils {
     *
     * @param filePath (String)
     */
-    
     public JsonNode readFromFile(String filePath) throws IOException {
         return mapper.readTree(new File(filePath));
     }
@@ -165,7 +156,6 @@ public class JsonUtils {
     * File path: {@code rc/main/java/org/BookRecommender/data/utenti.json}
     * @param JsonNode
     */
-    
     public void writeUtentiNodes(JsonNode root) throws IOException {
         writeToFile(root, "src/main/java/org/BookRecommender/data/utenti.json");
     }
@@ -176,7 +166,6 @@ public class JsonUtils {
     * file path: {@code src/main/java/org/BookRecommender/data/librerie.json}
     * @param JsonNode
     */
-    
     public void writeLibrerieNodes(JsonNode root) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
         mapper.writerWithDefaultPrettyPrinter().writeValue(new File("src/main/java/org/BookRecommender/data/librerie.json"), root);
@@ -190,7 +179,6 @@ public class JsonUtils {
     * - altrimenti itera root cercando il maxId e @return maxId + 1
     * </p>
     */
-    
     public int getUniqueId() throws IOException {
         JsonNode root = readFromFile("src/main/java/org/BookRecommender/data/utenti.json");
         if (!root.isArray() || root.isEmpty()) {
@@ -212,7 +200,6 @@ public class JsonUtils {
     *
     * @return JsonNode from {@code src/main/java/org/BookRecommender/data/utenti.json}
     */
-    
     public JsonNode getUtentiAsJsonNode() throws IOException {
         return readFromFile("src/main/java/org/BookRecommender/data/utenti.json");
     }
@@ -224,7 +211,6 @@ public class JsonUtils {
     * @param LoggedUser (proprietario della libreria), Steing (titolo del libro)
     * @return true se presente, false altrimenti
     */
-
     public boolean isPresente(LoggedUser proprietario, String titolo) throws IOException {  
         boolean presente = false;
         List<Libreria> userLibs = new JsonUtils().getLibrerie();
