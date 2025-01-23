@@ -6,6 +6,7 @@ import java.util.List;
 
 /**
 * Rappresenta un oggetto Consiglio
+*
 * Questa classe utilizza le annotazioni di Jackson per la deserializzazione JSON.
 * - {@code @JsonCreator} viene utilizzato per specificare il costruttore da usare nella deserializzazione. <br>
 * - {@code @JsonProperty} viene utilizzato per mappare i nomi dei campi JSON agli attributi della classe.
