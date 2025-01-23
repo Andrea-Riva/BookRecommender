@@ -43,26 +43,23 @@ public class SecurityUtils {
     public String encrypt(String pass) throws Exception {
         SecretKeySpec secretKey = new SecretKeySpec(AES_key.getBytes("UTF-8"), "AES");
 
-        // Crea un IV casuale
         SecureRandom random = new SecureRandom();
         byte[] iv = new byte[AES_BLOCK_SIZE];
         random.nextBytes(iv);
 
-        // Cifratura in modalità CBC
         Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
         IvParameterSpec ivSpec = new IvParameterSpec(iv);
         cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivSpec);
 
-        // Cifra i dati
         byte[] passCrittata = cipher.doFinal(pass.getBytes("UTF-8"));
 
-        // Concatenare IV e dati cifrati
         byte[] encryptedDataWithIv = new byte[iv.length + passCrittata.length];
         System.arraycopy(iv, 0, encryptedDataWithIv, 0, iv.length);
         System.arraycopy(passCrittata, 0, encryptedDataWithIv, iv.length, passCrittata.length);
 
         return Base64.getEncoder().encodeToString(encryptedDataWithIv);
     }
+    
     /**
      * Decritta la password precedentemente crittata in AES-18
      * @param passEncrypted Password crittografata
