@@ -16,6 +16,12 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Classe per il controller della pagina recensioni di un libro. Gestisce l'inizializzazione e la visualizzazione 
+ * delle recensioni degli utenti per un determinato libro. Il controller carica tutte le recensioni per il libro
+ * selezionato e le visualizza in una griglia. Ogni recensione è associata a un bottone che permette all'utente
+ * di visualizzare i dettagli della recensione.
+ */
 public class ReviewsFromHomeController {
     @FXML
     public GridPane reviewGridPane;
@@ -25,40 +31,40 @@ public class ReviewsFromHomeController {
     public Label loggedUserLabel;
     @FXML
     public AnchorPane anchorPane;
-
+    
+    /**
+     * Inizializza la vista delle recensioni per un libro. Questo metodo viene chiamato automaticamente al 
+     * caricamento della scena. 
+     * 
+     * @throws IOException se si verifica un errore durante l'inizializzazione
+     */
     @FXML
     private void initialize() throws IOException {
-        if (!(Objects.isNull(LoggedUserModel.user))) {   // Utente loggato
-            loggedUserLabel.setText(LoggedUserModel.user.getMail());    // Display mail account
+        if (!(Objects.isNull(LoggedUserModel.user))) {  
+            loggedUserLabel.setText(LoggedUserModel.user.getMail());   
         }
-        referredLibroLabel.setText(LibroModel.libro.getTitolo());   // Display libro recensito
-        List<Recensione> allRecensioni = new User().visualizzaRecensioneByLibro(LibroModel.libro.getTitolo());  // Get tutte le recensioni di quel libro
-        int row = 0;    // Counter per le row
-        for (Recensione review : allRecensioni) {    // Itera tutte le recensioni
-            Button userButton = new Button();    // Bottone per la recensione specifica
-            Label votoLabel = new Label();  // Voto finale
+        referredLibroLabel.setText(LibroModel.libro.getTitolo());   
+        List<Recensione> allRecensioni = new User().visualizzaRecensioneByLibro(LibroModel.libro.getTitolo());  
+        int row = 0;   
+        for (Recensione review : allRecensioni) {    
+            Button userButton = new Button();    
+            Label votoLabel = new Label(); 
 
-            userButton.setText(review.getPublisher().getNome() + " " + review.getPublisher().getCognome());  // Nome e cognome utente
+            userButton.setText(review.getPublisher().getNome() + " " + review.getPublisher().getCognome());  
             votoLabel.setText("Voto complessivo: " +
-                    String.valueOf(review.getVotoFinale()));  // Voto finale del libro
-            // Agguinge elementi al grid
+                    String.valueOf(review.getVotoFinale()));  
             reviewGridPane.add(userButton, 0, row);
             reviewGridPane.add(votoLabel, 1, row);
-            // Attribuisce un action allo userButton
-            userButton.setOnAction(actionEvent -> { // L'evento apre una nuova pagina FXML e fa il display dei dettagli del libro
-                // Assegna il campo Recensione a RecensioneModel
+            userButton.setOnAction(actionEvent -> {               
                 try {
-                    // Split della stringa del button
                     String[] nomeCognome = userButton.getText().split(" ");
-                    System.out.println(nomeCognome[0] + " " + nomeCognome[1]);  // Debug
-                    // Assegna a RecensioneModel la recensione dell'utente su quel libro
+                    System.out.println(nomeCognome[0] + " " + nomeCognome[1]);  
                     RecensioneModel.review =
                             new User().searchRecensioneByUserTitolo(nomeCognome[0], nomeCognome[1], LibroModel.libro.getTitolo());
                     System.out.println(RecensioneModel.review.toString());
                 } catch (Exception e) {
                     throw new RuntimeException(e);
                 }
-                // Switch scene
                 try {
                     new SceneSwitch(anchorPane, "/org/BookRecommender/View/reviews/reviewDetails.fxml");
                 } catch (IOException e) {
@@ -69,7 +75,7 @@ public class ReviewsFromHomeController {
     }
 
     @FXML
-    private void goToHome() throws IOException {   // Click btn Home
+    private void goToHome() throws IOException {  
         new SceneSwitch(anchorPane, "/org/BookRecommender/View/homePage.fxml");
     }
 }
