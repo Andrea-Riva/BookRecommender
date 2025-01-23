@@ -15,10 +15,8 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        // Setup JFX versions
         var javaVersion = SystemInfo.javaVersion();
         var javafxVersion = SystemInfo.javafxVersion();
-        // Setup FXML file
         var root = new FXMLLoader(App.class.getResource("/org/BookRecommender/View/registrationPage.fxml"));
         var scene = new Scene(root.load(), 640, 480);
         stage.setResizable(false);  // Impedisci resize finestra
