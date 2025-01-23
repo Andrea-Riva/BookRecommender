@@ -1,8 +1,16 @@
 package org.BookRecommender;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
 import java.util.ArrayList;
+
+/**
+* Rappresenta una collection di Libri
+*
+* Questa classe utilizza le annotazioni di Jackson per la deserializzazione JSON.
+* - {@code @JsonCreator} viene utilizzato per specificare il costruttore da usare nella deserializzazione. <br>
+* - {@code @JsonProperty} viene utilizzato per mappare i nomi dei campi JSON agli attributi della classe.
+*/
+
 public class Libreria {
     private LoggedUser proprietario;
     private String nome;
