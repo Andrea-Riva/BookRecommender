@@ -33,10 +33,10 @@ public class User {
      */
     public List<Libro> searchLibriByAuth(String auth) throws IOException {
         List<Libro> dataset = new JsonUtils().getLibri();
-        List<Libro> libriFound = new ArrayList<Libro>();    // To return
+        List<Libro> libriFound = new ArrayList<Libro>();    
         for (Libro l : dataset) {
             if (l.getAutore().equalsIgnoreCase(auth))
-                libriFound.add(l);   // Se i titoli corrispondono aggiunge il Libro alla lista
+                libriFound.add(l);   
         }
         return libriFound;
     }
@@ -68,16 +68,16 @@ public class User {
      * @throws Exception
      */
     public void register(String nome, String cognome, String codiceFiscale, String mail, String password) throws Exception {
-        JsonUtils utils = new JsonUtils();  // Utils per gestire i nodi e l'Id
-        if (password.isBlank()) {    // Se il parametro non presenta caratteri
-            password = new SecurityUtils().genera();    // Genera una password casuale
+        JsonUtils utils = new JsonUtils(); 
+        if (password.isBlank()) {   
+            password = new SecurityUtils().genera();    
         }
-        String encryptedPwd = new SecurityUtils().encrypt(password);    // La password crittata
-        int uniqueId = utils.getUniqueId();   // L'Id univoco
-        LoggedUser newUtente = new LoggedUser(uniqueId, nome, cognome, codiceFiscale, mail, encryptedPwd);  // Crea un obj LoggedUser con i campi del register
-        JsonNode rootUsers = utils.getUtentiAsJsonNode();   // Root node degli utenti
-        ArrayNode userArrayNode = (ArrayNode) rootUsers;    // Parsing del root node in un array di nodi
-        userArrayNode.add(utils.createUserNode(newUtente)); // Aggiunge il nuovo utente all'array di nodi
+        String encryptedPwd = new SecurityUtils().encrypt(password);    
+        int uniqueId = utils.getUniqueId();   
+        LoggedUser newUtente = new LoggedUser(uniqueId, nome, cognome, codiceFiscale, mail, encryptedPwd); 
+        JsonNode rootUsers = utils.getUtentiAsJsonNode();   
+        ArrayNode userArrayNode = (ArrayNode) rootUsers;    
+        userArrayNode.add(utils.createUserNode(newUtente)); 
         utils.writeUtentiNodes(userArrayNode);
     }
 
@@ -89,14 +89,14 @@ public class User {
      * @return LoggedUser utente registrato
      */
     public LoggedUser login(String mail, String password) throws Exception {
-        SecurityUtils decypher = new SecurityUtils();   // Serve per decifrare la password
-        List<LoggedUser> utenti = new JsonUtils().getUtenti();  // Lista di tutti gli utenti
-        for (LoggedUser utente : utenti) {   // Scorre la lista degli utenti loggati
-            String decryptedPwd = decypher.decrypt(utente.getPassword());   // Pass in chiaro
+        SecurityUtils decypher = new SecurityUtils();   
+        List<LoggedUser> utenti = new JsonUtils().getUtenti();  
+        for (LoggedUser utente : utenti) {   
+            String decryptedPwd = decypher.decrypt(utente.getPassword());  
             if (utente.getMail().equals(mail) && decryptedPwd.equals(password))
-                return utente;   // Se le credenziali sono corrette, restituisci quell'utente
+                return utente;   
         }
-        return null;    // Nessun utente è stato trovato e le credenziali non sono corrette
+        return null;    
     }
 
     /**
@@ -106,12 +106,11 @@ public class User {
      * @return una collection di tutte le librerie dell'utente cercato
      * @throws IOException
      */
-    public List<Libreria> visualizzaLibrerieByUser(String mail) throws IOException {   // Cerca le librerie del singolo utente
-        List<Libreria> userLibs = new JsonUtils().getLibrerie();    // Tutte le librerie di tutti gli utenti
+    public List<Libreria> visualizzaLibrerieByUser(String mail) throws IOException {  
         List<Libreria> librerieFound = new ArrayList<>();
         for (Libreria lib : userLibs) {
-            if (lib.getProprietario().getMail().equals(mail)) {  // Se le mail corrispondono
-                librerieFound.add(lib); // Aggiunge la libreria trovata alla lista da restituire
+            if (lib.getProprietario().getMail().equals(mail)) {  
+                librerieFound.add(lib); 
             }
         }
         return librerieFound;
@@ -128,7 +127,7 @@ public class User {
         List<Recensione> userReviews = new JsonUtils().getRecensioni();
         List<Recensione> recensioniFound = new ArrayList<>();
         for (Recensione r : userReviews) {
-            if (r.getReferredLibro().getTitolo().equals(titolo)) {   // Se i titoli corrispondono
+            if (r.getReferredLibro().getTitolo().equals(titolo)) {   
                 recensioniFound.add(r);
             }
         }
@@ -142,20 +141,18 @@ public class User {
      * @return una collection delle recensioni di tutti i libri presenti pubblicate dal proprietario della libreria
      */
     public List<Recensione> visualizzaRecensioniByLibreria(String nome) throws IOException {
-        List<Libreria> userLibs = new JsonUtils().getLibrerie();    // Tutte le librerie di tutti gli utenti
+        List<Libreria> userLibs = new JsonUtils().getLibrerie();   
         List<Recensione> recensioniLibreria = new ArrayList<>();
-        Libreria lib = null;    // Libreria trovata
-        // Trova la libreria in questione
+        Libreria lib = null;    
         for (Libreria l : userLibs) {
-            if (l.getNome().equals(nome)) {  // Se il nome della libreria corrisponde
+            if (l.getNome().equals(nome)) { 
                 lib = l;
             }
         }
-        // Trova per tutte le recensioni di tutti i libri presenti nella libreria quelle pubblicate dal proprietario
         for (Libro l : lib.getLibri()) {
             List<Recensione> recensioniLibro = visualizzaRecensioneByLibro(l.getTitolo());
-            for (Recensione review : recensioniLibro) {  // Per ogni recensione presente nella collection
-                if (lib.getProprietario().getCodiceFiscale().equals(review.getPublisher().getCodiceFiscale())) { // Verifica se chi ha pubblicato la recensione è anche il proprietario della libreria
+            for (Recensione review : recensioniLibro) {  
+                if (lib.getProprietario().getCodiceFiscale().equals(review.getPublisher().getCodiceFiscale())) { 
                     recensioniLibreria.add(review);
                 }
             }
@@ -174,7 +171,7 @@ public class User {
         List<Consiglio> userConsigli = new JsonUtils().getConsigli();
         List<Consiglio> consigliFound = new ArrayList<>();
         for (Consiglio c : userConsigli) {
-            if (c.getReferredLibro().getTitolo().equals(titolo)) {   // Se il titolo corrisponde
+            if (c.getReferredLibro().getTitolo().equals(titolo)) {   
                 consigliFound.add(c);
             }
         }
@@ -187,7 +184,7 @@ public class User {
         Libreria lib = null;
         // Trova la libreria
         for(Libreria l : userLibs) {
-            if(l.getNome().equals(nome)) {  // Se il nome della libreria corrisponde
+            if(l.getNome().equals(nome)) {  
                 lib = l;
             }
         }
@@ -202,23 +199,23 @@ public class User {
         return consigliLibreria;
     }
 
-    public Libreria searchLibByNome(String nomeLib) throws IOException {    // Usata in AllUserLibsController btn setAction
+    public Libreria searchLibByNome(String nomeLib) throws IOException {    
         List<Libreria> userLibs = new JsonUtils().getLibrerie();
         for(Libreria lib : userLibs) {
-            if(lib.getNome().equalsIgnoreCase(nomeLib)) {   // Lib trovata
+            if(lib.getNome().equalsIgnoreCase(nomeLib)) {   
                 return lib;
             }
         }
-        return null;    // Lib non trovata
+        return null;    
     }
 
-    public Recensione searchRecensioneByUserTitolo(String nome, String cognome, String titoloLibro) throws IOException {   // Usata in ReviewsFromHomeController user btn
-        List<Recensione> allReviews = new JsonUtils().getRecensioni();  // Get recensioni
+    public Recensione searchRecensioneByUserTitolo(String nome, String cognome, String titoloLibro) throws IOException {   
+        List<Recensione> allReviews = new JsonUtils().getRecensioni();  
         for(Recensione review : allReviews) {
             if(review.getPublisher().getNome().equals(nome)
             && review.getPublisher().getCognome().equals(cognome)
-            && review.getReferredLibro().getTitolo().equalsIgnoreCase(titoloLibro)) {   // Se tutti i parametri corrispondono
-                return review;  // Restituisce la recensione
+            && review.getReferredLibro().getTitolo().equalsIgnoreCase(titoloLibro)) {   
+                return review;  
             }
         }
         return null;
