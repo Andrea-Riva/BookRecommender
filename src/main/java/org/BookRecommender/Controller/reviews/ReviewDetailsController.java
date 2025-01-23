@@ -11,6 +11,14 @@ import org.BookRecommender.Model.SceneSwitch;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+ * Controller per la pagina dei dettagli della recensione. Questa classe gestisce l'inizializzazione e l'interazione 
+ * con la vista che mostra i dettagli di una recensione, inclusi i voti per vari aspetti del libro recensito.
+ * 
+ * La classe si occupa di caricare e visualizzare le informazioni della recensione, come il titolo del libro, 
+ * i dettagli del pubblicatore, e i voti relativi a vari aspetti del libro come stile, contenuto, gradevolezza, 
+ * originalità e edizione.
+ */
 public class ReviewDetailsController {
     @FXML
     public GridPane reviewGridPane;
@@ -22,23 +30,25 @@ public class ReviewDetailsController {
     public Label referredLibroLabel;
     @FXML
     public Label publisherField;
-
+    
+    /**
+     * Inizializza la vista dei dettagli della recensione. Questo metodo viene chiamato automaticamente al caricamento 
+     * della scena. Imposta le etichette relative all'utente loggato, al libro e al pubblicatore. Inoltre, crea 
+     * dinamicamente delle etichette per i voti relativi a vari aspetti del libro e li aggiunge alla vista.
+     */
     @FXML
     private void initialize() {
         if(!(Objects.isNull(LoggedUserModel.user))) {
             loggedUserLabel.setText(LoggedUserModel.user.getMail());
         }
-        // Set fields per libro e pubblicatore
         referredLibroLabel.setText(RecensioneModel.review.getReferredLibro().getTitolo());
         publisherField.setText(RecensioneModel.review.getPublisher().getNome() + " " +
                 RecensioneModel.review.getPublisher().getCognome());
-        // Crea dinamicamente i label per i voti
         Label stile = new Label();
         Label contenuto = new Label();
         Label gradevolezza = new Label();
         Label originalità = new Label();
         Label edizione = new Label();
-        // Display voti
         stile.setText("Stile: " +
                 String.valueOf(RecensioneModel.review.getStile()));
         contenuto.setText("Contenuto: " +
@@ -56,7 +66,12 @@ public class ReviewDetailsController {
         reviewGridPane.add(originalità, 0, 4);
         reviewGridPane.add(edizione, 0, 5);
     }
-
+    
+    /**
+     * Gestisce l'azione del clic sul bottone "Indietro". 
+     * 
+     * @throws IOException se si verifica un errore nel caricare la pagina delle recensioni
+     */
     @FXML
     private void goToRecensioniLibro() throws IOException {    // Click btn Indietro
         new SceneSwitch(anchorPane, "/org/BookRecommender/View/reviews/reviewsFromHome.fxml");
