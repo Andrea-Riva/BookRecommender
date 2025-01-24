@@ -10,7 +10,12 @@ import org.BookRecommender.Model.SceneSwitch;
 
 import java.io.IOException;
 import java.util.Objects;
-
+/**
+ * Classe controller per la visualizzazione dei dettagli di un libro.
+ * 
+ * Nella classe viene gestita l'inizializzazione dell'interfaccia utente e il display
+ * delle informazioni di un libro selezionato.
+ */
 public class DettagliLibroController {
     @FXML
     public TextArea descrizioneTextArea;
@@ -28,16 +33,22 @@ public class DettagliLibroController {
     public Label prezzoLabel;
     @FXML
     private Label loggedUserLabel;
+    
+    /**
+     * Il metodo inizializza la schermata dei dettagli del libro.
+     * 
+     * Controlla se l'utente è loggato e visualizza la sua email, in caso di successo  
+     * mostra i dettagli del libro selezionato.
+     */
     public void initialize() {
-        if(Objects.isNull(LoggedUserModel.user)) {  // Non loggato
+        if(Objects.isNull(LoggedUserModel.user)) {  
             loggedUserLabel.setText("Non loggato");
         } else {
-            loggedUserLabel.setText(LoggedUserModel.user.getMail());    // Display dell'utente correntemente loggato
+            loggedUserLabel.setText(LoggedUserModel.user.getMail());   
         }
-        displayLibroDetails();  // Display dei dettagli del libro
+        displayLibroDetails();  
     }
     public void displayLibroDetails() {
-        // Display delle informazioni tramite label
         titoloLabel.setText("Titolo: " + LibroModel.libro.getTitolo());
         autoreLabel.setText("Autore: " + LibroModel.libro.getAutore());
         descrizioneTextArea.setText("Descrizione: " + LibroModel.libro.getDescrizione());
@@ -45,8 +56,15 @@ public class DettagliLibroController {
         pubblicatoreLabel.setText("Pubblicatore: " + LibroModel.libro.getPubblicatore());
         prezzoLabel.setText("Prezzo: " + String.valueOf(LibroModel.libro.getPrezzo()));
     }
+    
+    /**
+    * Metodo per tornare alla pagina delle recensioni, la directory opsitante è:
+    * {@code "/org/BookRecommender/View/reviews/reviewsFromHome.fxml"}
+    *
+    * @throws Exception in caso di errori durante il cambio di scena.
+    */
     @FXML
-    private void goToRecensioni() throws Exception { // Click btn recensioni
+    private void goToRecensioni() throws Exception { 
         new SceneSwitch(dettagliAnchorPane, "/org/BookRecommender/View/reviews/reviewsFromHome.fxml");  // Switch to recensioni
     }
 
