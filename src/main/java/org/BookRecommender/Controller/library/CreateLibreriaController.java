@@ -18,6 +18,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+* Classe controller per la creazione di una libreria personale.
+*/
 public class CreateLibreriaController {
     @FXML
     public GridPane bookGridPane;
@@ -29,19 +32,33 @@ public class CreateLibreriaController {
     public TextField cercaLibriTextField;
     @FXML
     public AnchorPane anchorPane;
-
+    
+    /**
+    * Metodo per inizializzare la sezione della libreria per l'utente LoggedUser
+    * Il nome della libreria è scelto arbitrariamente dall'utente mediante l'apposito TextField
+    */
     @FXML
     private void initialize() {
-        loggedUserLabel.setText(LoggedUserModel.user.getMail());    // Se accede a questa sezione, l'utente è sempre loggato
-        LibreriaModel.libreria = new Libreria   // Inizializzazione nuova libreria
+        loggedUserLabel.setText(LoggedUserModel.user.getMail());    
+        LibreriaModel.libreria = new Libreria  
                 (LoggedUserModel.user, nomeLibTextField.getText(), new ArrayList<Libro>());
         System.out.println(LibreriaModel.libreria.toString());
     }
-
+    
+    /**
+    * Metodo per aggiungere un libro ad una libreria utente.
+    * Questo metodo ricerca il libro nel dataset utilizzando il titolo.
+    * Il libro viene aggiunto solo se non è presente nella libreria mediante
+    * il controllo {@code  boolean isInLibreria = false;}, se il libro non 
+    * viene trovato, appare un messaggio di errore, allo stesso modo se il
+    * libro è già presente.
+    *
+    * @throes Eception se si verifica un errore nella ricerca del libro.
+    */
     @FXML
-    private void addLibro() throws Exception {   // On click btn aggiungi libro
+    private void addLibro() throws Exception {  
         Libro libroToAdd = new User().searchLibroByTitolo(cercaLibriTextField.getText());
-        boolean isInLibreria = false;  // libriToAdd.contains(libroToAdd) non funzionava
+        boolean isInLibreria = false;  
         for(Libro l : LibreriaModel.libriToAdd) {
             System.out.println(l.getTitolo());
             System.out.println(libroToAdd.getTitolo());
@@ -49,51 +66,56 @@ public class CreateLibreriaController {
                 isInLibreria = true;
             }
         }
-        if(Objects.isNull(libroToAdd)) {    // Se il libro non è stato trovato
+        if(Objects.isNull(libroToAdd)) {    
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Errore di ricerca");
             alert.setHeaderText("Il libro non è presente nel dataset");
             alert.setContentText("Per favore, prova con un altro titolo");
-            alert.showAndWait();    // Mostra un messaggio di errore
-        } else if(isInLibreria) {  // Se il libro è già stato aggiunto alla lib
+            alert.showAndWait();    
+        } else if(isInLibreria) {  
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Errore di inserimento");
             alert.setHeaderText("Hai già aggiunto il libro in libreria");
             alert.setContentText("Per favore, prova con un altro titolo");
-            alert.showAndWait();    // Mostra un messaggio di errore
-        } else {    // Se il libro è stato trovato
-            LibreriaModel.libriToAdd.add(libroToAdd);   // Aggiunge il libro al Model
-            // Aggiunge dinamicamente il libro alla grid
+            alert.showAndWait();    
+        } else {    
+            LibreriaModel.libriToAdd.add(libroToAdd);  
             Label titoloLabel = new Label();
-            titoloLabel.setText(libroToAdd.getTitolo());    // Rinomina il label col titolo del libro trovato
+            titoloLabel.setText(libroToAdd.getTitolo());    
             bookGridPane.add(titoloLabel, 0, LibreriaModel.rowGridPanel);
             LibreriaModel.rowGridPanel++;
         }
-        // Clear testo del TextField
         cercaLibriTextField.setText("");
     }
-
+    
+    /**
+    * Metodo per creare una libreria, il nome è specificato dall'utente nel TextField.
+    *
+    * @throws IOException se si verifica un errore nel cambio di scena.
+    */
     @FXML
     private void creaLibreria() throws IOException {
-        // Crea libreria
         LibreriaModel.libreria.setNome(nomeLibTextField.getText());
         LibreriaModel.libreria.setLibri(LibreriaModel.libriToAdd);
         LoggedUserModel.user.addLibreria(LibreriaModel.libreria);
-        // Clear Model
         LibreriaModel.libreria = null;
         LibreriaModel.libriToAdd.clear();
         LibreriaModel.rowGridPanel = 0;
-        // Switch Scene
         new SceneSwitch(anchorPane, "/org/BookRecommender/View/library/allUsersLibs.fxml");
     }
-
+    
+    /**
+   * Torna alla homepage dell'utente.
+   * 
+   * Questo metodo svuota il modello della libreria e cambia la scena alla homepage.
+   * 
+   * @throws IOException se si verifica un errore nel cambio di scena.
+   */
     @FXML
-    private void goToHome() throws IOException {   // Click btn home
-        // Clear Model
+    private void goToHome() throws IOException {   
         LibreriaModel.libreria = null;
         LibreriaModel.libriToAdd.clear();
         LibreriaModel.rowGridPanel = 0;
-        // Switch scene
         new SceneSwitch(anchorPane, "/org/BookRecommender/View/homePage.fxml");
     }
 }
