@@ -68,6 +68,11 @@ public class DettagliLibroController {
         new SceneSwitch(dettagliAnchorPane, "/org/BookRecommender/View/reviews/reviewsFromHome.fxml");  // Switch to recensioni
     }
 
+    /**
+    * Metodo per tornare alla homepage utente.
+    *
+    * @throws IOException in caso di errore durante il cambio di scena.
+    */
     @FXML
     public void goBackHome() throws IOException {   // Click btn Home
         new SceneSwitch(dettagliAnchorPane, "/org/BookRecommender/View/homePage.fxml"); // Switch to homepage
