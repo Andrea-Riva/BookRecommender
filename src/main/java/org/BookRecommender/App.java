@@ -9,7 +9,7 @@ import javafx.stage.StageStyle;
 import java.io.IOException;
 
 /**
- * JavaFX App
+ * JavaFX App.
  */
 public class App extends Application {
 
@@ -19,7 +19,7 @@ public class App extends Application {
         var javafxVersion = SystemInfo.javafxVersion();
         var root = new FXMLLoader(App.class.getResource("/org/BookRecommender/View/registrationPage.fxml"));
         var scene = new Scene(root.load(), 640, 480);
-        stage.setResizable(false);  // Impedisci resize finestra
+        stage.setResizable(false);  
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setTitle("BookRecommender");
         stage.setScene(scene);
