@@ -69,7 +69,12 @@ public class AllUsersLibsController {
             });
         }
     }
-
+    
+   /**
+   * Torna alla homepage dell'utente.
+   * 
+   * @throws IOException se si verifica un errore nel cambio di scena.
+   */
     @FXML
     private void goToHome() throws IOException {
         new SceneSwitch(anchorPane, "/org/BookRecommender/View/homePage.fxml");
