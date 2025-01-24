@@ -11,6 +11,9 @@ import org.BookRecommender.Model.SceneSwitch;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+* Classe controller per il display dei dettagli di un libro.
+*/
 public class DettagliFromAuthController {
     @FXML
     public Label titoloLabel;
@@ -29,18 +32,25 @@ public class DettagliFromAuthController {
     @FXML
     public AnchorPane anchorPane;
 
+    /**
+    * Metodo initialize, effettua un controllo per determinare se l'utente è di tipo LoggedUser,
+    * in caso contrario viene visualizzato il messaggio "Non loggato".
+    * Se l'utente risulta loggato, effettua il display dei dettagli del lbro.
+    */
     @FXML
     public void initialize() {
-        if (Objects.isNull(LoggedUserModel.user)) {  // Non loggato
+        if (Objects.isNull(LoggedUserModel.user)) {  
             loggedUserLabel.setText("Non loggato");
         } else {
-            loggedUserLabel.setText(LoggedUserModel.user.getMail());    // Display dell'utente correntemente loggato
+            loggedUserLabel.setText(LoggedUserModel.user.getMail());    
         }
-        displayLibroDetails();  // Display dei dettagli del libro
+        displayLibroDetails();  
     }
-
+    
+    /**
+    * Metodo per il display delle informazioni di un libro.
+    */
     public void displayLibroDetails() {
-        // Display delle informazioni tramite label
         titoloLabel.setText("Titolo: " + LibroModel.libro.getTitolo());
         autoreLabel.setText("Autore: " + LibroModel.libro.getAutore());
         descrizioneTextArea.setText("Descrizione: " + LibroModel.libro.getDescrizione());
@@ -48,7 +58,10 @@ public class DettagliFromAuthController {
         pubblicatoreLabel.setText("Pubblicatore: " + LibroModel.libro.getPubblicatore());
         prezzoLabel.setText("Prezzo: " + String.valueOf(LibroModel.libro.getPrezzo()));
     }
-
+    
+    /**
+    * Metodo per il cambio di scena su {@code /org/BookRecommender/View/dettagliLibro/libriAuthPage.fxml}
+    */
     @FXML
     public void goBackLibriAutore() throws IOException {
         new SceneSwitch(anchorPane, "/org/BookRecommender/View/dettagliLibro/libriAuthPage.fxml");
