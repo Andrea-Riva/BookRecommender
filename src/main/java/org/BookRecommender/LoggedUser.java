@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
-* Classe per oggetti LoggedUser, viene estesa la classe User aggiungendo metodi
+* Classe per oggetti LoggedUser, viene estesa la classe User aggiungendo metodi.
 *
 * Questa classe utilizza le annotazioni di Jackson per la deserializzazione JSON.
 * - {@code @JsonCreator} viene utilizzato per specificare il costruttore da usare nella deserializzazione. <br>
