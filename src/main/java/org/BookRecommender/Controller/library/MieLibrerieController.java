@@ -15,6 +15,9 @@ import org.BookRecommender.User;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+/**
+* Classe controller per la visualizzazione delle librerie dell'utente
+*/
 
 public class MieLibrerieController {
     @FXML
@@ -23,42 +26,44 @@ public class MieLibrerieController {
     public Label loggedUserLabel;
     @FXML
     public AnchorPane anchorPane;
-
+    
+    /**
+    * Inizializza la visualizzazione delle librerie appartenenti all oggetto LoggedUser che esegue il metodo
+     * 
+     * Il metodo recupera le librerie associate all'utente attualmente loggato e le visualizza
+     * dinamicamente in una griglia
+     *
+     * @throws IOException se si verifica un errore durante le operazioni sui file o il cambio di scena.
+     */
     @FXML
     private void initialize() throws IOException {
         loggedUserLabel.setText(LoggedUserModel.user.getMail());
 
-        ArrayList<Libreria> currentUserLibs = new ArrayList<>();    // Lista di tutte le librerie dell'utente
-        // Popolazione della lista currentUserLibs
+        ArrayList<Libreria> currentUserLibs = new ArrayList<>();    
         for(Libreria lib : new JsonUtils().getLibrerie()) {
-            if(lib.getProprietario().getId() == LoggedUserModel.user.getId()) { // Se i proprietari concidono { Object o.equals(Object o) non funziona parte 2 }
-                currentUserLibs.add(lib);   // Aggiunge la libreria alla lista delle librerie dell'utente
+            if(lib.getProprietario().getId() == LoggedUserModel.user.getId()) { 
+                currentUserLibs.add(lib); 
             }
         }
 
-        // Display dinamico delle informazioni
         int row = 0;
         for(Libreria lib : currentUserLibs) {
             Button libButton = new Button();
             Label numLibri = new Label();
             libButton.setText(lib.getNome());
             numLibri.setText("Libri contenuti: " +
-                    String.valueOf(lib.getLibri().size()));    // Il numero di libri contenuti nella libreria parsato a stringa
-
+                    String.valueOf(lib.getLibri().size()));    
             myLibsGridPane.add(libButton, 0, row);
             myLibsGridPane.add(numLibri, 2, row);
 
             row++;
-            // Assegna l'action al button
             libButton.setOnAction(actionEvent -> {
-                // Assegna il campo Libreria a LibreriaModel
                 try {
-                    LibreriaModel.libreria = new User().searchLibByNome(libButton.getText()); // Cerca la libreria con lo stesso nome del button
+                    LibreriaModel.libreria = new User().searchLibByNome(libButton.getText()); 
                     System.out.println(LibreriaModel.libreria);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-                // Switch scene
                 try {
                     new SceneSwitch(anchorPane, "/org/BookRecommender/View/library/dettagliLibFromMyLibs.fxml");
                 } catch (IOException e) {
@@ -67,7 +72,13 @@ public class MieLibrerieController {
             });
         }
     }
-
+    
+    /**
+    * Metodo per la gestione del pulsante home
+    * Effettua uno switch della scena su {@code "/org/BookRecommender/View/homePage.fxml"}
+    *
+    * @throws IOException in caso di errori durante l'esecuzione di tale metodo
+    */
     @FXML
     private void goBackHome() throws IOException { // Click btn home
         new SceneSwitch(anchorPane, "/org/BookRecommender/View/homePage.fxml");
