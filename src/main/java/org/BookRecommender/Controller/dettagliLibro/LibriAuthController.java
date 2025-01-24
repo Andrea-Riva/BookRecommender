@@ -83,7 +83,11 @@ public class LibriAuthController {
             }
         }
     }
-
+    /**
+    * Metodo per tornare alla homepage utente.
+    *
+    * @throws IOException in caso di errore durante il cambio di scena.
+    */
     @FXML
     private void goToHome() throws IOException {   
         new SceneSwitch(anchorPane, "/org/BookRecommender/View/homePage.fxml");
