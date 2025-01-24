@@ -16,7 +16,10 @@ import org.BookRecommender.User;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
-
+ /**
+ * Classe controller per la visualizzazione dei libri di un autore specifico.
+ * Visualizza i risultati in una griglia.
+ */
 public class LibriAuthController {
     @FXML
     public ScrollPane bookScrollPane;
@@ -26,24 +29,31 @@ public class LibriAuthController {
     public Label loggedUserLabel;
     @FXML
     public AnchorPane anchorPane;
-
+     /**
+     * Inizializza la schermata di ricerca dei libri per autore.
+     * 
+     * Verifica se l'utente è loggato e visualizza la sua email. Effettua la ricerca dei libri
+     * dell'autore selezionato e li visualizza nella griglia.
+     *
+     * Se l'autore non viene trovato, visualizza un messaggio di errore.
+     * 
+     * @throws IOException se si verifica un errore durante il caricamento della scena.
+     */
     @FXML
     private void initialize() throws IOException {
-        if (!(Objects.isNull(LoggedUserModel.user))) {   // Se l'utente è loggato
-            loggedUserLabel.setText(LoggedUserModel.user.getMail());    // Display mail
+        if (!(Objects.isNull(LoggedUserModel.user))) {  
+            loggedUserLabel.setText(LoggedUserModel.user.getMail());    
         }
-        // Ricerca dei libri per autore specifico
         List<Libro> libriFound = new User().searchLibriByAuth(LibroModel.autore);
-        if (libriFound.isEmpty()) {  // Se non è stato trovato nessun libro da quell'autore
+        if (libriFound.isEmpty()) {  
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Errore di ricerca");
             alert.setHeaderText("Autore non trovato");
             alert.setContentText("nessun libro di " + LibroModel.autore + " in archivio");
-            alert.showAndWait();    // Lancia un alert di non successo della ricerca
+            alert.showAndWait();   
             new SceneSwitch(anchorPane, "org/BookRecommender/View/ricercaAvanzataPage.fxml");
-        } else {    // Se i libri sono stati trovati
-            // Display dei libri trovati, come in homepage
-            int row = 0;    // Contatore per le row
+        } else {    
+            int row = 0;    
             for (Libro libro : libriFound) {
                 Label libroLabel = new Label();
                 Button libroButton = new Button();
@@ -54,11 +64,9 @@ public class LibriAuthController {
                 bookGridPane.add(libroLabel, 0, row);
                 bookGridPane.add(libroButton, 1, row);
                 //System.out.println(libro.getTitolo());
-                row++; // Aumenta il contatore
+                row++; 
 
-                // Attribuisce OnAction al button
-                libroButton.setOnAction(actionEvent -> { // L'evento apre una nuova pagina FXML e fa il display dei dettagli del libro
-                    // Assegna il campo Libro a LibroModel
+                libroButton.setOnAction(actionEvent -> { 
                     try {
                         LibroModel.libro = new User().searchLibroByTitolo(libroLabel.getText());
                         System.out.println(libroButton.getText());
@@ -66,7 +74,6 @@ public class LibriAuthController {
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }
-                    // Switch scene
                     try {
                         new SceneSwitch(anchorPane, "/org/BookRecommender/View/dettagliLibro/dettagliLibroFromAuth.fxml");
                     } catch (IOException e) {
@@ -78,7 +85,7 @@ public class LibriAuthController {
     }
 
     @FXML
-    private void goToHome() throws IOException {   // Click btn home
+    private void goToHome() throws IOException {   
         new SceneSwitch(anchorPane, "/org/BookRecommender/View/homePage.fxml");
     }
 }
