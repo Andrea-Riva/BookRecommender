@@ -15,6 +15,9 @@ import org.BookRecommender.User;
 import java.io.IOException;
 import java.util.Objects;
 
+/**
+* Classe controller per la visualizzazione di tutte le librerie degli utenti.
+*/
 public class AllUsersLibsController {
     @FXML
     public GridPane libGridPane;
@@ -22,37 +25,42 @@ public class AllUsersLibsController {
     public Label loggedUserLabel;
     @FXML
     public AnchorPane anchorPane;
-
+    
+    /**
+   * Inizializza la visualizzazione delle librerie disponibili.
+   * 
+   * Questo metodo controlla se l'utente è loggato, mostra la sua email,
+   * e popola dinamicamente una griglia con tutte le librerie disponibili, mostrando
+   * il nome della libreria, il proprietario e il numero di libri contenuti.
+   * 
+   * @throws IOException se si verifica un errore durante il caricamento dei dati.
+   */
     @FXML
     private void initialize() throws IOException {
-        if (!(Objects.isNull(LoggedUserModel.user))) {   // Se l'utente è loggato
-            loggedUserLabel.setText(LoggedUserModel.user.getMail());    // Display mail
+        if (!(Objects.isNull(LoggedUserModel.user))) {  
+            loggedUserLabel.setText(LoggedUserModel.user.getMail());   
         }
 
-        int row = 0;    // Contatore per le row
-        for(Libreria lib : new JsonUtils().getLibrerie()) {   // Per ogni libreria presente
+        int row = 0;    
+        for(Libreria lib : new JsonUtils().getLibrerie()) {   
             Button libButton = new Button();
             Label libLabel = new Label();
             Label numLibriLabel = new Label();
-            libButton.setText(lib.getNome());  // Il bottone avrà il nome della libreria
+            libButton.setText(lib.getNome());  
             libLabel.setText(lib.getProprietario().getNome() + " " + lib.getProprietario().getCognome());
             numLibriLabel.setText("Libri contenuti: " +
-                    lib.getLibri().size()); // Numero di libri nella libreria
-
-            libGridPane.add(libButton, 0, row);   // Aggiunta bottone alla grid
+                    lib.getLibri().size()); 
+            libGridPane.add(libButton, 0, row);  
             libGridPane.add(libLabel, 1, row);
             libGridPane.add(numLibriLabel, 4, row);
-            row++;  // Incremento contatore
-            // Assegna l'action al button
+            row++;  
             libButton.setOnAction(actionEvent -> {
-                // Assegna il campo Libreria a LibreriaModel
                 try {
-                    LibreriaModel.libreria = new User().searchLibByNome(libButton.getText()); // Cerca la libreria con lo stesso nome del button
+                    LibreriaModel.libreria = new User().searchLibByNome(libButton.getText()); 
                     System.out.println(LibreriaModel.libreria);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
-                // Switch scene
                 try {
                     new SceneSwitch(anchorPane, "/org/BookRecommender/View/library/dettagliLibreria.fxml");
                 } catch (IOException e) {
