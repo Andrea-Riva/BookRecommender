@@ -14,7 +14,7 @@ public class User {
      *
      * @param titolo Il titolo del libro.
      * @return Il libro trovato.
-     * @throws IOException Se la deserializzazione non va a buon fine.
+     * @throws IOException Se la deserializzazione non va a buon fine
      */
     public Libro searchLibroByTitolo(String titolo) throws Exception {
         List<Libro> dataset = new JsonUtils().getLibri();   
@@ -29,7 +29,7 @@ public class User {
      *
      * @param auth L'autore del libro.
      * @return Una collection di libri aventi lo stesso autore.
-     * @throws IOException Se la deserializzazione non va a buon fine.
+     * @throws IOException Se la deserializzazione non va a buon fine
      */
     public List<Libro> searchLibriByAuth(String auth) throws IOException {
         List<Libro> dataset = new JsonUtils().getLibri();
@@ -47,7 +47,7 @@ public class User {
      * @param auth L'autore del libro.
      * @param data La data di pubblicazione del libro.
      * @return Il libro scritto da un certo autore e pubblicato in una certa data.
-     * @throws IOException Se la deserializzazione non va a buon fine.
+     * @throws IOException Se la deserializzazione non va a buon fine
      */
     public Libro searchLibroByDataAuth(String auth, String data) throws IOException {
         List<Libro> dataset = new JsonUtils().getLibri();
@@ -65,7 +65,7 @@ public class User {
      * @param codiceFiscale Codice fiscale dell'utente
      * @param mail          Mail dell'utente
      * @param password      Password scelta dall'utente
-     * @throws Exception.
+     * @throws Exception
      */
     public void register(String nome, String cognome, String codiceFiscale, String mail, String password) throws Exception {
         JsonUtils utils = new JsonUtils(); 
@@ -84,8 +84,8 @@ public class User {
     /**
      * Fa il login se mail e password sono corrette.
      *
-     * @param mail     La mail dell'utente
-     * @param password La password dell'utente
+     * @param mail     La mail dell'utente.
+     * @param password La password dell'utente.
      * @return LoggedUser utente registrato.
      */
     public LoggedUser login(String mail, String password) throws Exception {
@@ -104,9 +104,10 @@ public class User {
      *
      * @param mail la mail dell'utente del quale si vogliono vedere le librerie.
      * @return una collection di tutte le librerie dell'utente cercato.
-     * @throws IOException.
+     * @throws IOException
      */
     public List<Libreria> visualizzaLibrerieByUser(String mail) throws IOException {  
+        List<Libreria> userLibs = JsonUtils().getLibrerie();
         List<Libreria> librerieFound = new ArrayList<>();
         for (Libreria lib : userLibs) {
             if (lib.getProprietario().getMail().equals(mail)) {  
@@ -121,7 +122,7 @@ public class User {
      *
      * @param titolo il titolo del libro che si vuole cercare.
      * @return una collection delle recensioni di tutti gli utenti relative al libro cercato.
-     * @throws IOException.
+     * @throws IOException
      */
     public List<Recensione> visualizzaRecensioneByLibro(String titolo) throws IOException {
         List<Recensione> userReviews = new JsonUtils().getRecensioni();
@@ -165,7 +166,7 @@ public class User {
      *
      * @param titolo il titolo del libro che si vuole cercare.
      * @return una collection di consigli da parte di tutti gli utenti relativi al libro cercato.
-     * @throws IOException.
+     * @throws IOException
      */
     public List<Consiglio> visualizzaConsigliByLibro(String titolo) throws IOException {
         List<Consiglio> userConsigli = new JsonUtils().getConsigli();
