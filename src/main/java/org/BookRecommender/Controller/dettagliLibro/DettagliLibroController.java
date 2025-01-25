@@ -61,20 +61,20 @@ public class DettagliLibroController {
     * Metodo per tornare alla pagina delle recensioni, la directory opsitante è:
     * {@code "/org/BookRecommender/View/reviews/reviewsFromHome.fxml"}
     *
-    * @throws Exception in caso di errori durante il cambio di scena.
+    * @throws Exception in caso di errori durante il cambio di scena
     */
     @FXML
     private void goToRecensioni() throws Exception { 
-        new SceneSwitch(dettagliAnchorPane, "/org/BookRecommender/View/reviews/reviewsFromHome.fxml");  // Switch to recensioni
+        new SceneSwitch(dettagliAnchorPane, "/org/BookRecommender/View/reviews/reviewsFromHome.fxml");  
     }
 
     /**
     * Metodo per tornare alla homepage utente.
     *
-    * @throws IOException in caso di errore durante il cambio di scena.
+    * @throws IOException in caso di errore durante il cambio di scena
     */
     @FXML
-    public void goBackHome() throws IOException {   // Click btn Home
-        new SceneSwitch(dettagliAnchorPane, "/org/BookRecommender/View/homePage.fxml"); // Switch to homepage
+    public void goBackHome() throws IOException {   
+        new SceneSwitch(dettagliAnchorPane, "/org/BookRecommender/View/homePage.fxml"); 
     }
 }
