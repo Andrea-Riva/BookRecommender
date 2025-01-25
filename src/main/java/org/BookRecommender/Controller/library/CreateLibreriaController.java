@@ -53,7 +53,7 @@ public class CreateLibreriaController {
     * viene trovato, appare un messaggio di errore, allo stesso modo se il
     * libro è già presente.
     *
-    * @throes Eception se si verifica un errore nella ricerca del libro.
+    * @throes Eception se si verifica un errore nella ricerca del libro
     */
     @FXML
     private void addLibro() throws Exception {  
@@ -91,7 +91,7 @@ public class CreateLibreriaController {
     /**
     * Metodo per creare una libreria, il nome è specificato dall'utente nel TextField.
     *
-    * @throws IOException se si verifica un errore nel cambio di scena.
+    * @throws IOException se si verifica un errore nel cambio di scena
     */
     @FXML
     private void creaLibreria() throws IOException {
@@ -109,7 +109,7 @@ public class CreateLibreriaController {
    * 
    * Questo metodo svuota il modello della libreria e cambia la scena alla homepage.
    * 
-   * @throws IOException se si verifica un errore nel cambio di scena.
+   * @throws IOException se si verifica un errore nel cambio di scena
    */
     @FXML
     private void goToHome() throws IOException {   
