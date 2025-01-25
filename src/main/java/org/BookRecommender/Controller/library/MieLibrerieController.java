@@ -33,7 +33,7 @@ public class MieLibrerieController {
      * Il metodo recupera le librerie associate all'utente attualmente loggato e le visualizza
      * dinamicamente in una griglia
      *
-     * @throws IOException se si verifica un errore durante le operazioni sui file o il cambio di scena.
+     * @throws IOException se si verifica un errore durante le operazioni sui file o il cambio di scena
      */
     @FXML
     private void initialize() throws IOException {
@@ -80,7 +80,7 @@ public class MieLibrerieController {
     * @throws IOException in caso di errori durante l'esecuzione di tale metodo
     */
     @FXML
-    private void goBackHome() throws IOException { // Click btn home
+    private void goBackHome() throws IOException { 
         new SceneSwitch(anchorPane, "/org/BookRecommender/View/homePage.fxml");
     }
 }
