@@ -33,7 +33,7 @@ public class AllUsersLibsController {
    * e popola dinamicamente una griglia con tutte le librerie disponibili, mostrando
    * il nome della libreria, il proprietario e il numero di libri contenuti.
    * 
-   * @throws IOException se si verifica un errore durante il caricamento dei dati.
+   * @throws IOException se si verifica un errore durante il caricamento dei dati
    */
     @FXML
     private void initialize() throws IOException {
@@ -73,7 +73,7 @@ public class AllUsersLibsController {
    /**
    * Torna alla homepage dell'utente.
    * 
-   * @throws IOException se si verifica un errore nel cambio di scena.
+   * @throws IOException se si verifica un errore nel cambio di scena
    */
     @FXML
     private void goToHome() throws IOException {
