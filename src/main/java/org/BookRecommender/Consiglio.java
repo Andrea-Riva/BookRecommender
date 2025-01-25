@@ -46,9 +46,9 @@ public class Consiglio {
     }
     /**
     * metodo setConsigli
-    * @param List<Libro> consigli
     * Il metodo implementa una verifica (massimo 3 oggetti Libro nella lista consigli);
     * Se gli oggetti nella lista sono > 3, sublist (0, 3).
+    * @param consigli (List<Libro>).
     */
     public void setConsigli(List<Libro> consigli) { 
         if (consigli.size() > 3) {   
