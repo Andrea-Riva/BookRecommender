@@ -37,7 +37,7 @@ public class LibriAuthController {
      *
      * Se l'autore non viene trovato, visualizza un messaggio di errore.
      * 
-     * @throws IOException se si verifica un errore durante il caricamento della scena.
+     * @throws IOException se si verifica un errore durante il caricamento della scena
      */
     @FXML
     private void initialize() throws IOException {
@@ -86,7 +86,7 @@ public class LibriAuthController {
     /**
     * Metodo per tornare alla homepage utente.
     *
-    * @throws IOException in caso di errore durante il cambio di scena.
+    * @throws IOException in caso di errore durante il cambio di scena
     */
     @FXML
     private void goToHome() throws IOException {   
