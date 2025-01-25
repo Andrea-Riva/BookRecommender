@@ -12,7 +12,12 @@ import java.io.IOException;
  * JavaFX App.
  */
 public class App extends Application {
-
+/**
+* Metodo start dell'applicazione.
+*
+* @param stage (Stage).
+* @throws IOException
+*/
     @Override
     public void start(Stage stage) throws IOException {
         var javaVersion = SystemInfo.javaVersion();
@@ -25,7 +30,11 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
     }
-
+ /**
+ * Metodo principale dell'applicazione JavaFX.
+ * 
+ * @param args Argomenti della riga di comando. Non vengono utilizzati in questa applicazione.
+ */
     public static void main(String[] args) {
         launch();
     }
