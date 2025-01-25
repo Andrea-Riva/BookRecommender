@@ -104,11 +104,14 @@ public class LoggedUser extends User {
     *
     * La recensione viene scritta nel file {@code src/data/recensioni.json} con override dello stesso
     *
-    * @param titolo del libro (String) e i 5 parametri di valutazione (int)
+    * @param titolo del libro (String) e i 5 parametri di valutazione stile, contenuto, gradevolezza,
+    * originalità, edizione(int).
+    *
+    * @throws Exception in caso di anomalie
     */
     public void addRecensione(String titolo, int stile, int contenuto,
                               int gradevolezza, int originalità, int edizione) throws Exception {
-        if(!(new JsonUtils().isPresente(this, titolo))) {   // Se il libro non è presente in nessuna libreria
+        if(!(new JsonUtils().isPresente(this, titolo))) {   
             throw new Exception("Il libro " + titolo + " non risulta presente in nessuna tua libreria");
         }
         String filePath = "src/data/recensioni.json";
@@ -123,6 +126,8 @@ public class LoggedUser extends User {
     /**
     * Il metodo permette di visualizzare la collection di oggetti Recensione dell'utente che esegue i ìl metodo
     * Vengono caricate e filtrate tutte le recensioni utilizzando l'id utente
+    *
+    * @throws IOException
     */
 
     public List<Recensione> visualizzaLeMieRecensioni() throws IOException {  
@@ -142,6 +147,9 @@ public class LoggedUser extends User {
     * L'oggetto Libro su cui eseguire il metodo deve essere presente almeno in una libreria dell'utente
     *
     * La scrittura avviene sul file {@code src/main/java/org/BookRecommender/data/consigli.json} con override
+    *
+    * @param titolo (String), consigli (List<Libro>)
+    * @throws Exception
     */
     public void addConsiglio(String titolo, List<Libro> consigli) throws Exception {
         if(!(new JsonUtils().isPresente(this, titolo))) {
