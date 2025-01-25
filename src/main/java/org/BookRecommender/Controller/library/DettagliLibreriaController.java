@@ -73,7 +73,7 @@ public class DettagliLibreriaController {
     * Metodo per la gestione del pulsante "indietro"
     * Effettua uno switch della scena visualizzado tutte le librerie.
     *
-    * @throws exception in caso di anomalie durante l'esecuzione del metodo.
+    * @throws exception in caso di anomalie durante l'esecuzione del metodo
     */
     @FXML
     private void goToAllLibs() throws IOException {    
@@ -84,7 +84,7 @@ public class DettagliLibreriaController {
     * Metodo per la gestione del pulsante "MyLibs"
     * Effettua uno switch della scena visualizzado le librerie dell'utente.
     *
-    * @throws exception in caso di anomalie durante l'esecuzione del metodo.
+    * @throws exception in caso di anomalie durante l'esecuzione del metodo
     */
     @FXML
     private void goToMyLibs() throws IOException {  
