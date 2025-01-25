@@ -10,10 +10,15 @@ public class Libro {
     private String pubblicatore;
     private double prezzo;
     private String data;
-
-    // Costruttore annotato con @JsonCreator
+    /**
+   * Classe per definire l'oggetto Libro.
+   *
+   * Questa classe utilizza le annotazioni di Jackson per la deserializzazione JSON.
+   * - {@code @JsonCreator} viene utilizzato per specificare il costruttore da usare nella deserializzazione. <br>
+   * - {@code @JsonProperty} viene utilizzato per mappare i nomi dei campi JSON agli attributi della classe.
+   */
     @JsonCreator
-    public Libro(   // Campi per la deserializzazione da Json a Libro
+    public Libro(   
                     @JsonProperty("titolo") String titolo,
                     @JsonProperty("autore") String autore,
                     @JsonProperty("descrizione") String descrizione,
@@ -30,7 +35,6 @@ public class Libro {
         this.data = data;
     }
 
-    // Getters e setters
     public String getTitolo() { return this.titolo; }
     public String getAutore() { return this.autore; }
     public String getDescrizione() { return this.descrizione; }
@@ -51,7 +55,6 @@ public class Libro {
 
     @Override
     public String toString() {
-        // Formattazione data toString
         return "Titolo: " + titolo + "\nAutore: " + autore + "\nDescrizione: " + descrizione +
                 "\nCategoria: " + categoria + "\nPubblicatore: " + pubblicatore + "\nPrezzo: " + prezzo +
                 "\nData di pubblicazione: " + data;
