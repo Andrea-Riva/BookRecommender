@@ -64,7 +64,7 @@ public class DettagliFromLibController {
      /**
      * Torna alla schermata dei dettagli della libreria.
      * 
-     * @throws IOException se si verifica un errore nel cambio di scena.
+     * @throws IOException se si verifica un errore nel cambio di scena
      */
     @FXML
     private void goToLibreria() throws IOException {
