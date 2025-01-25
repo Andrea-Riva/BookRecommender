@@ -24,6 +24,7 @@ public class JsonUtils {
      * Restituisce tutti i libri presenti nel dataset JSON.
      *
      * @return una collection di libri deserializzati dal file JSON.
+     * @throws IOException in caso di anomalie
      */
     public List<Libro> getLibri() throws IOException {
         JsonNode libriNode = readFromFile("src/main/java/org/BookRecommender/data/libri.json");
@@ -47,6 +48,7 @@ public class JsonUtils {
      * Restituisce tutti gli utenti presenti nel dataset di JSON.
      *
      * @return una collection di utenti deserializzati dal file JSON.
+     * @throws IOException
      */
     public List<LoggedUser> getUtenti() throws IOException {
         JsonNode utentiNode = readFromFile("src/main/java/org/BookRecommender/data/utenti.json");
@@ -69,6 +71,7 @@ public class JsonUtils {
      * Restituisce tutti gli oggetti Libro presenti nel dataset di JSON
      *
      * @return una collection di Libri deserializzati dal file JSON
+     * @throws IOException
      */
     public List<Libreria> getLibrerie() throws IOException {
         String filePath = "src/main/java/org/BookRecommender/data/librerie.json";
@@ -86,6 +89,7 @@ public class JsonUtils {
      * Restituisce tutte le Recensioni presenti nel dataset di JSON.
      *
      * @return una collection di recensioni deserializzati dal file JSON.
+     * @throws IOException
      */
     public List<Recensione> getRecensioni() throws IOException {
         String filePath = "src/main/java/org/BookRecommender/data/recensioni.json";
@@ -102,6 +106,7 @@ public class JsonUtils {
      * Restituisce tutti i Consigli presenti nel dataset di JSON.
      *
      * @return una collection di Consigli deserializzati dal file JSON.
+     * @throws IOException
      */
     public List<Consiglio> getConsigli() throws IOException {
         String filePath = "src/main/java/org/BookRecommender/data/consigli.json";
@@ -117,7 +122,7 @@ public class JsonUtils {
     /**
     * Metodo per creare un nodo Json per User.
     *
-    * @param oggetto di tipo LoggedUser (user).
+    * @param user
     * @return oggetto ObjectNode che rappresenta l'oggetto LoggedUser.
     */
     public ObjectNode createUserNode(LoggedUser user) {
@@ -135,7 +140,8 @@ public class JsonUtils {
     /**
     * Metodo per scrivere il nodo Json su file .
     *
-    * @param JsonNode, filePath (String).
+    * @param node (JsonNode), filePath (String).
+    * @throws IOException
     */ 
     public void writeToFile(JsonNode node, String filePath) throws IOException {
         mapper.writerWithDefaultPrettyPrinter().writeValue(new File(filePath), node);
@@ -145,6 +151,7 @@ public class JsonUtils {
     * Metodo per leggere un nodo Json da file.
     *
     * @param filePath (String).
+    * @throws IOException
     */
     public JsonNode readFromFile(String filePath) throws IOException {
         return mapper.readTree(new File(filePath));
@@ -154,7 +161,8 @@ public class JsonUtils {
     * metodo per scrivere i nodi degli utenti su file 
     *
     * File path: {@code rc/main/java/org/BookRecommender/data/utenti.json}
-    * @param JsonNode
+    * @param root (JsonNode)
+    * @throws IOException
     */
     public void writeUtentiNodes(JsonNode root) throws IOException {
         writeToFile(root, "src/main/java/org/BookRecommender/data/utenti.json");
@@ -164,7 +172,8 @@ public class JsonUtils {
     * Metodo per scrivere i nodi degli oggetti Libreria su file.
     *
     * file path: {@code src/main/java/org/BookRecommender/data/librerie.json}.
-    * @param JsonNode.
+    * @param root (JsonNode)
+    * @throws IOException
     */
     public void writeLibrerieNodes(JsonNode root) throws IOException {
         ObjectMapper mapper = new ObjectMapper();
@@ -176,7 +185,7 @@ public class JsonUtils {
     *
     * - se il JsonNode root non è un'array o il file è vuoto @return 1;
     * - altrimenti itera root cercando il maxId e @return maxId + 1.
-   
+    * @throws IOException
     */
     public int getUniqueId() throws IOException {
         JsonNode root = readFromFile("src/main/java/org/BookRecommender/data/utenti.json");
@@ -198,6 +207,7 @@ public class JsonUtils {
     * Metodo per ottenere gli utenti come JsonNode, utile se si vuole effettuare una manipolazione diretta dei nodi.
     *
     * @return JsonNode from {@code src/main/java/org/BookRecommender/data/utenti.json}.
+    * @throws IOException
     */
     public JsonNode getUtentiAsJsonNode() throws IOException {
         return readFromFile("src/main/java/org/BookRecommender/data/utenti.json");
@@ -207,8 +217,9 @@ public class JsonUtils {
     * Metodo per verificare se un oggetto Libro è presente nelle librerie di un certo utente.
     * Itera le librerie appartenenti al proprietario cercato aggiornando il valore a true in caso di successo.
     *
-    * @param LoggedUser (proprietario della libreria), Steing (titolo del libro).
+    * @param proprietario (loggedUser), titolo (String).
     * @return true se presente, false altrimenti.
+    * @throws IOException
     */
     public boolean isPresente(LoggedUser proprietario, String titolo) throws IOException {  
         boolean presente = false;
