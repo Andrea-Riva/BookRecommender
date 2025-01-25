@@ -49,6 +49,7 @@ public class HomeController {
     * Il Display dei libri avviene dinamicamente, la distanza tra colonne e righe è data da
     * {@code  bookGridPane.setHgap(10);  
     *         bookGridPane.setVgap(10);}
+    * @throws IOException
     */
     @FXML
     public void initialize() throws IOException {   
@@ -102,25 +103,24 @@ public class HomeController {
     /**
      * Metodo per la ricerca di un libro per titolo.
      * Mostra un alert se il libro non viene trovato.
-     * @throws Exception Se si verifica un errore durante la ricerca.
+     * @throws Exception Se si verifica un errore durante la ricerca
      */
     @FXML
-    public void ricercaByTitolo() throws Exception { // Click btn cerca
-        LibroModel.libro = new User().searchLibroByTitolo(ricercaTextField.getText());  // Trova il libro
-        // Gestisce il caso nel quale il titolo non è stato trovato
-        if(Objects.isNull(LibroModel.libro)) {  // Se il libro non è stato trovato
+    public void ricercaByTitolo() throws Exception { 
+        LibroModel.libro = new User().searchLibroByTitolo(ricercaTextField.getText());
+        if(Objects.isNull(LibroModel.libro)) { 
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Errore di ricerca");
             alert.setHeaderText("Libro non trovato");
             alert.setContentText("Il libro non è presente nella biblioteca");
-            alert.showAndWait();    // Lancia un alert di non successo della ricerca
+            alert.showAndWait();  
         } else {
-            new SceneSwitch(homeAnchorPane, "/org/BookRecommender/View/dettagliLibro/dettagliLibroPage.fxml");    // Switch scena
+            new SceneSwitch(homeAnchorPane, "/org/BookRecommender/View/dettagliLibro/dettagliLibroPage.fxml");    
         }
     }
     /**
      * Effettua il logout dell'utente e ritorna alla home page.
-     * @throws IOException Se si verifica un errore durante il cambio di scena.
+     * @throws IOException Se si verifica un errore durante il cambio di scena
      */
     @FXML
     public void goBack() throws IOException {  
@@ -137,7 +137,7 @@ public class HomeController {
     }
      /**
      * Naviga alla pagina delle librerie di tutti gli utenti.
-     * @throws IOException Se si verifica un errore durante il cambio di scena.
+     * @throws IOException Se si verifica un errore durante il cambio di scena
      */
     @FXML
     public void goToAllUsersLibs() throws IOException {    
@@ -145,10 +145,10 @@ public class HomeController {
     }
      /**
      * Naviga alla pagina di login.
-     * @throws IOException Se si verifica un errore durante il cambio di scena.
+     * @throws IOException Se si verifica un errore durante il cambio di scena
      */
     @FXML
-    private void goToLogin() throws IOException {  // Click btn login
+    private void goToLogin() throws IOException {  
         new SceneSwitch(homeAnchorPane, "/org/BookRecommender/View/loginPage.fxml");
     }
      /**
@@ -156,15 +156,15 @@ public class HomeController {
      * @throws IOException Se si verifica un errore durante il cambio di scena.
      */
     @FXML
-    private void goToCreazioneLib() throws IOException {    // Click btn crea libreria
+    private void goToCreazioneLib() throws IOException {    
         new SceneSwitch(homeAnchorPane, "/org/BookRecommender/View/library/createLibreria.fxml");
     }
      /**
      * Naviga alla pagina delle mie librerie.
-     * @throws IOException Se si verifica un errore durante il cambio di scena.
+     * @throws IOException Se si verifica un errore durante il cambio di scena
      */
     @FXML
-    private void goToMieLibrerie() throws IOException { // Click btn le mie librerie
+    private void goToMieLibrerie() throws IOException { 
             new SceneSwitch(homeAnchorPane, "/org/BookRecommender/View/library/mieLibrerie.fxml");
     }
 }
