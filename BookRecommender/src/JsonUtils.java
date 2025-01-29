@@ -1,4 +1,4 @@
-import com.fasterxml.jackson.databind.JsonNode;
+@import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.node.ArrayNode;
@@ -20,7 +20,12 @@ public class JsonUtils {
         this.mapper = new ObjectMapper();
         mapper.setDateFormat(new StdDateFormat());  // Formato di data standard
     }
-
+    
+    /**
+    * Restituisce tutti i libri presenti nel dataset JSON
+    *
+    * @return una collection di libri deserializzati dal file JSON
+    */
     // Leggere tutti i libri dal file JSON
     public List<Libro> getLibri() throws IOException {
         JsonNode libriNode = readFromFile("src/data/libri.json");
@@ -40,6 +45,11 @@ public class JsonUtils {
         return libri;
     }
 
+    /**
+    * Restituisce tutti gli utenti presenti nel dataset di JSON
+    *
+    * @return una collection di utenti deserializzati dal file JSON
+    */
     // Leggere tutti gli utenti dal file JSON
     public List<LoggedUser> getUtenti() throws IOException {
         JsonNode utentiNode = readFromFile("src/data/utenti.json");
