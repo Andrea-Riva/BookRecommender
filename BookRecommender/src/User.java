@@ -17,35 +17,46 @@ public class User {
     }
 
     /**
-     * Permette di cercare un libro nel dataset tramite il parametro del titolo
+     * Permette di cercare un libro nel dataset tramite il parametro del titolo.
      *
-     * @param titolo Il titolo del libro
-     * @return Il libro trovato
+     * @param titolo Il titolo del libro.
+     * @return una lista di libri contenenti per titolo la stringa fornita per argomento.
      * @throws IOException Se la deserializzazione non va a buon fine
      */
-    public Libro searchLibroByTitolo(String titolo) throws Exception {
-        List<Libro> dataset = new JsonUtils().getLibri();   // Deserializza dataset
-        for (Libro l : dataset) {    // Ciclo su tutta la lista
-            if (l.getTitolo().equals(titolo)) return l;  // Se i titoli corrispondono
-        }
-        return null;    // Libro non trovato
-    }
-
-    /**
-     * Permette di cercare una serie di libri scritti dallo stesso autore
-     *
-     * @param auth L'autore del libro
-     * @return Una collection di libri aventi lo stesso autore
-     * @throws IOException Se la deserializzazione non va a buon fine
-     */
-    public List<Libro> searchLibroByAuth(String auth) throws IOException {
+    public List<Libro> searchLibroByTitolo(String titolo) throws Exception {
         List<Libro> dataset = new JsonUtils().getLibri();
-        List<Libro> libriFound = new ArrayList<Libro>();    // To return
-        for (Libro l : dataset) {
-            if (l.getAutore().equals(auth))
-                libriFound.add(l);   // Se i titoli corrispondono aggiunge il Libro alla lista
+        List<Libro> founded = new ArrayList<>();
+        if(dataset.isEmpty()){
+            return founded;
         }
-        return libriFound;
+        for (Libro l : dataset) {
+            String foundedTitles = l.getTitolo();
+            if (foundedTitles.toLowerCase().contains(titolo.toLowerCase())) {
+            }founded.add(l);
+        }
+        return founded;
+    
+
+   /**
+     * Permette di cercare una serie di libri scritti dallo stesso autore.
+     *
+     * @param auth L'autore del libro.
+     * @return Una collection di libri aventi lo stesso autore.
+     * @throws IOException Se la deserializzazione non va a buon fine
+     */
+    public List<Libro> searchLibriByAuth(String auth) throws IOException {
+        List<Libro> dataset = new JsonUtils().getLibri();
+        List<Libro> foundedBooks = new ArrayList<Libro>();
+
+        if(foundedBooks.isEmpty()){
+            return foundedBooks;
+        }
+        for (Libro l : dataset) {
+            String author = l.getAutore();
+            if (author.toLowerCase().contains(author.toLowerCase()))
+                foundedBooks.add(l);
+        }
+        return foundedBooks;
     }
 
     /**
